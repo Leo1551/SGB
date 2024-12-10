@@ -1,0 +1,45 @@
+#caixa-registro {
+    background: #DCE7F5; /* Tom suave para combinar com o esquema de cores */
+    border: 1px solid #B3CDE7; /* Borda com tom mais escuro para contraste */
+    border-radius: 10px; /* Bordas arredondadas para suavidade */
+    width: 400px; /* Largura moderada para foco */
+    margin: 50px auto; /* Centralizado com espaçamento superior */
+    padding: 20px 30px; /* Espaçamento interno confortável */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve para destacar */
+    text-align: center; /* Alinhamento centralizado */
+}
+
+#caixa-registro h1 {
+    color: #323C64; /* Cor do título consistente com o cabeçalho */
+    font-size: 22px; /* Tamanho adequado */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    font-weight: bold;
+}
+
+#caixa-registro input[type="text"],
+#caixa-registro input[type="password"],
+#caixa-registro input[type="email"] {
+    width: 100%; /* Ocupa toda a largura */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 15px; /* Espaço entre os campos */
+    border: 1px solid #B3CDE7; /* Borda suave */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho legível */
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+#caixa-registro input[type="submit"] {
+    background: #AEC6CF; /* Cor de fundo para harmonizar */
+    color: #FFF; /* Texto claro */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 18px; /* Tamanho legível */
+    font-weight: bold;
+    cursor: pointer; /* Cursor de clique */
+    transition: background 0.3s ease; /* Transição suave */
+}
+
+#caixa-registro input[type="submit"]:hover {
+    background: #B3CDE7; /* Tom mais escuro no hover */
+}
