@@ -1,3 +1,10 @@
+<%-- 
+    Document   : recSenha
+    Created on : 22 de dez de 2024, 18:17:02
+    Author     : leona
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,20 +16,12 @@
     <link rel="stylesheet" href="form.css">
 </head>
 <body>
-    <header>
-		<div id="logo"><img src="logo.png">Bandeijão - CEFET-MG</div>
-		<nav>  
-			<ul>
-				<li><a href="">Home</a>
-				<li><a href="">Seu perfil <img id="imgperfil" src="user.png"></a>
-			</ul>
-		</nav>
-	</header>
+    <%@include file="../header.jsp" %>
     <div id="caixa-login">
         <h1>Sistema de Gestão do Bandejão</h1>
 
         <form action="" method="post">
-            <input type="text" name="" id="" placeholder="Número de matricula">
+            <input type="text" name="id" placeholder="Número de matricula">
             <!-- número de matricula-->
             <input type="submit" value="Enviar Email de Recuperação">
         </form>
@@ -30,8 +29,6 @@
 
     </div>
 
-    
+    <%@include file="../footer.jsp" %>
 </body>
 </html>
-
-<!--Implementação futura de envio de dados para usuário-->

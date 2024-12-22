@@ -1,3 +1,10 @@
+<%-- 
+    Document   : registro
+    Created on : 22 de dez de 2024, 18:19:54
+    Author     : leona
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,27 +15,19 @@
     <link rel="stylesheet" href="form.css">
 </head>
 <body>
-    <header>
-		<div id="logo"><img src="logo.png">Bandeijão - CEFET-MG</div>
-		<nav>  
-			<ul>
-				<li><a href="">Home</a>
-				<li><a href="">Seu perfil <img id="imgperfil" src="user.png"></a>
-			</ul>
-		</nav>
-	</header>
+    
     <div id="caixa-login">
         <h1>Sistema de Gestão do Bandejão</h1>
 
         <form action="" method="post">
-            <input type="text" name="" id="" placeholder="Nome ">
+            <input type="text" name="nome"  placeholder="Nome ">
             <!--Nome do aluno-->
-            <input type="text" name="" id="" placeholder="Número de matricula">
+            <input type="text" name="id"  placeholder="Número de matricula">
             <!-- número de matricula-->
-            <input type="password" name="" id="" placeholder="Senha de registro">
+            <input type="password" name="senha"  placeholder="Senha de registro">
             <!--Senha de registro-->
 
-            <input type="email" name="" id="" placeholder="Email de recuperação">
+            <input type="email" name="email" placeholder="Email de recuperação">
             <!--Email-->
             
           

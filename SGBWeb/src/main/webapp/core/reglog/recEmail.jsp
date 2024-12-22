@@ -1,3 +1,10 @@
+<%-- 
+    Document   : RecEmail
+    Created on : 22 de dez de 2024, 18:13:31
+    Author     : leona
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,25 +15,18 @@
     <link rel="stylesheet" href="form.css">
 </head>
 <body>
-    <header>
-		<div id="logo"><img src="logo.png">Bandeijão - CEFET-MG</div>
-		<nav>  
-			<ul>
-				<li><a href="">Home</a>
-				<li><a href="">Seu perfil <img id="imgperfil" src="user.png"></a>
-			</ul>
-		</nav>
-	</header>
+    <%@include file="../header.jsp"%>
     <div id="caixa-login">
         <form action="" method="post">
 
-            <input type="text" name="" id="" placeholder="Nova Senha">
+            <input type="text" name="novaSenha" placeholder="Nova Senha">
     
-            <input type="text" name="" id="" placeholder="Confirmação da Nova Senha">
+            <input type="text" name="confirmaSenha" placeholder="Confirmação da Nova Senha">
     
     
             <input type="submit" value="Alterar">
         </form>
     </div>
+    <%@include file="../footer.jsp" %>
 </body>
 </html>
