@@ -10,9 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!--css-->
+    <%@include file="css.jsp"%>
     <title>Document</title>
-    <link rel="stylesheet" href="/Style/styleBase.css">
-    <link rel="stylesheet" href="form.css">
 </head>
 <body>
     <%@include file="../header.jsp"%>

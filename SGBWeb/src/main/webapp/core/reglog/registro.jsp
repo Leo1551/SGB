@@ -11,11 +11,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> SCG - Sistema de Gestão do Bandejão</title>
-    <link rel="stylesheet" href="/Style/styleBase.css">
-    <link rel="stylesheet" href="form.css">
+     <!--css-->
+    <%@include file="css.jsp"%>
 </head>
 <body>
-    
+    <%@include file="../header.jsp"%>
     <div id="caixa-login">
         <h1>Sistema de Gestão do Bandejão</h1>
 
@@ -36,5 +36,6 @@
 
     </div>
 
+    <%@include file="../footer.jsp" %>
 </body>
 </html>
