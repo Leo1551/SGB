@@ -11,16 +11,16 @@ package br.cefet.inf.sgbjava;
 import java.sql.*;
 
 public class ConexaoBD {
-    private static String url = "jdbc:mysql://192.168.1.18:3306/Alunos"; 
-    private static String usuario = "admins";
-    private static String senha = "123456"; 
+    private static String url = "jdbc:mysql://localhost:3306/sgb"; 
+    private static String usuario = "root";
+    private static String senha = ""; 
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, usuario, senha);
     }
 
-    public static void inserirPreCadastro(String nome, String senha, String foto, String email, long matricula) {
-        String sql = "INSERT INTO precadastros (nome, senha, foto, email, matricula) VALUES (?, ?, ?, ?, ?)";
+    public static void inserirPreCadastro(String nome, String senha, String foto, String email, long matricula, int id) {
+        String sql = "INSERT INTO precadastros (nome, senha, foto, email, matricula, id) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conexao = getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, nome);
@@ -28,6 +28,7 @@ public class ConexaoBD {
             stmt.setString(3, foto);
             stmt.setString(4, email);
             stmt.setLong(5, matricula);
+            stmt.setLong(6, id);
             stmt.executeUpdate();
             System.out.println("Dados inseridos na tabela precadastros!");
         } catch (SQLException e) {
@@ -35,8 +36,8 @@ public class ConexaoBD {
         }
     }
 
-    public static void inserirCadastro(String nome, String senha, String foto, String email, long matricula, int codigoCartao, boolean statusCartao) {
-        String sql = "INSERT INTO cadastros (nome, senha, foto, email, matricula, codigoCartao, statusCartao) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static void inserirCadastro(String nome, String senha, String foto, String email, long matricula, int codigoCartao, boolean statusCartao, int id) {
+        String sql = "INSERT INTO cadastros (nome, senha, foto, email, matricula, codigoCartao, statusCartao, id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conexao = getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, nome);
@@ -46,6 +47,7 @@ public class ConexaoBD {
             stmt.setLong(5, matricula);
             stmt.setInt(6, codigoCartao);
             stmt.setBoolean(7, statusCartao);
+            stmt.setInt(8, id);
             stmt.executeUpdate();
             System.out.println("Dados inseridos na tabela cadastros!");
         } catch (SQLException e) {
@@ -167,10 +169,10 @@ public class ConexaoBD {
 
     
     public static void main(String[] args) {
-        //inserirPreCadastro("Bia Braico", "senhaaa", "foto_url3", "braico@gmail.com", 12345678903L);
+        //inserirPreCadastro("Bia Braico", "senhaaa", "foto_url3", "braico@gmail.com", 12345678903L, 3);
        //                               (String nome, String senha, String foto, String email, long matricula)
        
-        //inserirCadastro("Bernardo Brando", "senh", "foto_url4", "bernardoB@email.com", 12345678904L, 654321, true);
+        //inserirCadastro("Bernardo Brando", "senh", "foto_url4", "bernardoB@email.com", 12345678904L, 654321, true, 1);
         //                         (String nome, String senha, String foto, String email, long matricula, int codigoCartao, boolean statusCartao) 
 
         
@@ -180,10 +182,10 @@ public class ConexaoBD {
         //atualizarCadastro(2, "Bernardo B. Brando", "senh", "foto_url4", "bernardoB@email.com", 12345678904L, 654321, true);
         //                            (int id, String nome, String senha, String foto, String email, long matricula, int codigoCartao, boolean statusCartao) 
 
-        consultarPreCadastro(null, null, null, null, "bbraico@gmail.com", null);
+        //consultarPreCadastro(null, null, null, null, "braico@gmail.com", null);
         //      (Integer id, String nome, String senha, String foto, String email, Long matricula,)  
         
-        consultarCadastro(1, null, null, null, null, null, null, true);
+        //consultarCadastro(null, null, null, null, null, null, null, true);
         //      (Integer id, String nome, String senha, String foto, String email, Long matricula, Integer codigoCartao, Boolean statusCartao)   
     }
 }
