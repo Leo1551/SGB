@@ -11,7 +11,7 @@ package br.cefet.inf.sgbjava;
 import java.sql.*;
 
 public class ConexaoBD {
-    private static String url = "jdbc:mysql://192.168.100.31:3306/Alunos"; 
+    private static String url = "jdbc:mysql://192.168.1.18:3306/Alunos"; 
     private static String usuario = "admins";
     private static String senha = "123456"; 
 
@@ -88,50 +88,102 @@ public class ConexaoBD {
             System.out.println("Erro ao atualizar dados na tabela cadastros: " + e.getMessage());
         }
     }
-
-    public static void consultarPreCadastro() {
-        String sql = "SELECT * FROM precadastros";
+    
+    public static void consultarPreCadastro(Integer id, String nome, String senha, String foto, String email, Long matricula) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM precadastros WHERE 1=1");
+    
+        if (id != null) sql.append(" AND id = ?");
+        if (nome != null) sql.append(" AND nome LIKE ?");
+        if (senha != null) sql.append(" AND senha = ?");
+        if (foto != null) sql.append(" AND foto = ?");
+        if (email != null) sql.append(" AND email = ?");
+        if (matricula != null) sql.append(" AND matricula = ?");
+    
         try (Connection conexao = getConnection();
-             Statement stmt = conexao.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                String email = rs.getString("email");
-                // printar o que for necessario
-                System.out.println("ID: " + id + ", Nome: " + nome + ", E-mail: " + email);
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro ao consultar dados da tabela precadastros: " + e.getMessage());
-        }
-    }
-
-    public static void consultarCadastro() {
-        String sql = "SELECT * FROM cadastros";
-        try (Connection conexao = getConnection();
-             Statement stmt = conexao.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                boolean statusCartao = rs.getBoolean("statusCartao");
+             PreparedStatement stmt = conexao.prepareStatement(sql.toString())) {
+        
+            int paramIndex = 1;
+            if (id != null) stmt.setInt(paramIndex++, id);
+            if (nome != null) stmt.setString(paramIndex++, "%" + nome + "%");
+            if (senha != null) stmt.setString(paramIndex++, senha);
+            if (foto != null) stmt.setString(paramIndex++, foto);
+            if (email != null) stmt.setString(paramIndex++, email);
+            if (matricula != null) stmt.setLong(paramIndex++, matricula);
+        
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    int resultId = rs.getInt("id");
+                    String resultNome = rs.getString("nome");
+                    String resultEmail = rs.getString("email");
+                    Long resultMatricula = rs.getLong("matricula");
                 
-                // printar o que for necessario
-                System.out.println("ID: " + id + ", Nome: " + nome + ", Status do Cartão: " + (statusCartao ? "Ativo" : "Inativo"));
+                    System.out.println("ID: " + resultId + ", Nome: " + resultNome + ", Email: " + resultEmail + ", Matricula: " + resultMatricula);
+                }
             }
         } catch (SQLException e) {
             System.out.println("Erro ao consultar dados da tabela cadastros: " + e.getMessage());
         }
     }
 
+    public static void consultarCadastro(Integer id, String nome, String senha, String foto, String email, Long matricula, Integer codigoCartao, Boolean statusCartao) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM cadastros WHERE 1=1");
+    
+        if (id != null) sql.append(" AND id = ?");
+        if (nome != null) sql.append(" AND nome LIKE ?");
+        if (senha != null) sql.append(" AND senha = ?");
+        if (foto != null) sql.append(" AND foto = ?");
+        if (email != null) sql.append(" AND email = ?");
+        if (matricula != null) sql.append(" AND matricula = ?");
+        if (codigoCartao != null) sql.append(" AND codigoCartao = ?");
+        if (statusCartao != null) sql.append(" AND statusCartao = ?");
+    
+        try (Connection conexao = getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(sql.toString())) {
+        
+            int paramIndex = 1;
+            if (id != null) stmt.setInt(paramIndex++, id);
+            if (nome != null) stmt.setString(paramIndex++, "%" + nome + "%");
+            if (senha != null) stmt.setString(paramIndex++, senha);
+            if (foto != null) stmt.setString(paramIndex++, foto);
+            if (email != null) stmt.setString(paramIndex++, email);
+            if (matricula != null) stmt.setLong(paramIndex++, matricula);
+            if (codigoCartao != null) stmt.setInt(paramIndex++, codigoCartao);
+            if (statusCartao != null) stmt.setBoolean(paramIndex++, statusCartao);
+        
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    int resultId = rs.getInt("id");
+                    String resultNome = rs.getString("nome");
+                    String resultEmail = rs.getString("email");
+                    boolean resultStatusCartao = rs.getBoolean("statusCartao");
+                
+                    System.out.println("ID: " + resultId + ", Nome: " + resultNome + ", Email: " + resultEmail + ", Status do Cartao: " + (resultStatusCartao ? "Ativo" : "Inativo"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao consultar dados da tabela cadastros: " + e.getMessage());
+        }
+    }
+
+    
     public static void main(String[] args) {
         //inserirPreCadastro("Bia Braico", "senhaaa", "foto_url3", "braico@gmail.com", 12345678903L);
+       //                               (String nome, String senha, String foto, String email, long matricula)
+       
         //inserirCadastro("Bernardo Brando", "senh", "foto_url4", "bernardoB@email.com", 12345678904L, 654321, true);
+        //                         (String nome, String senha, String foto, String email, long matricula, int codigoCartao, boolean statusCartao) 
 
+        
         //atualizarPreCadastro(2,"Bia Braicco", "senha", "foto_url3", "bbraico@gmail.com", 12345678903L);
+       //                                   (int id, String nome, String senha, String foto, String email, long matricula)
+       
         //atualizarCadastro(2, "Bernardo B. Brando", "senh", "foto_url4", "bernardoB@email.com", 12345678904L, 654321, true);
+        //                            (int id, String nome, String senha, String foto, String email, long matricula, int codigoCartao, boolean statusCartao) 
 
-        consultarPreCadastro();
-        consultarCadastro();
+        consultarPreCadastro(null, null, null, null, "bbraico@gmail.com", null);
+        //      (Integer id, String nome, String senha, String foto, String email, Long matricula,)  
+        
+        consultarCadastro(1, null, null, null, null, null, null, true);
+        //      (Integer id, String nome, String senha, String foto, String email, Long matricula, Integer codigoCartao, Boolean statusCartao)   
     }
 }
