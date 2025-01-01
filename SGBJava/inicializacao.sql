@@ -40,3 +40,11 @@ INSERT INTO `precadastros` (`id`, `nome`, `senha`, `foto`, `email`, `matricula`)
 (4, 'Camila Pereira', 'Camila!456', 'foto_url6', 'camila.pereira@email.com', 202245678),
 (5, 'Gustavo Almeida', 'Gust@vo2024', 'foto_url7', 'gustavo.almeida@email.com', 202356789),
 (6, 'Larissa Martins', 'Lari@1234', 'foto_url8', 'larissa.martins@email.com', 201845678);
+
+DROP TABLE IF EXISTS `historico`;
+CREATE TABLE IF NOT EXISTS `historico` (
+  `matricula` bigint NOT NULL,
+  `valor` int NOT NULL,
+  `data` timestamp NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
