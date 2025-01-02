@@ -6,25 +6,33 @@ package sgb.model.dao;
 
 import java.sql.*;
 
-/**
- *
- * @author viotr
- */
+import sgb.model.dto.Transacao;
 public class TransacaoDAO {
 
     private static String url = "jdbc:mysql://localhost:3306/sgb";
     private static String usuario = "root";
     private static String senha = "";
-    private Connection conexao;
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, usuario, senha);
     }
 
-    public TransacaoDAO() throws SQLException {
-        try (Connection conexao = getConnection();) {
+    public static boolean setTransacao(Transacao trnsc){
+        String sql = "INSERT INTO historico (matricula, valor, data) VALUES (?, ?, ?)";
+        try (Connection conexao = getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, trnsc.getMatricula()+"");
+            stmt.setString(2, trnsc.getValor()+"");
+            stmt.setString(3, new java.sql.Timestamp(trnsc.getData().getTime())+"");
+            stmt.executeUpdate();
+            System.out.println("Dados inseridos na tabela de historico");
+            return true;
         } catch (SQLException e) {
-            System.out.println("Erro ao inicializar a conexão ao instanciar um objeto TransacaoDAO: " + e.getMessage());
+            System.out.println("Erro ao inserir dados na tabela historico: " + e.getMessage());
+            return false;
         }
+    }
+    
+     public static void main(String[] args){
     }
 }
