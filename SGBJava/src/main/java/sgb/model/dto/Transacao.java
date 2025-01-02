@@ -16,6 +16,18 @@ public class Transacao {
         this.data = new java.util.Date();
     }
 
+    public Transacao(long matricula, int valor, java.util.Date data) {
+        this.matricula = matricula;
+        this.valor = valor;
+        this.data = data;
+    }
+
+    public Transacao(long matricula, int valor, java.sql.Timestamp data) {
+        this.matricula = matricula;
+        this.valor = valor;
+        this.data = new java.util.Date(data.getTime());
+    }
+
     public long getMatricula() {
         return matricula;
     }
@@ -24,10 +36,10 @@ public class Transacao {
         return valor;
     }
 
-    public java.util.Date getData(){
+    public java.util.Date getData() {
         return data;
     }
-    
+
     public String toString() {
         String str = "matricula: " + matricula + "\nvalor: " + valor + "\ndata: " + data + "\n";
         return str;
