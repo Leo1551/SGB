@@ -60,12 +60,9 @@ public class TransacaoDAO {
     }
     
     public static Transacao[] getTransacoes(long matricula, java.util.Date dataInicial, java.util.Date dataFinal) {
-        System.out.println(dataInicial);
         java.sql.Timestamp sqlDataInicial=new java.sql.Timestamp(dataInicial.getTime());
         java.sql.Timestamp sqlDataFinal=new java.sql.Timestamp(dataFinal.getTime());
-        System.out.println(sqlDataInicial);
-        System.out.println(sqlDataFinal);
-        String sql = "SELECT * FROM historico WHERE matricula=" + matricula+" AND data BETWEEN "+sqlDataInicial+" AND "+sqlDataFinal;
+        String sql = "SELECT * FROM historico WHERE matricula=" + matricula+" AND data BETWEEN '"+sqlDataInicial+"' AND '"+sqlDataFinal+"'";
         Transacao[] res = new Transacao[500];
         try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
@@ -90,8 +87,4 @@ public class TransacaoDAO {
         return res;
     }
 
-    public static void main(String[] args) {
-        Transacao[] res=getTransacoes(3L,new java.util.Date(15),new java.util.Date());
-        System.out.println(res.length);
-    }
 }
