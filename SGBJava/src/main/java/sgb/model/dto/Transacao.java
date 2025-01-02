@@ -20,7 +20,7 @@ public class Transacao {
         return matricula;
     }
 
-    public long getValor() {
+    public int getValor() {
         return valor;
     }
 
