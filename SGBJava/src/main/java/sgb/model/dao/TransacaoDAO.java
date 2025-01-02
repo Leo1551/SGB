@@ -58,8 +58,40 @@ public class TransacaoDAO {
         }
         return res;
     }
+    
+    public static Transacao[] getTransacoes(long matricula, java.util.Date dataInicial, java.util.Date dataFinal) {
+        System.out.println(dataInicial);
+        java.sql.Timestamp sqlDataInicial=new java.sql.Timestamp(dataInicial.getTime());
+        java.sql.Timestamp sqlDataFinal=new java.sql.Timestamp(dataFinal.getTime());
+        System.out.println(sqlDataInicial);
+        System.out.println(sqlDataFinal);
+        String sql = "SELECT * FROM historico WHERE matricula=" + matricula+" AND data BETWEEN "+sqlDataInicial+" AND "+sqlDataFinal;
+        Transacao[] res = new Transacao[500];
+        try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                int i = 0;
+                while (rs.next()) {
+                    long resultadoMatricula = rs.getLong("matricula");
+                    int resultadoValor = rs.getInt("valor");
+                    java.sql.Timestamp resultData = rs.getTimestamp("data");
+                    res[i] = new Transacao(resultadoMatricula, resultadoValor, resultData);
+                    i++;
+
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao consultar a tabela de historico: " + e.getMessage());
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao conectar na tabela de historico para consultar transações: " + e.getMessage());
+            return null;
+
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
-        
+        Transacao[] res=getTransacoes(3L,new java.util.Date(15),new java.util.Date());
+        System.out.println(res.length);
     }
 }
