@@ -13,9 +13,9 @@ import java.sql.SQLException;
  * @author aluno
  */
 public class OpenBD {
-    private static String url = "jdbc:mysql://localhost:3306/sgb";
-    private static String usuario = "root";
-    private static String senha = "";
+    private static final String url = "jdbc:mysql://localhost:3306/sgb";
+    private static final String usuario = "root";
+    private static final String senha = "";
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, usuario, senha);

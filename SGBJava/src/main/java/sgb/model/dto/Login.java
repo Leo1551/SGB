@@ -4,13 +4,23 @@
  */
 package sgb.model.dto;
 
-
-public class Registro {
+/**
+ *
+ * @author aluno
+ */
+public class Login {
     
-    private String nome, matricula, senha;
+    // apenas get, set e construtor dos dados do formulário
+    
+    private String matricula;
+    private String senha;
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     public void setMatricula(String matricula) {
@@ -21,22 +31,11 @@ public class Registro {
         this.senha = senha;
     }
 
-    public Registro(String nome, String matricula, String senha) {
-        this.nome = nome;
+    public Login(String matricula, String senha) {
         this.matricula = matricula;
         this.senha = senha;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
+    
+    
     
 }
