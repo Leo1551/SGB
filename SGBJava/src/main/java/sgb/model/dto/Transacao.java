@@ -16,7 +16,7 @@ public class Transacao {
         this.data = new java.util.Date();
     }
 
-    public Transacao(long matricula, int valor, java.util.Date data) {
+    public Transacao(long matricula, int valor, Date data) {
         this.matricula = matricula;
         this.valor = valor;
         this.data = data;
@@ -40,6 +40,7 @@ public class Transacao {
         return data;
     }
 
+    @Override
     public String toString() {
         String str = "matricula: " + matricula + "\nvalor: " + valor + "\ndata: " + data + "\n";
         return str;

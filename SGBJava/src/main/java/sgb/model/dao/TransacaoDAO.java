@@ -5,22 +5,17 @@
 package sgb.model.dao;
 
 import java.sql.*;
-
+import java.util.Date;
 import sgb.model.dto.Transacao;
 
+
 public class TransacaoDAO {
-
-    private static String url = "jdbc:mysql://localhost:3306/sgb";
-    private static String usuario = "root";
-    private static String senha = "";
-
-    private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, usuario, senha);
-    }
-
+    
+    // oie, coloquei a abertura do banco de dados em uma classe separada. Você apenas precisa chamar a classe OpenBD
+    
     public static boolean setTransacao(Transacao trnsc) {
         String sql = "INSERT INTO historico (matricula, valor, data) VALUES (?, ?, ?)";
-        try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, trnsc.getMatricula() + "");
             stmt.setString(2, trnsc.getValor() + "");
             stmt.setString(3, new java.sql.Timestamp(trnsc.getData().getTime()) + "");
@@ -36,7 +31,7 @@ public class TransacaoDAO {
     public static Transacao[] getTransacoes(long matricula) {
         String sql = "SELECT * FROM historico WHERE matricula=" + matricula;
         Transacao[] res = new Transacao[500];
-        try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 int i = 0;
                 while (rs.next()) {
@@ -59,12 +54,12 @@ public class TransacaoDAO {
         return res;
     }
     
-    public static Transacao[] getTransacoes(long matricula, java.util.Date dataInicial, java.util.Date dataFinal) {
+    public static Transacao[] getTransacoes(long matricula, Date dataInicial, Date dataFinal) {
         java.sql.Timestamp sqlDataInicial=new java.sql.Timestamp(dataInicial.getTime());
         java.sql.Timestamp sqlDataFinal=new java.sql.Timestamp(dataFinal.getTime());
         String sql = "SELECT * FROM historico WHERE matricula=" + matricula+" AND data BETWEEN '"+sqlDataInicial+"' AND '"+sqlDataFinal+"'";
         Transacao[] res = new Transacao[500];
-        try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 int i = 0;
                 while (rs.next()) {
