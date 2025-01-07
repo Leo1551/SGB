@@ -7,6 +7,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ page import = "java.io.*,java.util.*" %>
+<%@ page import="sgb.model.dto.Login" %>
+<%@ page import="sgb.model.dao.LoginDAO" %>
 
  <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,21 +21,13 @@
         <h1>Aguarde enquanto verificamos os dados</h1>
         
         <%
-         String nome = request.getParameter("matricula");
+         String matricula = request.getParameter("matricula");
          String senha = request.getParameter("senha");
+                  
+        if(LoginDAO.verificacaoLogin(new Login(matricula, senha)))
+            response.sendRedirect("../principal/telaInicial.jsp");
+        response.sendRedirect("login.jsp");
          
-        import sgb.model.dto.Login;
-         
-        Login a = new Login();
-        a. 
         %>
-        
-        <!-- criar conexão com banco de dados-->
-        
-        
-        <!-- criar conexão com banco de dados-->
-       
-        
-        
     </body>
 </html>

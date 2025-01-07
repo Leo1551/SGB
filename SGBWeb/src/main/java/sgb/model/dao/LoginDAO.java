@@ -14,7 +14,7 @@ import sgb.model.dto.Login;
 public class LoginDAO {
     
     
-    public static void verificacaoLogin(Login login){
+    public static boolean verificacaoLogin(Login login){
         
         try{
            Connection conexao = OpenBD.getConnection();
@@ -27,10 +27,14 @@ public class LoginDAO {
            
             if (resultado.next())
                 System.out.println("Usuário válido");
+            
+            return true;
            
         } catch (SQLException e) {
             System.err.println("Erro ao consultar login no banco de dados \n\n\n" + e.getMessage());
+            return false;
         }
+      
     
     }
     
