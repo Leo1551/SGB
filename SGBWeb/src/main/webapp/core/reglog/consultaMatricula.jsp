@@ -3,9 +3,7 @@
     Created on : 6 de jan. de 2025, 07:30:17
     Author     : aluno
 --%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ page import="sgb.model.dto.Login" %>
 <%@ page import="sgb.model.dao.LoginDAO" %>
