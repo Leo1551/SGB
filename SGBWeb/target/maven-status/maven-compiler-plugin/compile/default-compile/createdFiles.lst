@@ -1,2 +1,12 @@
-leona\structure\mavenproject3\resources\JakartaEE10Resource.class
+sgb\java\SaldoBD.class
+sgb\model\dao\TransacaoDAO.class
+sgb\model\dto\Saldo.class
+sgb\model\dao\LoginDAO.class
+sgb\java\ConexaoBD.class
 leona\structure\mavenproject3\JakartaRestConfiguration.class
+sgb\model\dto\Registro.class
+sgb\model\dto\Login.class
+leona\structure\mavenproject3\resources\JakartaEE10Resource.class
+sgb\java\SGBJava.class
+sgb\model\dao\OpenBD.class
+sgb\model\dto\Transacao.class
