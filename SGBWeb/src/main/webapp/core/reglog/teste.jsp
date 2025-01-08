@@ -7,14 +7,10 @@
     <title>Exemplo de JSTL</title>
 </head>
 <body>
-    <h1>Lista de Nomes</h1>
+    <h1>Valor a ser impresso</h1>
     
-    <c:set var="nomes" value="${['Alice', 'Bob', 'Carlos', 'Diana']}" />
+    <c:set var="valor" value="1" />
     
-    <ul>
-        <c:forEach var="nome" items="${nomes}">
-            <li>${nome}</li>
-        </c:forEach>
-    </ul>
+    <p>O valor é: <c:out value="${valor}" /></p>
 </body>
 </html>
