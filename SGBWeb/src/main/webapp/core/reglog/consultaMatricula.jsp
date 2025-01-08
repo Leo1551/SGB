@@ -24,7 +24,8 @@
                   
         if(LoginDAO.verificacaoLogin(new Login(matricula, senha)))
             response.sendRedirect("../principal/telaInicial.jsp");
-        response.sendRedirect("login.jsp");
+        else
+            response.sendRedirect("login.jsp");
          
         %>
     </body>
