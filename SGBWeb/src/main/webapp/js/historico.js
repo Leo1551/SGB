@@ -90,7 +90,7 @@ window.onload = function () {
     function exibirHistorico(mes) {
         historicoContainer.innerHTML = `<h3>Histórico de Transações - ${mes}</h3>`;
 
-        const transacoesMes = transacoes[mes];
+        const transacoesMes = pegarHistorico(mes);
         if (transacoesMes && transacoesMes.length > 0) {
             transacoesMes.forEach(transacao => {
                 const divTransacao = document.createElement("div");
@@ -133,5 +133,8 @@ window.onload = function () {
         } else {
             historicoContainer.textContent = "Nenhuma transação encontrada para este mês.";
         }
+    }
+    function pegarHistorico(mes){
+        return transacoes[mes];
     }
 };
