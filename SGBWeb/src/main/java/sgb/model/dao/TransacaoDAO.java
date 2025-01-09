@@ -7,11 +7,10 @@ package sgb.model.dao;
 import java.sql.*;
 import java.util.Date;
 import sgb.model.dto.Transacao;
+import sgb.model.dao.OpenBD;
 
 
 public class TransacaoDAO {
-    
-    // oie, coloquei a abertura do banco de dados em uma classe separada. Você apenas precisa chamar a classe OpenBD
     
     public static boolean setTransacao(Transacao trnsc) {
         String sql = "INSERT INTO historico (matricula, valor, data) VALUES (?, ?, ?)";
