@@ -9,15 +9,16 @@ import java.util.Date;
 import sgb.model.dto.Transacao;
 import sgb.model.dao.OpenBD;
 
-
 public class TransacaoDAO {
-    
+
     public static boolean setTransacao(Transacao trnsc) {
-        String sql = "INSERT INTO historico (matricula, valor, data) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO historico (matricula, valor, data, funcionario, saldo) VALUES (?, ?, ?, ?, ?)";
         try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, trnsc.getMatricula() + "");
             stmt.setString(2, trnsc.getValor() + "");
             stmt.setString(3, new java.sql.Timestamp(trnsc.getData().getTime()) + "");
+            stmt.setString(4, trnsc.getFuncionario() + "");
+            stmt.setString(5, trnsc.getSaldo() + "");
             stmt.executeUpdate();
             System.out.println("Dados inseridos na tabela de historico");
             return true;
@@ -37,7 +38,9 @@ public class TransacaoDAO {
                     long resultadoMatricula = rs.getLong("matricula");
                     int resultadoValor = rs.getInt("valor");
                     java.sql.Timestamp resultData = rs.getTimestamp("data");
-                    res[i] = new Transacao(resultadoMatricula, resultadoValor, resultData);
+                    String resultadoFuncionario = rs.getString("funcionario");
+                    int resultadoSaldo = rs.getInt("");
+                    res[i] = new Transacao(resultadoMatricula, resultadoValor, resultData, resultadoFuncionario, resultadoSaldo);
                     i++;
 
                 }
@@ -52,11 +55,11 @@ public class TransacaoDAO {
         }
         return res;
     }
-    
+
     public static Transacao[] getTransacoes(long matricula, Date dataInicial, Date dataFinal) {
-        java.sql.Timestamp sqlDataInicial=new java.sql.Timestamp(dataInicial.getTime());
-        java.sql.Timestamp sqlDataFinal=new java.sql.Timestamp(dataFinal.getTime());
-        String sql = "SELECT * FROM historico WHERE matricula=" + matricula+" AND data BETWEEN '"+sqlDataInicial+"' AND '"+sqlDataFinal+"'";
+        java.sql.Timestamp sqlDataInicial = new java.sql.Timestamp(dataInicial.getTime());
+        java.sql.Timestamp sqlDataFinal = new java.sql.Timestamp(dataFinal.getTime());
+        String sql = "SELECT * FROM historico WHERE matricula=" + matricula + " AND data BETWEEN '" + sqlDataInicial + "' AND '" + sqlDataFinal + "'";
         Transacao[] res = new Transacao[500];
         try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
@@ -65,7 +68,9 @@ public class TransacaoDAO {
                     long resultadoMatricula = rs.getLong("matricula");
                     int resultadoValor = rs.getInt("valor");
                     java.sql.Timestamp resultData = rs.getTimestamp("data");
-                    res[i] = new Transacao(resultadoMatricula, resultadoValor, resultData);
+                    String resultadoFuncionario = rs.getString("funcionario");
+                    int resultadoSaldo = rs.getInt("");
+                    res[i] = new Transacao(resultadoMatricula, resultadoValor, resultData, resultadoFuncionario, resultadoSaldo);
                     i++;
 
                 }
@@ -80,5 +85,8 @@ public class TransacaoDAO {
         }
         return res;
     }
-
+ public static void main(String[] args) {
+        Transacao tr=new Transacao(1L, 32,"joão",30);
+        setTransacao(tr);
+    }
 }
