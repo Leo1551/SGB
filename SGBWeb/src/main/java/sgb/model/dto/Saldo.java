@@ -7,7 +7,7 @@
 public class Saldo {
     private String nameUser;
     private Long id;
-    private Integer saldo;
+    private Double saldo;
     private boolean status;
     
     public Saldo(String nome) {
@@ -23,11 +23,11 @@ public class Saldo {
         this.id = id;
     }
     
-    public Integer getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
     
-    public void setSaldo(Integer saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
     

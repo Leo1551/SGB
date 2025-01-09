@@ -1,3 +1,5 @@
+sgb\model\dao\SaldoDAO.class
+sgb\model\controllers\SaldoServlet.class
 sgb\java\SaldoBD.class
 sgb\model\dao\TransacaoDAO.class
 sgb\model\dto\Saldo.class

@@ -12,16 +12,17 @@ CREATE TABLE IF NOT EXISTS `cadastros` (
   `matricula` bigint NOT NULL,
   `codigoCartao` int NOT NULL,
   `statusCartao` tinyint(1) NOT NULL,
-  `id` int NOT NULL
+  `id` int NOT NULL,
+  `saldo` double NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoCartao`, `statusCartao`, `id`) VALUES
-('Bernardo B. Brando', 'Xyz@2024!', 'foto_url4', 'brando_bern78@email.com', 202478904, 654321, 1, 1),
-('Ana C. Silva', 'Pass#2023', 'foto_url5', 'ana.c_silva85@email.com', 202145678, 654323, 1, 2),
-('Carlos R. Souza', 'Secure@45', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1, 3),
-('Mariana T. Lima', 'Delta%789', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1, 4),
-('Rafael A. Mendes', 'Secure@98', 'foto_url8', 'rafa.mendes45@email.com', 202378905, 654326, 1, 5),
-('Beatriz F. Costa', 'Pass#777', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1, 6);
+INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoCartao`, `statusCartao`, `id`, `saldo`) VALUES
+('Bernardo B. Brando', 'Xyz@2024!', 'foto_url4', 'brando_bern78@email.com', 202478904, 654321, 1, 1, 2.0),
+('Ana C. Silva', 'Pass#2023', 'foto_url5', 'ana.c_silva85@email.com', 202145678, 654323, 1, 2, 2.0),
+('Carlos R. Souza', 'Secure@45', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1, 3, 2.0),
+('Mariana T. Lima', 'Delta%789', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1, 4, 2.0),
+('Rafael A. Mendes', 'Secure@98', 'foto_url8', 'rafa.mendes45@email.com', 202378905, 654326, 1, 5, 2.0),
+('Beatriz F. Costa', 'Pass#777', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1, 6, 2.0);
 
 DROP TABLE IF EXISTS `precadastros`;
 CREATE TABLE IF NOT EXISTS `precadastros` (
