@@ -3,6 +3,7 @@
     Created on : 22 de dez de 2024, 16:46:52
     Author     : leona
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,7 +22,7 @@
         <form action="consultaMatricula.jsp" method="post">
             <input type="text" name="matricula" placeholder="Número de matricula">
             <!-- número de matricula-->
-             <input type="text" name="senha" placeholder="Senha">
+             <input type="password" name="senha" placeholder="Senha">
             <!--Senha-->
 
             <input type="submit" value="Entrar">
@@ -30,6 +31,8 @@
         <a href="recuperaSenha.html">Esqueci minha senha</a>
         <!--implementar site para recuperação de senha-->
     </div>
+    
+    
     <%@include file="../footer.jsp"%>
     
 </body>

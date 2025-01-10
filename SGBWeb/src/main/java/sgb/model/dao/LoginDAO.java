@@ -26,17 +26,19 @@ public class LoginDAO {
            ResultSet resultado = caixa.executeQuery();
            
             if (resultado.next())
-                System.out.println("Usuário válido");
-            
-            return true;
-           
+                return  resultado.getBoolean(1);
+             
         } catch (SQLException e) {
+            
+            
             System.err.println("Erro ao consultar login no banco de dados \n\n\n" + e.getMessage());
             return false;
         }
+        return false;
       
     
     }
-    
-    
 }
+    
+    
+
