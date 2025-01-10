@@ -1,31 +1,41 @@
 package sgb.model.dao;
+
 import java.sql.*;
 import sgb.model.dto.Saldo;
+
 /**
  *
  * @author Bruno
  */
 public class SaldoDAO {
-    private String URL = "jdbc:mysql://localhost:3306/sgb";
-    private String Usuario = "root";
-    private String Senha = "";
-    
-    public Saldo getSaldoId(Long userId) { 
-        Saldo saldo = null;
-        String sql = "SELECT id, saldo FROM cadastros WHERE id = ?";
-        try (Connection connection = DriverManager.getConnection(URL, Usuario, Senha);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setLong(1, userId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                saldo = new Saldo(resultSet.getString("nome"));
-                saldo.setId(resultSet.getLong("id"));
-                saldo.setSaldo(resultSet.getDouble("saldo"));
-            }    
+
+    private String driver = "com.mysql.cj.jdbc.Driver";
+    private String url
+            = "jdbc:mysql://localhost:3306/sgb?useTimezone=true&serverTimezone=UTC";
+    private String usuario = "root";
+    private String senha = "";
+
+    //public Saldo getSaldoId(String userId) {
+        //Saldo saldo = null;
+    private Connection conectar() {
+        Connection con = null;
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, usuario, senha);
         } catch (Exception e) {
-            e.printStackTrace();
-        }    
-        
-        return saldo;
+            System.out.println(e);
+            con = null;
+        }
+        //return saldo; 
+        return con;
+    }
+    public void testeConexao() {
+        try {
+            Connection con = conectar();
+            System.out.println(con);
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

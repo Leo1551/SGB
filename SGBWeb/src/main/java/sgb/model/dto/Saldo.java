@@ -5,21 +5,21 @@
  * @author Bruno
  */
 public class Saldo {
-    private String nameUser;
-    private Long id;
+    //private String nameUser;
+    private int id;
     private Double saldo;
     private boolean status;
     
-    public Saldo(String nome) {
-        this.nameUser = nome;
+    public Saldo(int id, int saldo) {
+        //this.nameUser = nome;
         this.status = true;
     }
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
     
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
     
