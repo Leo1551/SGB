@@ -1,9 +1,12 @@
- <header>
-		<div id="logo"><img src="../../images/logo.png">Bandejão - CEFET-MG</div>
-		<nav>  
-			<ul>
-				<li><a href="../inicio.jsp">Home</a>
-				<li><a href="">Seu perfil <img id="imgperfil" src="../../images/user.png"></a>
-			</ul>
-		</nav>
- </header>
+<header>
+    <div id="logo">
+        <img src="logo.png">
+        SGRU - Sistema de Gerenciamento dos Restaurantes Universitários
+    </div>
+    <nav>
+        <ul>
+            <li><a href="">Voltar</a>
+            <li><a href="">Seu perfil <img id="imgperfil" src="user.png"></a>
+        </ul>
+    </nav>
+</header>
