@@ -1,0 +1,157 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 11 de jan. de 2025, 19:49:32
+    Author     : izaka
+*/
+/*
+Clique em nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt para alterar esta licença
+Clique em nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css para editar este modelo
+*/
+/* 
+    Criado em: 11 de jan. de 2025, 19:49:32
+    Autor     : izaka
+*/
+.container {
+    display: flex;
+    height: calc(80vh);
+    overflow-y: hidden;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.metade {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.parte-esquerda {
+    background-color: #fff;
+}
+
+.parte-direita {
+    background-color: #f0f0f0;
+}
+
+.metade label,
+.metade input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.campo {
+    margin: 10px;
+    border-radius: 5px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.metade input, #campoFoto label {
+    border-radius: 5px;
+    background: rgb(249, 250, 250);
+    border: 1px solid rgb(181, 189, 196);
+    font-size: 16px;
+    height: 40px;
+    line-height: 24px;
+    padding: 7px 8px;
+    color: rgb(8, 9, 10);
+    box-shadow: none;
+}
+
+.metade input:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: #323C64;
+    box-shadow: 1px 1px 0 #323C64;
+}
+
+.metade label {
+    font-size: 23px;
+}
+
+#confirmacao,
+#senhaValida {
+    font-size: 18px;
+    padding: 10px;
+}
+
+#confirmacao ul {
+    padding: 5px 30px;
+}
+
+.valido {
+    text-decoration: line-through;
+    color: darkgrey;
+}
+
+.invalido {
+    color: rgb(0, 0, 0);
+}
+
+button {
+    margin-top: 20px;
+    width: 20vh;
+    background-color: #323C64;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 20px;
+    font-weight: 500;
+    padding: 8px 10px;
+}
+
+button:hover {
+    background-color: #060916;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .metade {
+        width: 100%;
+    }
+}
+
+#campoFoto {
+    display: flex;
+    align-items: center;
+}
+
+#campoFoto label {
+    display: flex;
+    margin-left: 10px;
+    width: 100%;
+    height: 27px;
+    text-decoration: underline;
+}
+
+#previewImagem {
+    border: 2px solid black;
+    height: 160px;
+    width: 120px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.customFileUpload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding-left: 6px 12px;
+    cursor: pointer;
+}

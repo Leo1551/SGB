@@ -1,0 +1,1 @@
+<link href="../core/erro.jsp">
