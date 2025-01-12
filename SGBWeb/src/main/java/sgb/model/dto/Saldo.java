@@ -6,21 +6,23 @@
  */
 public class Saldo {
     //private String nameUser;
-    private int id;
+    private Long matricula;
     private Double saldo;
     private boolean status;
     
-    public Saldo(int id, int saldo) {
+    public Saldo(Long matricula, double saldo) {
         //this.nameUser = nome;
+        this.matricula = matricula;
+        this.saldo = saldo;
         this.status = true;
     }
     
-    public int getId() {
-        return id;
+    public Long getId() {
+        return matricula;
     }
     
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Long matricula) {
+        this.matricula = matricula;
     }
     
     public Double getSaldo() {

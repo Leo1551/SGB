@@ -18,39 +18,41 @@ import java.util.*;
 @WebServlet(urlPatterns = {"/SaldoServlet", "/main"})
 public class SaldoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private String url = "jdbc:mysql://localhost:3306/sgb";
-    private String usuario = "root";
-    private String senha = "";
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        SaldoDAO con = new SaldoDAO();
         Connection conexao = null;
         Statement stmt = null;
         List<Saldo> saldos = new ArrayList<>();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection(url, usuario, senha);
-            stmt = conexao.createStatement(); // Inicializando o Statement
-            String sql = "SELECT id, saldo FROM cadastros";
+            conexao = con.conectar();
+            if (conexao == null) {
+                throw new SQLException("Falha ao conectar ao banco de dados.");
+            }
+            stmt = conexao.createStatement();
+            String sql = "SELECT matricula, saldo FROM saldos";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                int id = rs.getInt("id");
-                int saldo = rs.getInt("saldo");
-                saldos.add(new Saldo(id, saldo));
+                long matricula = rs.getInt("matricula");
+                double saldo = rs.getDouble("saldo");
+                saldos.add(new Saldo(matricula, saldo));
             }
             request.setAttribute("saldos", saldos);
-            request.getRequestDispatcher("/core/testeSaldo.jsp").forward(request, response);
+            request.getRequestDispatcher("core/reglog/testeSaldo.jsp").forward(request, response);
             //request.getRequestDispatcher("../testeSaldo.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Ocorreu um erro ao buscar o saldo.");
-            request.getRequestDispatcher("../core/erro.jsp").forward(request, response);
+            System.out.println("Erro: " + e.getMessage());
+            request.setAttribute("mensagemErro", e.getMessage());
+            request.getRequestDispatcher("core/erro.jsp").forward(request, response);
         } finally {
             // Fechar recursos
             try {
                 if (stmt != null) stmt.close();
                 if (conexao != null) conexao.close();
+                if(conexao != null) conexao.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+                
             }
         }
     }
