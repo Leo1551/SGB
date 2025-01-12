@@ -44,12 +44,12 @@ public class HistoricoServlet extends HttpServlet {
         rJson.append("\"valor\":");
         rJson.append("\"");
         //o valor é guardado como int, com o número de centavos
-        rJson.append(formatacaoDinheiro.format(tr.getValor()/100));
+        rJson.append(tr.getValor());
         rJson.append("\",");
         rJson.append("\"saldoAtual\":");
         rJson.append("\"");
         //o valor é guardado como int, com o número de centavos
-        rJson.append(formatacaoDinheiro.format(tr.getSaldo()/100));
+        rJson.append(tr.getSaldo());
         rJson.append("\"");
                 rJson.append("}");
 
