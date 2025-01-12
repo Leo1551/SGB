@@ -59,10 +59,10 @@ public class HistoricoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long matricula = Long.parseLong(request.getParameter("matricula"));
-        TransacaoDAO trDAO = new TransacaoDAO();
         Transacao[] transacoes=null;
         try {
-            transacoes = trDAO.getTransacoes(20225678908L);
+            transacoes = TransacaoDAO.getTransacoes(matricula);
+            //lidar com erro de matricula inexistente 
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(HistoricoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
