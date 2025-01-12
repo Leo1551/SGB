@@ -94,7 +94,17 @@ INSERT INTO `precadastros` (`id`, `nome`, `senha`, `foto`, `email`, `matricula`,
 (19, 'Rafael Souza', 'rafael01@#35', 'foto_19.jpg', 'rafael.souza@uol.com.br', 20230847210, '47325018906'),
 (20, 'Sofia Martins', 'sofia12!@3', 'foto_20.jpg', 'sofia.martins@outlook.com', 20231023761, '86049726322');
 
-DROP TABLE IF EXISTS `historico`;
+DROP TABLE IF EXISTS `saldos`;
+CREATE TABLE IF NOT EXISTS `saldos` (
+    `matricula` bigint NOT NULL, 
+    `saldo` double NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `saldos`(`matricula`, `saldo`) VALUES
+(202320098, 20.0),
+(202256789, 30.0)
+
+/*DROP TABLE IF EXISTS `historico`;
 CREATE TABLE IF NOT EXISTS `historico` (
   `matricula` bigint NOT NULL,
   `valor` int NOT NULL,
@@ -108,4 +118,4 @@ INSERT INTO `historico` (`matricula`, `valor`, `data`, `funcionario`, `saldo`) V
 (20225678908, -320, '2025-03-09 11:05:24', 'Joana Cabral Orvalho', 2680),
 (20232009818, -320, '2025-04-09 12:27:01', 'Joana Cabral Orvalho', 4360),
 (20225678908, -320, '2025-05-09 10:55:12', 'João Silva Pereira', 24360)
-
+*/

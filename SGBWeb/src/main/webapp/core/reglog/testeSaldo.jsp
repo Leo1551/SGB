@@ -13,8 +13,7 @@
         if(saldos != null) {
             for(Saldo saldo : saldos) {
     %>
-    <p><%= saldo.getId()%></p>
-    <p><%= saldo.getSaldo()%></p>
+    <p>Matricula:<%= saldo.getId()%> Saldo: <%= saldo.getSaldo()%></p>
     <%
         } 
         } else {
