@@ -10,7 +10,6 @@ import sgb.model.dto.Transacao;
 import sgb.model.dao.OpenBD;
 
 public class TransacaoDAO {
-
     public static boolean setTransacao(Transacao trnsc) {
         String sql = "INSERT INTO historico (matricula, valor, data, funcionario, saldo) VALUES (?, ?, ?, ?, ?)";
         try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -28,10 +27,11 @@ public class TransacaoDAO {
         }
     }
 
-    public static Transacao[] getTransacoes(long matricula) {
+    public static Transacao[] getTransacoes(long matricula) throws SQLException, ClassNotFoundException {
+
         String sql = "SELECT * FROM historico WHERE matricula=" + matricula;
         Transacao[] res = new Transacao[500];
-        try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conexao = new OpenBD().getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 int i = 0;
                 while (rs.next()) {
@@ -39,7 +39,7 @@ public class TransacaoDAO {
                     int resultadoValor = rs.getInt("valor");
                     java.sql.Timestamp resultData = rs.getTimestamp("data");
                     String resultadoFuncionario = rs.getString("funcionario");
-                    int resultadoSaldo = rs.getInt("");
+                    int resultadoSaldo = rs.getInt("saldo");
                     res[i] = new Transacao(resultadoMatricula, resultadoValor, resultData, resultadoFuncionario, resultadoSaldo);
                     i++;
 
@@ -48,7 +48,7 @@ public class TransacaoDAO {
                 System.out.println("Erro ao consultar a tabela de histórico: " + e.getMessage());
                 return null;
             }
-        } catch (SQLException e) {
+        } catch (SQLException  |ClassNotFoundException e) {
             System.out.println("Erro ao conectar na tabela de histórico para consultar transações: " + e.getMessage());
             return null;
 
@@ -84,9 +84,5 @@ public class TransacaoDAO {
 
         }
         return res;
-    }
- public static void main(String[] args) {
-        Transacao tr=new Transacao(1L, 32,"joão",30);
-        setTransacao(tr);
     }
 }
