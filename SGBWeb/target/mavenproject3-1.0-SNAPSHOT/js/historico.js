@@ -98,7 +98,8 @@ window.onload = function () {
 
                 const tipoDiv = document.createElement("div");
                 tipoDiv.classList.add("atributo");
-                tipoDiv.innerHTML = `<span>Tipo de Transação:</span> ${transacao.tipo === "recarga" ? "Recarga" : "Compra"}`;
+                if(transacao.tipo === "recarga" )tipoDiv.innerHTML=`<span>Tipo de Transação:</span> Recarga`;
+                else tipoDiv.innerHTML=`<span>Tipo de Transação:</span> Compra`;
                 divTransacao.appendChild(tipoDiv);
 
                 const dataDiv = document.createElement("div");

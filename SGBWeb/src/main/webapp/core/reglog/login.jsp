@@ -15,6 +15,12 @@
     <title>SGC - Sistema de Gestão do Bandejão</title>
 </head>
 <body>
+    
+    <%
+        if (session == null) session.invalidate(); // sempre que redirecionado à tela inícial, finaliza a sessão
+    %>
+    
+    
     <%@include file="../header.jsp" %>
     <div id="caixa-login">
         <h1>Sistema de Gestão do Bandejão - Aluno</h1>

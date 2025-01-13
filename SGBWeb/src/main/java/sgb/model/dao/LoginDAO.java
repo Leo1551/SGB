@@ -27,8 +27,10 @@ public class LoginDAO {
 
            ResultSet resultado = caixa.executeQuery();
            Boolean existe = false;
-           if(resultado.next())
+           
+          
                existe = resultado.getBoolean(1);
+           
            return  existe;
              
         } catch (SQLException e) {
