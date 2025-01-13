@@ -5,7 +5,6 @@
 --%>
 
 <%@ page import = "java.io.*,java.util.*" %>
-<%@ page import="sgb.model.dto.Login" %>
 <%@ page import="sgb.java.ConexaoBD" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
