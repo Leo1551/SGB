@@ -19,21 +19,7 @@
         <h1>Aguarde enquanto verificamos os dados</h1>
         
         <%
-        String matricula = request.getParameter("matricula");
-        String senha = request.getParameter("senha");
         
-            if(LoginDAO.verificacaoLogin(new Login(matricula, senha))){
-                
-                HttpSession sessao = request.getSession(true); // se não houver sessão, cria
-                //passagem de params para a página inícial
-                sessao.setAttribute("matricula", matricula);
-                sessao.setAttribute("senha", senha);
-                
-                
-                response.sendRedirect("../principal/telaInicial.jsp");
-            }
-            else
-                response.sendRedirect("login.jsp");
       
         %>
 
