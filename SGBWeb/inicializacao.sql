@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `cadastros` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4; 
 
 --
 -- Despejando dados para a tabela `cadastros`
