@@ -1,1 +1,1 @@
-<link rel="stylesheet" href="../../css/escolha.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/escolha.css">
