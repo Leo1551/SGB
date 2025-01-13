@@ -363,7 +363,7 @@ public class ConexaoBD {
         atualizarCadastro(1, "Caio Lopes", "0910lopess123%#*", "foto_21.jpg", "caioSilvaaaLope@gmail.com", 20230263912L, "23483874097", 654321, true);
         //      (int id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao)
         
-        consultarPreCadastro(20, null, null, null, null, null, null);
+        consultarPreCadastro(null, null, null, null, null, 20232030123L, null);
         //      (Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf)
         
         consultarCadastro(null, null, null, null, null, null, "23483874097", null, null);
