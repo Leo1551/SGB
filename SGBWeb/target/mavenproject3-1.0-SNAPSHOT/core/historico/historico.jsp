@@ -8,8 +8,8 @@
     <link rel="canonical" href="https://html5-templates.com/" />
     <title>SGRU</title>
     <meta name="description" content="Simple HTML5 Page layout template with header, footer, sidebar etc.">
-    <link rel="stylesheet" href="../../css/historico.css" />
-    <link rel="stylesheet" href="../../css/styleBase.css" />
+    <style><%@include file="/css/styleBase.css"%></style>
+    <style><%@include file="/css/historico.css"%></style>
 </head>
 
 <body>
@@ -24,6 +24,9 @@
 	</header>
 	<section id="avisos">
 	</section>
+    <h1>
+        ${test}
+    </h1>
 	<section id="pageContent">
 		<aside id="months-container">
 		</aside>
@@ -35,8 +38,7 @@
 		<p>SIGAA | Diretoria de Tecnologia da Informação - DTI - (31) 3319-7000 | Copyright © 2006-2024 - UFRN - vm-sig-app-08.ditic.sgi.cefetmg.br.inst8 - v4.12.14cefet154</p>
 	</footer>
 
-<script src="../../js/historico.js"></script>
-
+<script type="text/javascript"><%@include file="/js/historico.js" %></script>
 </body>
 
 </html>

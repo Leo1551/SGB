@@ -1,10 +1,7 @@
-<%-- 
-    Document   : consultaMatricula
-    Created on : 6 de jan. de 2025, 07:30:17
-    Author     : aluno
---%>
+<!-- consultaAluno.jsp -->>
 
 <%@ page import = "java.io.*,java.util.*" %>
+<%@ page import="sgb.model.dto.Login" %>
 <%@ page import="sgb.java.ConexaoBD" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 

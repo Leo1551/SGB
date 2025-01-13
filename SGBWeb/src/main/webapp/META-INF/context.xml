@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/SGBWeb"/>
+<Context docBase="${catalina.base}/webapps/mavenproject3-1.0-SNAPSHOT.war" path="/SGBWeb" reloadable="true" privileged="true"/>

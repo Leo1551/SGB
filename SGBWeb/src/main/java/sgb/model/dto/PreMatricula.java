@@ -7,8 +7,6 @@ public class PreMatricula {;
     private String email;
     private Long matricula;
     private String cpf;
-    private int codigoCartao;
-    private boolean statusCartao;
     
     public PreMatricula(String nome, String senha, String foto, String email, long matricula, String cpf) {
         this.nome = nome;
