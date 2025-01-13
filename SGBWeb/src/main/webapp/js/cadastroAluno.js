@@ -1,4 +1,3 @@
-alert('oi');
 function verificarSenha() {
     const senha = document.getElementById('senha');
     const entradaSenha = senha.value;
