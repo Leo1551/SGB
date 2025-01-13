@@ -1,6 +1,6 @@
 package sgb.model.dto;
 
-public class Matricula {;
+public class PreMatricula {;
     private String nome;
     private String senha;
     private String foto;
@@ -10,15 +10,13 @@ public class Matricula {;
     private int codigoCartao;
     private boolean statusCartao;
     
-    public Matricula(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
+    public PreMatricula(String nome, String senha, String foto, String email, long matricula, String cpf) {
         this.nome = nome;
         this.senha = senha;
         this.foto = foto;
         this.email = email;
         this.matricula = matricula;
         this.cpf = cpf;
-        this.codigoCartao = codigoCartao;
-        this.statusCartao = statusCartao;
     }
     
     public String getNome() {
@@ -66,22 +64,6 @@ public class Matricula {;
     
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-    
-    public int getCodigoCartao() {
-        return codigoCartao;
-    }
-    
-    public void setCodigoCartao(int codigoCartao ) {
-        this.codigoCartao = codigoCartao;
-    }
-    
-    public boolean getStatusCartao() {
-        return statusCartao;
-    }
-    
-    public void setStatusCartao(boolean statusCartao ) {
-        this.statusCartao = statusCartao;
     }
     
 }

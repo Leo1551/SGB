@@ -43,7 +43,7 @@ public class InfoServlet extends HttpServlet {
             while (rs.next()) {
                 Long matricula = rs.getLong("matricula");
                 String nome = rs.getString("matricula");
-                matriculas.add(new Matricula(matricula, nome));
+                //matriculas.add(new Matricula(matricula, nome));
             }
             session.setAttribute("infos", matriculas);
             response.sendRedirect("SaldoServlet");

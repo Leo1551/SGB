@@ -17,12 +17,11 @@
     </head>
     <body>
         <%@include file="../header.jsp"%>
-        <h1>Pré-Cadastro</h1>
         <section id="nome-pagina">
             <h2>PRÉ CADASTRO</h2>
         </section>
 
-        <form action="preCadastro" method="post" enctype="multipart/form-data">
+        <form action="consultaAluno.jsp" method="post" enctype="multipart/form-data">
             <div class="container">
                 <div class="metade parte-esquerda">
                     <div class="campo">
@@ -86,7 +85,7 @@
         <%@include file="../footer.jsp" %>
         
         <!--js-->
-        <link rel="stylesheet" href="../../../js/cadastroAluno.js">
+        <script type="text/javascript"><%@include file="/js/cadastroAluno.js" %></script>
     </body>
 </html>
 

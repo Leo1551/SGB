@@ -1,3 +1,4 @@
+alert('oi');
 function verificarSenha() {
     const senha = document.getElementById('senha');
     const entradaSenha = senha.value;
@@ -28,7 +29,7 @@ function validarSenha() {
 
     const mensagemSenhaValida = document.getElementById('senhaValida');
 
-    if (senha.value != confirmarSenha.value) {
+    if (senha.value !== confirmarSenha.value) {
         mensagemSenhaValida.textContent = 'As senhas devem ser iguais';
         mensagemSenhaValida.className = 'invalido';
     } else {
@@ -52,6 +53,6 @@ function carregarArquivo(evento) {
 
     saida.src = URL.createObjectURL(evento.target.files[0]);
     saida.onload = function () {
-        URL.revokeObjectURL(saida.src)
+        URL.revokeObjectURL(saida.src);
     }
 }
