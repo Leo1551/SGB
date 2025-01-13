@@ -96,15 +96,37 @@ INSERT INTO `precadastros` (`id`, `nome`, `senha`, `foto`, `email`, `matricula`,
 
 DROP TABLE IF EXISTS `saldos`;
 CREATE TABLE IF NOT EXISTS `saldos` (
+    `id` int NOT NULL AUTO_INCREMENT,
     `matricula` bigint NOT NULL, 
-    `saldo` double NOT NULL
+    `saldo` double NOT NULL,
+    PRIMARY KEY(ID),
+    UNIQUE KEY (matricula)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `saldos`(`matricula`, `saldo`) VALUES
-(202320098, 20.0),
-(202256789, 30.0)
+(20230263912, 20.0),
+(20230587943, 30.0),
+(20231294856, 40.0),
+(20230918377, 45.0),
+(20231798421, 32.0),
+(20231240589, 15.0),
+(20231122345, 3.30),
+(20231437650, 2.50),
+(20230945781, 23.0),
+(20231359862, 0.0),
+(20231648572, 0.30),
+(20231049560, 50.0),
+(20231274214, 100.0),
+(20230126480, 40.0),
+(20231085261, 25.0),
+(20230572384, 12.0),
+(20231493685, 11.0),
+(20231215679, 90.0),
+(20231134876, 1.0),
+(20230678459, 20.0)
 
-/*DROP TABLE IF EXISTS `historico`;
+/*
+DROP TABLE IF EXISTS `historico`;
 CREATE TABLE IF NOT EXISTS `historico` (
   `matricula` bigint NOT NULL,
   `valor` int NOT NULL,
