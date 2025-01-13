@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import sgb.model.dao.TransacaoDAO;
 import sgb.model.dto.Transacao;
 
-@WebServlet(name = "historico", urlPatterns = {"/historico                                                          "})
+@WebServlet(name = "historico", urlPatterns = {"/historico"})
 public class HistoricoServlet extends HttpServlet {
 
     private String converteTransacaoParaJSON(Transacao tr) {
@@ -60,8 +60,9 @@ public class HistoricoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         long matricula;
-        if (request.getParameter("matricula") == null) {
-            response.getWriter().print("Erro: Nenhuma matriucla fornecida");
+        if (request.getParameter("matricula")==null ||request.getParameter("matricula").equals("")) {
+            request.setAttribute("mensagemErro","Nenhuma matricula fornecida");
+            request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
             return;
         } else {
             matricula = Long.parseLong(request.getParameter("matricula"));
@@ -73,10 +74,11 @@ public class HistoricoServlet extends HttpServlet {
 
             //lidar com erro de matricula inexistente 
         } catch (SQLException | ClassNotFoundException ex) {
-            response.getWriter().print(ex.getMessage());
-            Logger.getLogger(HistoricoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("mensagemErro",ex.getMessage());
+            request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
         }
-        if (transacoes != null) {
+
+        if (transacoes[0] != null) {
             transacoesJSON.append("[");
             for (Transacao tr : transacoes) {
                 if (tr == null) {
@@ -91,8 +93,8 @@ public class HistoricoServlet extends HttpServlet {
             request.setAttribute("transacoes", transacoesJSON.toString());
             request.getRequestDispatcher("/core/historico/historico.jsp").forward(request, response);
         } else {
-            response.getWriter().print("Erro: Nenhuma transação com a matricula " + matricula + " encontrada");
-
+            request.setAttribute("mensagemErro","Nenhuma transação com a matricula " + matricula + " encontrada");
+            request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
         }
     }
 
