@@ -17,6 +17,7 @@
         <%@include file="../header.jsp"%>
         
         <%
+            if (session.getAttribute("matricula") == null) response.sendRedirect("../reglog/login.jsp");
         // OK meus putos, o negócio é o seguinte, a variável :session: foi settada em reglog/consultaMatricula.jsp
         // O ponto para vocês é: qualquer coisa que deve ser alterada na sessão está na variável :session:
         

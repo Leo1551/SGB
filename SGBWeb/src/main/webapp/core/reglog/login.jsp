@@ -17,7 +17,10 @@
 <body>
     
     <%
-        if (session == null) session.invalidate(); // sempre que redirecionado à tela inícial, finaliza a sessão
+        if (session != null){
+            session.invalidate();
+            session = null;
+        } // sempre que redirecionado à tela inícial, finaliza a sessão
     %>
     
     
