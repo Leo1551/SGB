@@ -1,5 +1,3 @@
-<!-- consultaAluno.jsp -->>
-
 <%--
     Document   : cadastroAluno
     Created on : 11 de jan. de 2025, 09:07:50
