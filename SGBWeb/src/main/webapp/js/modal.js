@@ -47,9 +47,9 @@ function openModal(tipoPagamento) {
             <form action="${pageContext.request.contextPath}/SaldoServlet" method="post">
                 <h3>Preencha os dados para realizar a transferência</h3>
                 <label for="matricula">Insira a matrícula que receberá o saldo:</label>
-                <input type="text" id="matricula" name="matricula" required><br>
+                <input type="text" id="matricula" name="matriculaDestino" required><br>
                 <label for="saldo">Insira o saldo a ser transferido:</label>
-                <input type="number" id="saldo" name="saldo" required><br>
+                <input type="number" id="saldo" name="valorTransferencia" required><br>
                 <button type="submit" name="tipoPagamento" value="${tipoPagamento}">
                     Confirmar transferência
                 </button>

@@ -32,6 +32,10 @@
         
         <!-- adicionem as partes referentes ao que lhe interessam para a tela inícial aqui-->
         <%= matricula + senha%>
+        <form action="../pagamento/escolha.jsp" method="post">
+            <input type="hidden" name="matricula" value="<%= matricula %>"/>
+            <input type="submit" value="Realizar recarga"/>
+        </form>
         <%@include file="../footer.jsp"%>
     </body>
 </html>
