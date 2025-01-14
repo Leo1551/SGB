@@ -35,24 +35,24 @@ public class SaldoServlet extends HttpServlet {
                 throw new SQLException("Falha ao conectar ao banco de dados.");
             }
             stmt = conexao.createStatement();
-            String sql = "SELECT matricula,saldo FROM saldos";
+            String sql = "SELECT matricula,saldo FROM cadastros";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 long matricula = rs.getLong("matricula");
                 double saldo = rs.getDouble("saldo");
-                //String nome = rs.getString("nome");
+                
                 saldos.add(new Saldo(matricula, saldo));
             }
             request.setAttribute("saldoInfos", saldos);
             request.getRequestDispatcher("core/pagamento/testeSaldo.jsp").forward(request, response);
-            //request.getRequestDispatcher("../testeSaldo.jsp").forward(request, response);
+            
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro: " + e.getMessage());
             request.setAttribute("mensagemErro", e.getMessage());
             request.getRequestDispatcher("core/erro.jsp").forward(request, response);
         } finally {
-            // Fechar recursos
+            
             try {
                 if (stmt != null) {
                     stmt.close();
@@ -71,39 +71,38 @@ public class SaldoServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long matriculaOrigem = Long.parseLong(request.getParameter("matriculaOrigem"));
         long matriculaDestino = Long.parseLong(request.getParameter("matriculaDestino"));
         double valorTransferencia = Double.parseDouble(request.getParameter("valorTransferencia"));
-
+        
         ConectarDAO con = new ConectarDAO();
         Connection conexao = null;
         PreparedStatement pstmt = null;
-
+        HttpSession session = request.getSession();
         try {
             conexao = con.conectar();
             if (conexao == null) {
                 throw new SQLException("Falha ao conectar ao banco de dados.");
             }
-
-            // Verifica o saldo da matrícula de origem
-            String selectSQL = "SELECT saldo FROM saldos WHERE matricula = ?";
+            
+            String matriculaOrigem = (String) session.getAttribute("matricula");
+            String selectSQL = "SELECT saldo FROM cadastros WHERE matricula = ?";
             pstmt = conexao.prepareStatement(selectSQL);
-            pstmt.setLong(1, matriculaOrigem);
+            pstmt.setString(1, matriculaOrigem);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 double saldoOrigem = rs.getDouble("saldo");
 
-                // Verifica se há saldo suficiente para a transferência
+                
                 if (saldoOrigem >= valorTransferencia) {
-                    // Atualiza o saldo da matrícula de origem
+                    
                     String updateOrigemSQL = "UPDATE saldos SET saldo = saldo - ? WHERE matricula = ?";
                     pstmt = conexao.prepareStatement(updateOrigemSQL);
                     pstmt.setDouble(1, valorTransferencia);
-                    pstmt.setLong(2, matriculaOrigem);
+                    pstmt.setString(2, matriculaOrigem);
                     pstmt.executeUpdate();
 
-                    // Atualiza o saldo da matrícula de destino
+                    
                     String updateDestinoSQL = "UPDATE saldos SET saldo = saldo + ? WHERE matricula = ?";
                     pstmt = conexao.prepareStatement(updateDestinoSQL);
                     pstmt.setDouble(1, valorTransferencia);
@@ -121,7 +120,7 @@ public class SaldoServlet extends HttpServlet {
             e.printStackTrace();
             response.getWriter().println("Erro: " + e.getMessage());
         } finally {
-            // Fechar recursos
+            
             try {
                 if (pstmt != null) {
                     pstmt.close();
@@ -137,7 +136,7 @@ public class SaldoServlet extends HttpServlet {
 }
 
 /*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Captura os dados do formulário
+        
         long matricula = Long.parseLong(request.getParameter("matricula"));
         double saldo = Double.parseDouble(request.getParameter("saldo"));
 
@@ -165,7 +164,7 @@ public class SaldoServlet extends HttpServlet {
             e.printStackTrace();
             response.getWriter().println("Erro: " + e.getMessage());
         } finally {
-            // Fechar recursos
+            
             try {
                 if (pstmt != null) pstmt.close();
                 if (conexao != null) conexao.close();

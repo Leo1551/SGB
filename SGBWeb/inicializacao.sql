@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `cadastros` (
   `cpf` varchar(11) NOT NULL,
   `codigoCartao` int NOT NULL,
   `statusCartao` tinyint(1) NOT NULL,
-  `saldo` double(5) NOT NULL,
+  `saldo` double NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `cpf` (`cpf`)
@@ -95,6 +95,17 @@ INSERT INTO `precadastros` (`id`, `nome`, `senha`, `foto`, `email`, `matricula`,
 (19, 'Rafael Souza', 'rafael01@#35', 'foto_19.jpg', 'rafael.souza@uol.com.br', 20230847210, '47325018906'),
 (20, 'Sofia Martins', 'sofia12!@3', 'foto_20.jpg', 'sofia.martins@outlook.com', 20231023761, '86049726322');
 
+
+DROP TABLE IF EXISTS `cartoes`;
+CREATE TABLE IF NOT EXISTS `cartoes` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `numCartao` bigint NOT NULL,
+    `codigo` int NOT NULL,
+    /*`validade` VARCHAR(7) NOT NULL,*/
+    `senha` VARCHAR(100) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`numCartao`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*
 DROP TABLE IF EXISTS `historico`;
 CREATE TABLE IF NOT EXISTS `historico` (

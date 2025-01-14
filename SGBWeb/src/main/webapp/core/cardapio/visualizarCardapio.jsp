@@ -11,9 +11,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGRU - Cardápio</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/visualizarCardapio.css">
+    <%@include file="../css.jsp"%>
+
+    <script src="${pageContext.request.contextPath}/js/visualizarCardapio.js"></script>
 </head>
 <body>
+     <%@include file="../header.jsp" %>
     <div class="container">
         <header class="header">
             <h1>Cardápio</h1>
@@ -81,10 +84,6 @@
         </table>
     </div>
 
-    <footer class="footer">
-        <p>© 2023 SGRU - Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="js/visualizarCardapio.js"></script>
+    <%@include file="../footer.jsp" %>
 </body>
 </html>

@@ -49,7 +49,7 @@ public class loginServlet extends HttpServlet {
                 sessao.setAttribute("senha", senha);
                 
                 
-                response.sendRedirect("../principal/telaInicial.jsp");
+                request.getRequestDispatcher("core/principal/telaInicial.jsp").forward(request, response);
             }
             else
                 response.sendRedirect("login.jsp");

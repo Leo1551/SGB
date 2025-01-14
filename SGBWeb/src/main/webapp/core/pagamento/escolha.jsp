@@ -14,30 +14,34 @@
         <title>SGC - Sistema de Gestão do Bandejão</title>
         <%@include file="../reglog/css.jsp"%>
         <%@include file="css.jsp"%>
+        <script> var pageContext = {
+                    request: 
+                    {
+                        contextPath: '<%= request.getContextPath()%>'
+                    }
+                };
+        </script>
         <script src="${pageContext.request.contextPath}/js/modal.js"></script>
     </head>
     <body>
         <%@include file="../header.jsp" %>
         <h1>Selecione o tipo de pagamento</h1>
-        <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <form action="${pageContext.request.contextPath}/SaldoServlet" method="get">
-                <h2>Selecione o tipo de pagamento</h2>
-                <div id="botoes">  
-                    <div id="Bpix">
-                        <button type="submit" class="botao-pagamento" name="tipoPagamento" value="PIX">PIX</button>
-                    </div>
-                    <div id="Bcartao">
-                        <button type="submit" class="botao-pagamento" name="tipoPagamento" value="CARTÃO">CARTÃO</button>
-                    </div>
-                    <div id="Btransf">
-                        <button type="submit" class="botao-pagamento" name="tipoPagamento" value="TRANSFERENCIA">TRANSFERÊNCIA</button>
-                    </div>    
-                </div>          
-            </form>
+        <div class="botoes">
+            <!-- Botões para abrir o modal -->
+            <button onclick="openModal('PIX')">PIX</button>
+            <button onclick="openModal('CARTAO')">CARTÃO</button>
+            <button onclick="openModal('TRANSFERÊNCIA')">TRANSFERÊNCIA</button>
         </div>
-    </div>
-        <%@include file="../footer.jsp"%>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title"></h2>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+
+        <%@include file="../footer.jsp" %>
     </body>
 </html>

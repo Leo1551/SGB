@@ -32,7 +32,6 @@
         
         <!-- adicionem as partes referentes ao que lhe interessam para a tela inícial aqui-->
         <%= matricula + senha%>
-        
         <%@include file="../footer.jsp"%>
     </body>
 </html>
