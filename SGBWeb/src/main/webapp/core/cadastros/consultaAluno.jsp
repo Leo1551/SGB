@@ -18,13 +18,15 @@
         <%
          String nome = request.getParameter("nome");
          String senha = request.getParameter("senha");
-         String foto = request.getParameter("foto");
+         String foto = "foto_21.png";
          String email = request.getParameter("email");
          long matricula = 12345678901L;
          String cpf = request.getParameter("cpf");
+         
+ConexaoBD c = new ConexaoBD();
         %>
-
-        <% ConexaoBD.inserirPreCadastro(nome, senha, foto, email, matricula, cpf); %>
+        <%= ("dsadsa  "+nome) %>
+        <%= c.inserirPreCadastro(nome, senha, foto, email, matricula, cpf) %>
 
     </body>
 </html>

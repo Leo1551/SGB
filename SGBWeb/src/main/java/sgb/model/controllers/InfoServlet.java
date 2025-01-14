@@ -5,7 +5,7 @@
 package sgb.model.controllers;
 
 import sgb.model.dao.ConectarDAO;
-import sgb.model.dto.Matricula;
+import sgb.model.dto.Cadastro;
 import java.sql.*;
 import java.util.*;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class InfoServlet extends HttpServlet {
         Connection conexao = null;
         Statement stmt = null;
         HttpSession session = request.getSession();
-        List<Matricula> matriculas = new ArrayList<>();
+        List<Cadastro> matriculas = new ArrayList<>();
         try {
             conexao = con.conectar();
             if (conexao == null) {
@@ -43,7 +43,7 @@ public class InfoServlet extends HttpServlet {
             while (rs.next()) {
                 Long matricula = rs.getLong("matricula");
                 String nome = rs.getString("matricula");
-                //matriculas.add(new Matricula(matricula, nome));
+                //matriculas.add(new Cadastro(matricula, nome));
             }
             session.setAttribute("infos", matriculas);
             response.sendRedirect("SaldoServlet");
