@@ -106,19 +106,61 @@ CREATE TABLE IF NOT EXISTS `cartoes` (
     PRIMARY KEY (`id`),
     UNIQUE KEY (`numCartao`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*
+
+
 DROP TABLE IF EXISTS `historico`;
 CREATE TABLE IF NOT EXISTS `historico` (
   `matricula` bigint NOT NULL,
   `valor` int NOT NULL,
-  `data` timestamp NOT NULL
+  `data` timestamp NOT NULL,
+  `funcionario` varchar(60) NOT NULL,
+  `saldo` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `historico` (`matricula`, `valor`, `data`, `funcionario`, `saldo`) VALUES
-(20232009818, 5000, '2025-01-09 12:05:22', 'Marcia Almeida Carvalho', 5000),
-(20225678908, 3000, '2025-01-09 12:15:20', 'Marcia Almeida Carvalho', 3000),
-(20232009818, -320, '2025-02-09 13:25:11', 'João Silva Pereira', 4680),
-(20225678908, -320, '2025-03-09 11:05:24', 'Joana Cabral Orvalho', 2680),
-(20232009818, -320, '2025-04-09 12:27:01', 'Joana Cabral Orvalho', 4360),
-(20225678908, -320, '2025-05-09 10:55:12', 'João Silva Pereira', 24360)
-*/
+(20242009819, 1000, '2024-03-15 11:34:22', 'Marcia Almeida Carvalho', 1000),
+(20232009818, -320, '2024-04-22 12:05:11', 'João Silva Pereira', 4040),
+(20225678908, 8000, '2024-05-12 18:50:43', 'Joana Cabral Orvalho', 10680),
+(20242012345, 3000, '2024-06-18 19:00:12', 'Marcia Almeida Carvalho', 3000),
+(20242009819, -320, '2024-07-10 12:15:33', 'João Silva Pereira', 680),
+(20242012345, -320, '2024-08-21 12:45:56', 'Joana Cabral Orvalho', 2680),
+(20225678908, -320, '2024-09-14 11:15:12', 'João Silva Pereira', 10360),
+(20232009818, 2000, '2024-10-25 12:27:42', 'Joana Cabral Orvalho', 6040),
+(20242009819, -320, '2024-11-19 19:00:00', 'Marcia Almeida Carvalho', 360),
+(20242012345, 5000, '2024-12-10 12:35:10', 'João Silva Pereira', 7360),
+(20232009818, -320, '2024-12-12 11:22:09', 'Joana Cabral Orvalho', 5720),
+(20225678908, -320, '2024-12-15 12:10:22', 'João Silva Pereira', 10040),
+(20232009818, -320, '2024-12-20 11:45:35', 'Marcia Almeida Carvalho', 5400),
+(20242009819, -320, '2024-12-25 12:30:50', 'Joana Cabral Orvalho', 40),
+(20242012345, -320, '2024-12-28 18:55:33', 'João Silva Pereira', 7040),
+(20225678908, -320, '2024-12-29 19:00:00', 'Joana Cabral Orvalho', 9720),
+(20232009818, -320, '2024-12-30 12:20:11', 'João Silva Pereira', 5080),
+(20225678908, -320, '2024-12-31 11:15:33', 'Joana Cabral Orvalho', 9400),
+(20232009818, -320, '2025-01-02 12:05:22', 'João Silva Pereira', 4760),
+(20242012345, -320, '2025-01-03 18:55:33', 'Marcia Almeida Carvalho', 6720),
+(20225678908, -320, '2025-01-04 12:27:11', 'João Silva Pereira', 9080),
+(20232009818, -320, '2025-01-05 12:45:22', 'Joana Cabral Orvalho', 4440),
+(20242009819, 2000, '2025-01-06 19:00:00', 'Marcia Almeida Carvalho', 2360),
+(20225678908, -320, '2025-01-07 11:30:50', 'João Silva Pereira', 8760),
+(20232009818, -320, '2025-01-08 12:15:44', 'Joana Cabral Orvalho', 4120),
+(20242009819, -320, '2025-01-09 12:35:22', 'João Silva Pereira', 2040),
+(20225678908, -320, '2025-01-10 12:25:11', 'Marcia Almeida Carvalho', 8440),
+(20242009819, 1000, '2025-01-11 12:55:33', 'João Silva Pereira', 2720),
+(20232009818, -320, '2025-01-12 11:45:22', 'Joana Cabral Orvalho', 3800),
+(20242012345, -320, '2025-01-13 18:59:12', 'Marcia Almeida Carvalho', 6400),
+(20225678908, -320, '2025-01-14 12:35:10', 'João Silva Pereira', 8120),
+(20242009819, -320, '2025-01-15 12:45:33', 'Joana Cabral Orvalho', 2400),
+(20232009818, -320, '2025-01-16 12:25:11', 'Marcia Almeida Carvalho', 3480),
+(20225678908, -320, '2025-01-17 12:50:22', 'João Silva Pereira', 7800),
+(20242009819, 1000, '2025-01-18 12:35:33', 'Joana Cabral Orvalho', 3400),
+(20232009818, -320, '2025-01-19 11:30:10', 'Marcia Almeida Carvalho', 3160),
+(20242012345, -320, '2025-01-20 18:58:20', 'João Silva Pereira', 6080),
+(20225678908, -320, '2025-01-21 12:15:11', 'Joana Cabral Orvalho', 7480),
+(20232009818, -320, '2025-01-22 12:45:33', 'João Silva Pereira', 2840),
+(20242009819, -320, '2025-01-23 12:35:22', 'Marcia Almeida Carvalho', 3080),
+(20225678908, -320, '2025-01-24 12:25:44', 'João Silva Pereira', 7160),
+(20242012345, 3000, '2025-01-25 18:55:33', 'Joana Cabral Orvalho', 9080),
+(20232009818, -320, '2025-01-26 11:45:22', 'Marcia Almeida Carvalho', 2520),
+(20242009819, -320, '2025-01-27 12:35:44', 'João Silva Pereira', 2760),
+(20225678908, -320, '2025-01-28 12:15:33', 'Joana Cabral Orvalho', 6840),
+(20232009818, 2000, '2025-01-29 11:50:12', 'João Silva Pereira', 4520);
