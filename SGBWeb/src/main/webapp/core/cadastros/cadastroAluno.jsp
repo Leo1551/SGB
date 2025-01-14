@@ -1,9 +1,3 @@
-<%--
-    Document   : cadastroAluno
-    Created on : 11 de jan. de 2025, 09:07:50
-    Author     : izaka
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,12 +11,11 @@
     </head>
     <body>
         <%@include file="../header.jsp"%>
-        <h1>Pré-Cadastro</h1>
         <section id="nome-pagina">
             <h2>PRÉ CADASTRO</h2>
         </section>
 
-        <form action="preCadastro" method="post" enctype="multipart/form-data">
+        <form action="consultaAluno.jsp" method="get" enctype="multipart/form-data">
             <div class="container">
                 <div class="metade parte-esquerda">
                     <div class="campo">
@@ -60,15 +53,15 @@
 
                     <div class="campo">
                         <label for="senha">Senha:</label>
-                        <input type="password" id="senha" oninput="verificarSenha()" oninput="validarSenha()"
+                        <input type="password" name="senha" id="senha" oninput="verificarSenha()" oninput="validarSenha()"
                                placeholder="Digite sua senha">
                         <div id="requisitosSenha">
                             <p>Sua senha precisa ter:</p>
                             <ul>
                                 <li id="oitoCaracteres" class="invalido">Pelo menos 8 caracteres</li>
-                                <li id="contémNumero" class="invalido">Pelo menos um número</li>
-                                <li id="contémMaiuscula" class="invalido">Pelo menos uma letra maiúscula</li>
-                                <li id="contémCaractereEspecial" class="invalido">Pelo menos um caractere especial</li>
+                                <li id="contemNumero" class="invalido">Pelo menos um número</li>
+                                <li id="contemMaiuscula" class="invalido">Pelo menos uma letra maiúscula</li>
+                                <li id="contemCaractereEspecial" class="invalido">Pelo menos um caractere especial</li>
                             </ul>
                         </div>
                     </div>
@@ -86,7 +79,7 @@
         <%@include file="../footer.jsp" %>
         
         <!--js-->
-        <link rel="stylesheet" href="../../../js/cadastroAluno.js">
+        <script type="text/javascript"><%@include file="/js/cadastroAluno.js" %></script>
     </body>
 </html>
 

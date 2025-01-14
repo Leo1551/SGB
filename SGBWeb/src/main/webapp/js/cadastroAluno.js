@@ -5,9 +5,9 @@ function verificarSenha() {
     const entradaConfirmarSenha = confirmarSenha.value;
 
     const oitoCaracteres = document.getElementById('oitoCaracteres');
-    const contemNumero = document.getElementById('contémNumero');
-    const contemMaiuscula = document.getElementById('contémMaiuscula');
-    const contemCaractereEspecial = document.getElementById('contémCaractereEspecial');
+    const contemNumero = document.getElementById('contemNumero');
+    const contemMaiuscula = document.getElementById('contemMaiuscula');
+    const contemCaractereEspecial = document.getElementById('contemCaractereEspecial');
 
     const temOitoCaracteres = entradaSenha.length >= 8;
     const temNumero = /\d/.test(entradaSenha);
@@ -28,7 +28,7 @@ function validarSenha() {
 
     const mensagemSenhaValida = document.getElementById('senhaValida');
 
-    if (senha.value != confirmarSenha.value) {
+    if (senha.value !== confirmarSenha.value) {
         mensagemSenhaValida.textContent = 'As senhas devem ser iguais';
         mensagemSenhaValida.className = 'invalido';
     } else {
@@ -52,6 +52,6 @@ function carregarArquivo(evento) {
 
     saida.src = URL.createObjectURL(evento.target.files[0]);
     saida.onload = function () {
-        URL.revokeObjectURL(saida.src)
+        URL.revokeObjectURL(saida.src);
     }
 }

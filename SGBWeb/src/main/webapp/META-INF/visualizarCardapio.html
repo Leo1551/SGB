@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGRU - Cardápio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #1e3a8a;
+        }
+
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .search-filter input, .search-filter button {
+            padding: 10px;
+            border: 1px solid #a0aec0;
+            border-radius: 4px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #e6f0ff;
+        }
+
+        th, td {
+            border: 1px solid #b0c4de;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4682b4;
+            color: white;
+        }
+
+        td {
+            background-color: #d1e7ff;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #cfe2ff;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #ff0000;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .search-filter {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-filter input, .search-filter button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Cardápio</h1>
+        </div>
+
+        <div class="search-filter">
+            <label for="search">Pesquisar alimentos:</label>
+            <input type="text" id="search" placeholder="Pesquisar alimentos..." onkeyup="filterCategory()">
+            <button onclick="filterCategory()">Filtrar por categoria</button>
+        </div>
+
+        <div id="noResults" class="no-results hidden">O alimento digitado não consta no cardápio.</div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Semana do dia dd/mm - dd/mm</th>
+                        <th scope="col">Guarnição</th>
+                        <th scope="col">Proteínas</th>
+                        <th scope="col">Saladas</th>
+                        <th scope="col">Frutas</th>
+                        <th scope="col">Opção Vegetariana</th>
+                    </tr>
+                </thead>
+                <tbody id="menuTable">
+                    <!-- Os dados do cardápio serão preenchidos aqui via PHP -->
+                    <?php
+                    include 'conexao.php'; // Inclui o arquivo de conexão
+
+                    // Consulta ao banco de dados para obter o cardápio
+                    $sql = "SELECT * FROM cardapio ORDER BY semana, dia_da_semana";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($result as $row) {
+                        echo "<tr>
+                                <td>{$row['dia_da_semana']}</td>
+                                <td>{$row['guarnicao']}</td>
+                                <td>{$row['proteina']}</td>
+                                <td>{$row['salada']}</td>
+                                <td>{$row['fruta']}</td>
+                                <td>{$row['opcao_vegetariana']}</td>
+                              </tr>";
+                    }
+                    ?>
+                ```html
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2023 SGRU - Sistema de Gestão de Refeições Universitárias</p>
+        </div>
+    </div>
+
+    <script>
+        function filterCategory() {
+            const input = document.getElementById('search').value.toLowerCase();
+            const table = document.getElementById('menuTable');
+            const rows = table.getElementsByTagName('tr');
+            let noResults = true;
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowContainsInput = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        rowContainsInput = true;
+                        break;
+                    }
+                }
+
+                if (rowContainsInput) {
+                    rows[i].style.display = '';
+                    noResults = false;
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+
+            document.getElementById('noResults').classList.toggle('hidden', !noResults);
+        }
+    </script>
+</body>
+</html>

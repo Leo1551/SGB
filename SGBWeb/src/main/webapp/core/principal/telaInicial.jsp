@@ -14,12 +14,28 @@
         <title>SGC - Sistema de Gestão do Bandejão</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <%@include file="../header.jsp"%>
         
+        <%
+            if (session.getAttribute("matricula") == null) response.sendRedirect("../reglog/login.jsp");
+        // OK meus putos, o negócio é o seguinte, a variável :session: foi settada em reglog/consultaMatricula.jsp
+        // O ponto para vocês é: qualquer coisa que deve ser alterada na sessão está na variável :session:
+        
+        //Implicitamente, as páginas usam a variável :session: para se referirem ao objeto HTTPSession implicitamente
+        
+        String matricula = (String) session.getAttribute("matricula");
+        String senha = (String) session.getAttribute("senha");
+        
+        //antes de tudo, passem pela tela de login
+        %>
+        
+        
         <!-- adicionem as partes referentes ao que lhe interessam para a tela inícial aqui-->
-        
-        
+        <%= matricula + senha%>
+        <form action="../pagamento/escolha.jsp" method="post">
+            <input type="hidden" name="matricula" value="<%= matricula %>"/>
+            <input type="submit" value="Realizar recarga"/>
+        </form>
         <%@include file="../footer.jsp"%>
     </body>
 </html>
