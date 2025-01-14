@@ -81,9 +81,10 @@ window.onload = function () {
     }
 
     function exibirHistorico(mes) {
-        historicoContainer.innerHTML = `<h3>Histórico de Transações - ${mes}</h3>`;
+        console.log(mes)
+        historicoContainer.innerHTML = "<h3>Historico de Transacoes - "+mes+"</h3>";
 
-        const transacoesMes = pegarHistorico(mes);
+        const transacoesMes = transacoes[mes];
         if (transacoesMes && transacoesMes.length > 0) {
             transacoesMes.forEach(transacao => {
                 const divTransacao = document.createElement("div");
@@ -92,9 +93,9 @@ window.onload = function () {
                 const tipoDiv = document.createElement("div");
                 tipoDiv.classList.add("atributo");
                 if (transacao.tipo === "recarga")
-                    tipoDiv.innerHTML = `<span>Tipo de Transação:</span> Recarga`;
+                    tipoDiv.innerHTML = `<span>Tipo de transacao:</span> Recarga`;
                 else
-                    tipoDiv.innerHTML = `<span>Tipo de Transação:</span> Compra`;
+                    tipoDiv.innerHTML = `<span>Tipo de transacao:</span> Compra`;
                 divTransacao.appendChild(tipoDiv);
 
                 const dataDiv = document.createElement("div");
@@ -110,7 +111,7 @@ window.onload = function () {
                 if (transacao.tipo === "recarga") {
                     const funcionarioDiv = document.createElement("div");
                     funcionarioDiv.classList.add("atributo");
-                    funcionarioDiv.innerHTML = "<span>Funcionário:</span> "+transacao.funcionario;
+                    funcionarioDiv.innerHTML = "<span>Funcionario:</span> "+transacao.funcionario;
                     divTransacao.appendChild(funcionarioDiv);
                 }
 
@@ -127,7 +128,9 @@ window.onload = function () {
                 historicoContainer.appendChild(divTransacao);
             });
         } else {
-            historicoContainer.textContent = "Nenhuma transação encontrada para este mês.";
+            historicoContainer.textContent = "Nenhuma transacao encontrada para este mes.";
         }
     }
+                
+
 };
