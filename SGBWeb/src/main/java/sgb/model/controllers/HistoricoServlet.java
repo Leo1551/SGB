@@ -12,8 +12,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sgb.model.dao.TransacaoDAO;
 import sgb.model.dto.Transacao;
 
@@ -60,6 +58,7 @@ public class HistoricoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         long matricula;
+        int mes;
         if (request.getParameter("matricula")==null ||request.getParameter("matricula").equals("")) {
             request.setAttribute("mensagemErro","Nenhuma matricula fornecida");
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
@@ -67,12 +66,16 @@ public class HistoricoServlet extends HttpServlet {
         } else {
             matricula = Long.parseLong(request.getParameter("matricula"));
         }
+        if (request.getParameter("mes")==null ||request.getParameter("mes").equals("")) {
+            //pegar o mes
+            mes=0;
+        } else {
+            mes = 0;
+        }
         Transacao[] transacoes = null;
         StringBuilder transacoesJSON = new StringBuilder();
         try {
             transacoes = TransacaoDAO.getTransacoes(matricula);
-
-            //lidar com erro de matricula inexistente 
         } catch (SQLException | ClassNotFoundException ex) {
             request.setAttribute("mensagemErro",ex.getMessage());
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
@@ -91,6 +94,7 @@ public class HistoricoServlet extends HttpServlet {
             transacoesJSON.delete(transacoesJSON.length() - 1, transacoesJSON.length());
             transacoesJSON.append("]");
             request.setAttribute("transacoes", transacoesJSON.toString());
+            request.setAttribute("mes", mes);
             request.getRequestDispatcher("/core/historico/historico.jsp").forward(request, response);
         } else {
             request.setAttribute("mensagemErro","Nenhuma transação com a matricula " + matricula + " encontrada");
