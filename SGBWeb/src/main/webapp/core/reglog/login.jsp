@@ -28,7 +28,7 @@
     <div id="caixa-login">
         <h1>Sistema de Gestão do Bandejão - Aluno</h1>
 
-        <form action="../java/sgb/model/controllers/loginServlet" method="post">
+        <form action="consultaMatricula.jsp" method="post">
             <input type="text" name="matricula" placeholder="Número de matricula">
             <!-- número de matricula-->
              <input type="password" name="senha" placeholder="Senha">
