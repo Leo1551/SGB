@@ -25,7 +25,6 @@
          
 ConexaoBD c = new ConexaoBD();
         %>
-        <%= ("dsadsa  "+nome) %>
         <%= c.inserirPreCadastro(nome, senha, foto, email, matricula, cpf) %>
 
     </body>

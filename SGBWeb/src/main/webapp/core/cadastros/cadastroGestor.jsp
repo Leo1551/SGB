@@ -70,8 +70,7 @@
 
         <%@include file="../footer.jsp" %>
 
-        <!--js-->
-        <script type="text/javascript"><%@include file="/js/cadastroAluno.js" %></script>
+        
     </body>
 </html>
 
