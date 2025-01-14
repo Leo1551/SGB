@@ -1,20 +1,24 @@
 package sgb.model.dto;
 
-public class PreMatricula {;
+public class Cadastro {;
     private String nome;
     private String senha;
     private String foto;
     private String email;
     private Long matricula;
     private String cpf;
+    private int codigoCartao;
+    private boolean statusCartao;
     
-    public PreMatricula(String nome, String senha, String foto, String email, long matricula, String cpf) {
+    public Cadastro(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
         this.nome = nome;
         this.senha = senha;
         this.foto = foto;
         this.email = email;
         this.matricula = matricula;
         this.cpf = cpf;
+        this.codigoCartao = codigoCartao;
+        this.statusCartao = statusCartao;
     }
     
     public String getNome() {
@@ -62,6 +66,22 @@ public class PreMatricula {;
     
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+    
+    public int getCodigoCartao() {
+        return codigoCartao;
+    }
+    
+    public void setCodigoCartao(int codigoCartao ) {
+        this.codigoCartao = codigoCartao;
+    }
+    
+    public boolean getStatusCartao() {
+        return statusCartao;
+    }
+    
+    public void setStatusCartao(boolean statusCartao ) {
+        this.statusCartao = statusCartao;
     }
     
 }

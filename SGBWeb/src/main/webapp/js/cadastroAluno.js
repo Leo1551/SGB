@@ -1,4 +1,3 @@
-alert('oi');
 function verificarSenha() {
     const senha = document.getElementById('senha');
     const entradaSenha = senha.value;
@@ -6,9 +5,9 @@ function verificarSenha() {
     const entradaConfirmarSenha = confirmarSenha.value;
 
     const oitoCaracteres = document.getElementById('oitoCaracteres');
-    const contemNumero = document.getElementById('contémNumero');
-    const contemMaiuscula = document.getElementById('contémMaiuscula');
-    const contemCaractereEspecial = document.getElementById('contémCaractereEspecial');
+    const contemNumero = document.getElementById('contemNumero');
+    const contemMaiuscula = document.getElementById('contemMaiuscula');
+    const contemCaractereEspecial = document.getElementById('contemCaractereEspecial');
 
     const temOitoCaracteres = entradaSenha.length >= 8;
     const temNumero = /\d/.test(entradaSenha);
