@@ -21,6 +21,9 @@
             session.invalidate();
             session = null;
         } // sempre que redirecionado à tela inícial, finaliza a sessão
+        
+        
+        String msgRecEmail = request.getParameter("msg");   
     %>
     
     
@@ -28,7 +31,7 @@
     <div id="caixa-login">
         <h1>Sistema de Gestão do Bandejão - Aluno</h1>
 
-        <form action="consultaMatricula.jsp" method="post">
+        <form action="servlets/consultaMatricula.jsp" method="post">
             <input type="text" name="matricula" placeholder="Número de matricula">
             <!-- número de matricula-->
              <input type="password" name="senha" placeholder="Senha">
@@ -39,6 +42,13 @@
 
         <a href="recuperaSenha.html">Esqueci minha senha</a>
         <!--implementar site para recuperação de senha-->
+    </div>
+    
+    <div>
+        <%
+            if (msgRecEmail != null)
+                out.println(msgRecEmail);
+        %>
     </div>
     
     
