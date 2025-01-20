@@ -56,15 +56,18 @@ public class HistoricoServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         long matricula;
+        String atributoMatricula;
         int mes;
-        if (request.getParameter("matricula")==null ||request.getParameter("matricula").equals("")) {
-            request.setAttribute("mensagemErro","Nenhuma matricula fornecida");
+        HttpSession sessao = request.getSession(true);
+        atributoMatricula=(String) sessao.getAttribute("matricula");
+        if (atributoMatricula==null ||atributoMatricula.equals("")) {
+            request.setAttribute("mensagemErro","Nenhuma matricula salva");
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
             return;
         } else {
-            matricula = Long.parseLong(request.getParameter("matricula"));
+            matricula = Long.parseLong(atributoMatricula);
         }
         if (request.getParameter("mes")==null ||request.getParameter("mes").equals("")) {
             //pegar o mes
