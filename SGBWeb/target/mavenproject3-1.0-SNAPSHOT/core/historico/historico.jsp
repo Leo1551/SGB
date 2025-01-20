@@ -24,9 +24,6 @@
 	</header>
 	<section id="avisos">
 	</section>
-    <h1>
-        ${test}
-    </h1>
 	<section id="pageContent">
 		<aside id="months-container">
 		</aside>
