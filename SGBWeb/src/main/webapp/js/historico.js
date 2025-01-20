@@ -81,7 +81,6 @@ window.onload = function () {
     }
 
     function exibirHistorico(mes) {
-        console.log(mes)
         historicoContainer.innerHTML = "<h3>Historico de Transacoes - "+mes+"</h3>";
 
         const transacoesMes = transacoes[mes];
