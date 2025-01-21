@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    font-size: 100%;
+}
+
+body {
+    line-height: 1;
+    font-family: arial;
+}
+
+/* itens da header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #323C64;
+    padding: 10px 30px;
+    margin: auto;
+}
+
+/*logo do cefet*/
+#logo {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-right: 75px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+#logo img {
+    width: 50px;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+/*voltar e seu perfil*/
+nav {
+    float: right;
+    display: flex;
+    justify-content: right;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    background: #DCE7F5;
+    padding: 5px 15px;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #444;
+    border-radius: 3px;
+    transition: background 0.1s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #B3CDE7;
+    color: #222;
+}
+
+nav img {
+    height: 15px;
+    width: auto;
+    vertical-align: middle;
+}
+
+/*nome da pagina atual*/
+#nome-pagina {
+    margin: auto;
+    padding: 30px 40px;
+    border-bottom: 1px solid #999;
+    color: #333;
+    height: 45px;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    background-color: #AEC6CF;
+}
+
+/*footer*/
+footer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #AEC6CF;
+    margin: auto;
+    clear: both;
+    text-align: right;
+}
+
+footer p {
+    padding: 10px;
+    font-size: smaller;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    display: flex;
+    height: calc(80vh);
+    overflow-y: hidden;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+}
+
+.metade {
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.parte-esquerda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 40%;
+}
+
+.parte-direita {
+    background-color: #f0f0f0;
+    width: 70%;
+}
+
+.metade label,
+.metade input,
+.info p,
+.info div {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.campo,
+.info {
+    margin: 10px;
+    border-radius: 5px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.metade input,
+#campo-foto label,
+.info div {
+    border-radius: 5px;
+    background: rgb(249, 250, 250);
+    border: 1px solid rgb(181, 189, 196);
+    font-size: 16px;
+    height: 40px;
+    line-height: 24px;
+    padding: 7px 8px;
+    color: rgb(8, 9, 10);
+    box-shadow: none;
+}
+
+.metade input:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: #323C64;
+    box-shadow: 1px 1px 0 #323C64;
+
+}
+.metade input {
+    outline: none;
+    background-color: #fff;
+    border-color: #323C64;
+    box-shadow: 1px 1px 1px #323C64;
+
+}
+
+.metade label,
+.info p {
+    font-size:medium;
+    font-style: normal;
+}
+
+
+button {
+    margin-top: 20px;
+    width: 20vh;
+    background-color: #323C64;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 20px;
+    font-weight: 500;
+    padding: 8px 10px;
+}
+
+button:hover {
+    background-color: #060916;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+.info div {
+    display: flex;
+    align-items: center;
+}
+
+form {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #949494; 
+}
+
+.info .ativo {
+    font-weight: bold;
+    color: green;
+}
+
+.info .inativo {
+    font-weight: bold;
+    color: red;
+}
+
+.opcao {
+    display: none;
+    height: 50vh;
+    width: 600px;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.opcao:nth-child(1){
+    display:block;
+}
+
+button:not(.botao) {
+    width: fit-content;
+}
+
+.opcao h2 {
+    font-size: larger;
+    margin-bottom: 15px;
+}
+
+.opcao p {
+    margin: 15px 0px;
+}
+
+#cartao input {
+    margin: 15px;
+    width: 80%;
+}
+
+#cartao label {
+    font-size:medium;
+    margin: 15px;
+}
+
+.opcao .linha-cartao {
+    width: 86%;
+    display: flex;
+    justify-content:baseline; /* Espaço entre os elementos */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 10px; /* Espaço entre os elementos */
+    margin-top: 15px;
+}
+
+.opcao #validade-cartao, .opcao #seguranca-cartao {
+    margin: 15px;
+    width: 85%;
+}
+
+#transferencia .campo {
+    width: 80%;
+    border-radius: 0;
+    font-size: large;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #949494;
+}
+
+#transferencia .info{
+    width: 80%;
+    margin: 0 15px;
+}
