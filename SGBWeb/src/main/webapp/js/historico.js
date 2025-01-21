@@ -55,8 +55,8 @@ window.onload = function () {
         return saldoAtual;
     }
 
-    const saldo = calcularSaldoAtual();
-    document.getElementById("avisos").innerHTML = `<strong>Saldo Atual:</strong> &nbsp R$ ${saldo.toFixed(2)}`;
+    const saldo = saldoParam;
+    document.getElementById("avisos").innerHTML = "<strong>Saldo Atual:</strong> &nbsp R$ "+saldo.toFixed(2);
 
     months.reverse();
     for (let i = 0; i < 12; i++) {
