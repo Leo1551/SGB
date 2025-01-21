@@ -63,11 +63,11 @@ CREATE TABLE IF NOT EXISTS `precadastros` (
   `foto` varchar(255) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `matricula` bigint NOT NULL,
-  `cpf` varchar(11) NOT NULL,
+  `cpf` varchar(11) NOT NULL, 
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `precadastros`
@@ -105,8 +105,7 @@ CREATE TABLE IF NOT EXISTS `cartoes` (
     `senha` VARCHAR(100) NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY (`numCartao`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 ;
 
 DROP TABLE IF EXISTS `historico`;
 CREATE TABLE IF NOT EXISTS `historico` (
