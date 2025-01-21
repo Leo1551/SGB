@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> SGRU</title>
         <!--css-->
-        <%@include file="../css.jsp"%>
+        <link rel="stylesheet" href="../../css/styleBase.css">
         <link rel="stylesheet" href="../../css/cadastroAluno.css">
     </head>
     <body>
