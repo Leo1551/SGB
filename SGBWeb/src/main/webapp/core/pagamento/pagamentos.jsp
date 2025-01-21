@@ -32,11 +32,6 @@
                 </form>
 
                 <div class="info">
-                    <p>CPF:</p>
-                    <div id="cpf">000.000.000-00</div>
-                </div>
-
-                <div class="info">
                     <p>Status do cartão:</p>
                     <div id="status" class="ativo">ATIVO</div>
                 </div>
