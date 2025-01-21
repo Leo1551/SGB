@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    font-size: 100%;
+}
+
+body {
+    line-height: 1;
+    font-family: arial;
+}
+
+/* itens da header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #323C64;
+    padding: 10px 30px;
+    margin: auto;
+}
+
+/*logo do cefet*/
+#logo {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-right: 75px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+#logo img {
+    width: 50px;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+/*voltar e seu perfil*/
+nav {
+    float: right;
+    display: flex;
+    justify-content: right;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    background: #DCE7F5;
+    padding: 5px 15px;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #444;
+    border-radius: 3px;
+    transition: background 0.1s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #B3CDE7;
+    color: #222;
+}
+
+nav img {
+    height: 15px;
+    width: auto;
+    vertical-align: middle;
+}
+
+/*nome da pagina atual*/
+#nome-pagina {
+    margin: auto;
+    padding: 30px 40px;
+    border-bottom: 1px solid #999;
+    color: #333;
+    height: 45px;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    background-color: #AEC6CF;
+}
+
+/*footer*/
+footer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #AEC6CF;
+    margin: auto;
+    clear: both;
+    text-align: right;
+}
+
+footer p {
+    padding: 10px;
+    font-size: smaller;
+}
+
+/* ARRUMAR DEPOIS */
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(80vh);
+    overflow-y: hidden;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+}
+
+.opcao {
+    margin: 3%;
+    background-color:#B3CDE7;
+    padding: 20px;
+    width: 300px;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px solid #45474f;
+}
+
+
+
+a {
+    width: 20vh;
+    background-color: #323C64;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 20px;
+    font-weight: 500;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+button:hover, a:hover {
+    background-color: #060916;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+
+.opcao .titulo{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+}
+
+.opcao .descricao{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 2px solid #767676;
+    border-bottom: 2px solid #767676; 
+}
+
+.opcao .ir {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opcao .descricao p {
+    font-size: large;
+    margin: 15px 5px;
+} 
+
+.opcao .ir a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
