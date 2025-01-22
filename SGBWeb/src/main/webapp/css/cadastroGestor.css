@@ -1,57 +1,59 @@
-#container {
-    display: flex;
-    height: calc(80vh);
-    overflow-y: hidden;
+.container {
     font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #fff;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
 }
 
 table {
     width: 90%;
     border: 2px solid white;
+    margin: 20px 0px 50px 0px;
 }
 
 th {
-    padding: 20px;
+    padding: 15px;
     color: white;
     background-color: #323C64;
     border: 2px solid white;
 }
 
+th:nth-child(6), th:nth-child(7) {
+    width: 100px;
+}
+
 /*botao de editar*/
-th:nth-child(6){
-    background-color: darkgoldenrod;
+#editar{
+    background-color: #DAA520;
 }
 
 /*botao de aprovar*/
-th:nth-child(7){
+ #aprovar{
     background-color: darkgreen;
 }
 
 td {
     text-align: center;
     background-color: #ddd;
-    padding: 10px;
+    padding: 13px 10px;
     border: 2px solid white;
 }
 
-button {
-    width: 10vh;
+a {
     background-color: #323C64;
     border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: 6px;
     color: #ffffff;
     cursor: pointer;
     font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    font-size: 10px;
-    padding: 2px 3px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 20px;
+    text-decoration: none;
 }
 
-button:hover {
+a:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;

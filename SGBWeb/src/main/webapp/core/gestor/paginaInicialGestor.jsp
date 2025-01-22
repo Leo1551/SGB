@@ -32,7 +32,7 @@
                     </p>
                 </div>
                 <div class="ir">
-                    <a href="../cadastros/cadastroGestor.jsp">Criar</a>
+                    <a href="criarCadastro.jsp">Criar</a>
                 </div>
             </div>
             <div class="opcao">
@@ -50,7 +50,7 @@
                     </p>
                 </div>
                 <div class="ir">
-                    <a href="../cadastros/editarCadastro.jsp">Editar</a>
+                    <a href="editarCadastro.jsp">Editar</a>
                 </div>
             </div>
         </div>

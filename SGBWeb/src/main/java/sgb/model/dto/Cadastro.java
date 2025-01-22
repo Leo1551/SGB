@@ -1,6 +1,7 @@
 package sgb.model.dto;
 
-public class Cadastro {;
+public class Cadastro {
+    private Integer id;
     private String nome;
     private String senha;
     private String foto;
@@ -10,7 +11,10 @@ public class Cadastro {;
     private int codigoCartao;
     private boolean statusCartao;
     
-    public Cadastro(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
+    public Cadastro() {}
+    
+    public Cadastro(Integer id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
+        this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.foto = foto;
@@ -20,6 +24,14 @@ public class Cadastro {;
         this.codigoCartao = codigoCartao;
         this.statusCartao = statusCartao;
     }
+    
+    public Integer getId() {
+        return id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }    
     
     public String getNome() {
         return nome;
