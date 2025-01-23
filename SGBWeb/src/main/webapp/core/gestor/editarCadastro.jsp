@@ -43,8 +43,8 @@
                     <td><%= cadastro.getEmail()%></td>
                     <td><%= cadastro.getMatricula()%></td>
                     <td><%= cadastro.getCpf()%></td>
-                    <td><a href="editar?id=<%= cadastro.getId()%>" class="button" id="editar">Editar</a></td>
-                    <td><a href="aprovar?id=<%= cadastro.getId()%>" class="button" id="aprovar">Aprovar</a></td>
+                    <td><a href="editar.jsp?id=<%= cadastro.getId()%>" class="button" id="editar">Editar</a></td>
+                    <td><a href="bloquear.jsp?id=<%= cadastro.getId()%>" class="button" id="bloquear">Bloquear</a></td>
                 </tr>
                 <%
                     }

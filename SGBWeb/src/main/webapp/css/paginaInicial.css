@@ -24,7 +24,7 @@
 
 
 
-a {
+.ir a, .login a {
     width: 20vh;
     background-color: #323C64;
     border: 1px solid rgba(27, 31, 35, 0.15);
@@ -38,14 +38,14 @@ a {
     text-decoration: none;
 }
 
-button:hover, a:hover {
+button:hover, .ir a:hover, .login a:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;
 }
 
 
-.opcao .titulo{
+.opcao .titulo, .opcao .sou{
     width: 100%;
     height: 25%;
     display: flex;
@@ -64,12 +64,26 @@ button:hover, a:hover {
     border-bottom: 2px solid #767676; 
 }
 
-.opcao .ir {
+.opcao .sou{
+    text-align: center;
+    height: 50%;
+    border: none;
+    font-size: x-large;
+    border-bottom: 2px solid #767676; 
+}
+
+.opcao .ir, .opcao .login {
     width: 100%;
     height: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.opcao .login{
+    text-align: center;
+    height: 50%;
+    border: none;
 }
 
 .opcao .descricao p {

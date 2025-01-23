@@ -302,72 +302,77 @@ public class ConexaoBD {
             Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf, Integer codigoCartao, Boolean statusCartao) {
 
         List<Cadastro> listaCadastros = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("SELECT * FROM cadastros WHERE 1=1");
+        String sql = "SELECT * FROM cadastros WHERE 1=1";
 
         List<Object> parametros = new ArrayList<>();
 
         if (id != null) {
-            sql.append(" AND id = ?");
+            sql += (" AND id = ?");
             parametros.add(id);
         }
         if (nome != null) {
-            sql.append(" AND nome LIKE ?");
+            sql += (" AND nome LIKE ?");
             parametros.add("%" + nome + "%");
         }
         if (senha != null) {
-            sql.append(" AND senha = ?");
+            sql += (" AND senha = ?");
             parametros.add(senha);
         }
         if (foto != null) {
-            sql.append(" AND foto = ?");
+            sql += (" AND foto = ?");
             parametros.add(foto);
         }
         if (email != null) {
-            sql.append(" AND email = ?");
+            sql+= (" AND email = ?");
             parametros.add(email);
         }
         if (matricula != null) {
-            sql.append(" AND matricula = ?");
+            sql += (" AND matricula = ?");
             parametros.add(matricula);
         }
+        if (cpf != null) {
+            sql += (" AND cpf = ?");
+            parametros.add(cpf);
+        }
         if (codigoCartao != null) {
-            sql.append(" AND codigoCartao = ?");
+            sql += (" AND codigoCartao = ?");
             parametros.add(codigoCartao);
         }
         if (statusCartao != null) {
-            sql.append(" AND statusCartao = ?");
+            sql += (" AND statusCartao = ?");
             parametros.add(statusCartao);
         }
-        if (cpf != null) {
-            sql.append(" AND cpf = ?");
-            parametros.add(cpf);
-        }
 
-        try (Connection conexao = getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(sql.toString())) {
+         try {
+            OpenBD openBD = new OpenBD();
+            try (Connection conexao = openBD.getConnectionComDriver();
+                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            // Setando os parâmetros na query
-            for (int i = 0; i < parametros.size(); i++) {
-                stmt.setObject(i + 1, parametros.get(i));
-            }
+                for (int i = 0; i < parametros.size(); i++) {
+                    stmt.setObject(i + 1, parametros.get(i));
+                }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+               try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Cadastro cadastro = new Cadastro();
                     cadastro.setId(rs.getInt("id"));
                     cadastro.setNome(rs.getString("nome"));
                     cadastro.setSenha(rs.getString("senha"));
+                    cadastro.setFoto(rs.getString("foto"));
                     cadastro.setEmail(rs.getString("email"));
                     cadastro.setMatricula(rs.getLong("matricula"));
                     cadastro.setCpf(rs.getString("cpf"));
                     cadastro.setCodigoCartao(rs.getInt("codigoCartao"));
                     cadastro.setStatusCartao(rs.getBoolean("statusCartao"));
-        
+                    
                     listaCadastros.add(cadastro);
                 }
+                }
             }
+        } catch (ClassNotFoundException e) {
+            System.err.println("Erro ao carregar o driver do banco de dados: " + e.getMessage());
         } catch (SQLException e) {
-            System.out.println("Erro ao consultar dados da tabela cadastros: " + e.getMessage());
+            System.err.println("Erro ao consultar os dados: " + e.getMessage());
         }
 
         return listaCadastros;

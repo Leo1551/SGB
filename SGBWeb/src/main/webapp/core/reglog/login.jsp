@@ -27,6 +27,10 @@
     
     
     <%@include file="../header.jsp" %>
+    <section id="nome-pagina">
+            <h2>LOGIN - ALUNO</h2>
+        </section>
+    
     <div id="caixa-login">
         <h1>Sistema de Gestão do Bandejão - Aluno</h1>
 

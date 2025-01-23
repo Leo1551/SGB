@@ -23,16 +23,6 @@ th:nth-child(6), th:nth-child(7) {
     width: 100px;
 }
 
-/*botao de editar*/
-#editar{
-    background-color: #DAA520;
-}
-
-/*botao de aprovar*/
- #aprovar{
-    background-color: darkgreen;
-}
-
 td {
     text-align: center;
     background-color: #ddd;
@@ -57,4 +47,18 @@ a:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;
+}
+
+/*botao de editar*/
+#editar{
+    background-color: #DAA520;
+}
+
+/*botao de aprovar*/
+ #aprovar, #desbloquear{
+    background-color: #1b5b42;
+}
+
+#bloquear{
+    background-color: darkred;
 }

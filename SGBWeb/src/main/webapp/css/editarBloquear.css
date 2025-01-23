@@ -1,0 +1,176 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(80vh);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+}
+
+.divisao {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.divisao:nth-child(2){
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+}
+
+.divisao .subdivisoes{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+/* campos */
+.info div, 
+.campo input {
+    margin: 5px;
+}
+
+.info div {
+    display: flex;
+    align-items: center;
+}
+
+.info div, .campo input {
+    border-radius: 5px;
+    background: rgb(249, 250, 250);
+    border: 1px solid rgb(181, 189, 196);
+    font-size: 16px;
+    height: 40px;
+    line-height: 24px;
+    padding: 7px 8px;
+    color: rgb(8, 9, 10);
+    box-shadow: none;
+}
+
+.campo,
+.info {
+    margin: 10px;
+    border-radius: 5px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.campo input {
+    outline: none;
+    background-color: #fff;
+    border-color: #323C64;
+    box-shadow: 1px 1px 1px #323C64;
+}
+
+.campo label,
+.info p {
+    font-size: 23px;
+    font-style: normal;
+}
+
+/* botoes */
+.divisao .botao {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divisao .botao a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button:hover, a:hover {
+    background-color: #060916;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+a {
+    width: 20vh;
+    background-color: #323C64;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 20px;
+    font-weight: 500;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+button {
+    margin-top: 20px;
+    width: 20vh;
+    background-color: #323C64;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 20px;
+    font-weight: 500;
+    padding: 8px 10px;
+}
+
+button:hover {
+    background-color: #060916;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+
+/* outros */
+#hidden {
+    visibility: hidden;
+}
+
+#foto {
+    width: 250px;
+    height: auto;
+}
+
+.subsub {
+    height: 38vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; 
+}
+
+.subsub button {
+    padding: 13px 10px;
+    text-align: center;
+}
+
+.subsub:nth-child(even){
+    border-top: 2px solid #ccc;
+}
+
+.info .ativo {
+    font-weight: bold;
+    color: green;
+}
+
+.info .inativo {
+    font-weight: bold;
+    color: red;
+}

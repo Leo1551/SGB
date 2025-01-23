@@ -29,7 +29,7 @@
                 sessao.setAttribute("senha", senha);
                
                 
-                response.sendRedirect("../principal/telaInicial.jsp");
+                response.sendRedirect("../aluno/paginaInicialAluno.jsp");
             }
             else
                 response.sendRedirect("login.jsp");
