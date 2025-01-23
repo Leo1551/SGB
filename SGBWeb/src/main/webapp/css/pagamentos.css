@@ -162,9 +162,9 @@ button:not(.botao) {
 .opcao .linha-cartao {
     width: 86%;
     display: flex;
-    justify-content:baseline; /* Espaço entre os elementos */
-    align-items: center; /* Centraliza verticalmente */
-    gap: 10px; /* Espaço entre os elementos */
+    justify-content: baseline;
+    align-items: center;
+    gap: 10px;
     margin-top: 15px;
 }
 

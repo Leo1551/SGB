@@ -20,11 +20,12 @@
          String senha = request.getParameter("senha");
          String foto = "foto_21.png";
          String email = request.getParameter("email");
-         long matricula = 12345678901L;
+         long matricula = Long.parseLong(request.getParameter("matricula"));
          String cpf = request.getParameter("cpf");
          
-ConexaoBD c = new ConexaoBD();
+        ConexaoBD c = new ConexaoBD();
         %>
+        
         <%= c.inserirPreCadastro(nome, senha, foto, email, matricula, cpf) %>
 
     </body>

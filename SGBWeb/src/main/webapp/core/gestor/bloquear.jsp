@@ -26,12 +26,11 @@
                 String idParam = request.getParameter("id");
                 String mensagem = "";
 
-                // Verifica se há envio do formulário para atualização de status
+                // qdo aperta o botao
                 if (request.getParameter("acao") != null && (request.getParameter("acao").equals("bloquear") || request.getParameter("acao").equals("desbloquear"))) {
                     try {
                         Integer id = Integer.parseInt(request.getParameter("id"));
 
-                        // Consulta os dados originais
                         List<Cadastro> cadastros = ConexaoBD.consultarCadastro(id, null, null, null, null, null, null, null, null);
                         if (cadastros != null && !cadastros.isEmpty()) {
                             Cadastro cadastro = cadastros.get(0);
@@ -59,12 +58,10 @@
                     }
                 }
 
-                // Exibe os dados do cadastro para edição
                 if (idParam != null && !idParam.isEmpty()) {
                     try {
                         Integer id = Integer.parseInt(idParam);
 
-                        // Consulta os dados do cadastro
                         List<Cadastro> cadastros = ConexaoBD.consultarCadastro(id, null, null, null, null, null, null, null, null);
 
                         if (cadastros != null && !cadastros.isEmpty()) {
@@ -79,7 +76,6 @@
                             Boolean statusCartao = cadastro.getStatusCartao();
             %>
 
-            <!-- Dados do cadastro -->
             <div class="divisao">
                 <img id="foto" src="<%= foto%>" alt="Foto do usuário">
                 <p><%= mensagem%></p>

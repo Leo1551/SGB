@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SGRU</title>
-        <!-- CSS -->
+        <!-- css -->
         <link rel="stylesheet" href="../../css/styleBase.css">
         <link rel="stylesheet" href="../../css/editarBloquear.css">
     </head>
@@ -25,33 +25,28 @@
                 String idParam = request.getParameter("id");
                 String mensagem = "";
 
-                // Verifica se há envio do formulário
                 if (request.getMethod().equalsIgnoreCase("POST")) {
                     try {
-                        // Captura os parâmetros do formulário
                         Integer id = Integer.parseInt(request.getParameter("id"));
                         String novoNome = request.getParameter("novoNome");
                         String novoEmail = request.getParameter("novoEmail");
-                        String novoMatricula = request.getParameter("novoMatricula");
+                        String novaMatricula = request.getParameter("novaMatricula");
                         String novoCpf = request.getParameter("novoCpf");
 
-                        // Consulta os dados originais do cadastro
                         List<Cadastro> cadastros = ConexaoBD.consultarCadastro(id, null, null, null, null, null, null, null, null);
                         if (cadastros != null && !cadastros.isEmpty()) {
                             Cadastro cadastro = cadastros.get(0);
 
-                            // Substitui os valores apenas se novos valores forem fornecidos
                             String nomeFinal = (novoNome == null || novoNome.isEmpty()) ? cadastro.getNome() : novoNome;
                             String emailFinal = (novoEmail == null || novoEmail.isEmpty()) ? cadastro.getEmail() : novoEmail;
-                            long matriculaFinal = (novoMatricula == null || novoMatricula.isEmpty()) ? cadastro.getMatricula() : Long.parseLong(novoMatricula);
+                            long matriculaFinal = (novaMatricula == null || novaMatricula.isEmpty()) ? cadastro.getMatricula() : Long.parseLong(novaMatricula);
                             String cpfFinal = (novoCpf == null || novoCpf.isEmpty()) ? cadastro.getCpf() : novoCpf;
 
-                            // Atualiza no banco de dados
                             ConexaoBD.atualizarCadastro(
                                     id,
                                     nomeFinal,
                                     cadastro.getSenha(),
-                                    cadastro.getFoto(), // Foto não alterada
+                                    cadastro.getFoto(),
                                     emailFinal,
                                     matriculaFinal,
                                     cpfFinal,
@@ -86,7 +81,6 @@
                             String foto = cadastro.getFoto();
             %>
 
-            <!-- Dados do cadastro -->
             <div class="divisao">
                 <img id="foto" src="<%= foto%>" alt="Foto do usuário">
                 <p><%= mensagem%></p>
@@ -142,7 +136,7 @@
                     <div class="subdivisoes">
                         <div class="campo">
                             <label>Nova matrícula:</label>
-                            <input type="text" name="novoMatricula" placeholder="<%= matricula%>">
+                            <input type="text" name="novaMatricula" placeholder="<%= matricula%>">
                         </div>
                     </div>
                     <div class="subdivisoes">

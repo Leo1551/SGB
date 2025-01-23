@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sgb.java;
 
 import java.sql.*;
@@ -11,43 +7,42 @@ import java.util.ArrayList;
 import sgb.model.dto.PreCadastro;
 import sgb.model.dto.Cadastro;
 
-
 public class ConexaoBD {
-    private static String url = "jdbc:mysql://localhost:3306/sgb"; 
+
+    private static String url = "jdbc:mysql://localhost:3306/sgb";
     private static String usuario = "root";
-    private static String senha = ""; 
+    private static String senha = "";
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, usuario, senha);
     }
-    
+
     public static void criarTabelas() {
-        String sqlPrecadastros = "CREATE TABLE IF NOT EXISTS precadastros (" +
-                "id INT AUTO_INCREMENT PRIMARY KEY," +
-                "nome VARCHAR(100) NOT NULL," +
-                "senha VARCHAR(100) NOT NULL," +
-                "foto VARCHAR(255)," +
-                "email VARCHAR(100) UNIQUE NOT NULL," +
-                "matricula BIGINT NOT NULL," +
-                "cpf VARCHAR(11) NOT NULL, " +  
-                "UNIQUE (cpf)" +              
-                ");";  
+        String sqlPrecadastros = "CREATE TABLE IF NOT EXISTS precadastros ("
+                + "id INT AUTO_INCREMENT PRIMARY KEY,"
+                + "nome VARCHAR(100) NOT NULL,"
+                + "senha VARCHAR(100) NOT NULL,"
+                + "foto VARCHAR(255),"
+                + "email VARCHAR(100) UNIQUE NOT NULL,"
+                + "matricula BIGINT NOT NULL,"
+                + "cpf VARCHAR(11) NOT NULL, "
+                + "UNIQUE (cpf)"
+                + ");";
 
-        String sqlCadastros = "CREATE TABLE IF NOT EXISTS cadastros (" +
-                "id INT AUTO_INCREMENT PRIMARY KEY," +
-                "nome VARCHAR(100) NOT NULL," +
-                "senha VARCHAR(100) NOT NULL," +
-                "foto VARCHAR(255)," +
-                "email VARCHAR(100) UNIQUE NOT NULL," +
-                "matricula BIGINT NOT NULL," +
-                "cpf VARCHAR(11) NOT NULL, " +  
-                "codigoCartao INT NOT NULL," +
-                "statusCartao BOOLEAN NOT NULL," +
-                "UNIQUE (cpf)" +               
-                ");";  
+        String sqlCadastros = "CREATE TABLE IF NOT EXISTS cadastros ("
+                + "id INT AUTO_INCREMENT PRIMARY KEY,"
+                + "nome VARCHAR(100) NOT NULL,"
+                + "senha VARCHAR(100) NOT NULL,"
+                + "foto VARCHAR(255),"
+                + "email VARCHAR(100) UNIQUE NOT NULL,"
+                + "matricula BIGINT NOT NULL,"
+                + "cpf VARCHAR(11) NOT NULL, "
+                + "codigoCartao INT NOT NULL,"
+                + "statusCartao BOOLEAN NOT NULL,"
+                + "UNIQUE (cpf)"
+                + ");";
 
-        try (Connection conexao = getConnection();
-             Statement stmt = conexao.createStatement()) {
+        try (Connection conexao = getConnection(); Statement stmt = conexao.createStatement()) {
             stmt.execute(sqlPrecadastros);
             stmt.execute(sqlCadastros);
             System.out.println("Tabelas criadas ou já existem.");
@@ -56,14 +51,11 @@ public class ConexaoBD {
         }
     }
 
-        
     public static void excluirTabelas() {
         String sqlDropPrecadastros = "DROP TABLE IF EXISTS precadastros;";
         String sqlDropCadastros = "DROP TABLE IF EXISTS cadastros;";
 
-        try (Connection conexao = getConnection();
-             Statement stmt = conexao.createStatement()) {
-            // Excluir as tabelas
+        try (Connection conexao = getConnection(); Statement stmt = conexao.createStatement()) {
             stmt.execute(sqlDropPrecadastros);
             stmt.execute(sqlDropCadastros);
             System.out.println("Tabelas excluídas com sucesso.");
@@ -75,8 +67,7 @@ public class ConexaoBD {
     public String inserirPreCadastro(String nome, String senha, String foto, String email, long matricula, String cpf) {
         String sql = "INSERT INTO precadastros (nome, senha, foto, email, matricula, cpf) VALUES (?, ?, ?, ?, ?, ?)";
         OpenBD op = new OpenBD();
-        try(Connection conexao = op.getConnectionComDriver();
-             PreparedStatement stmt = conexao.prepareStatement(sql);) {
+        try (Connection conexao = op.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql);) {
             stmt.setString(1, nome);
             stmt.setString(2, senha);
             stmt.setString(3, foto);
@@ -88,14 +79,13 @@ public class ConexaoBD {
         } catch (SQLException | ClassNotFoundException e) {
             {
                 return ("Erro ao inserir dados na tabela precadastros: " + e.getMessage());
-            } 
+            }
         }
     }
 
     public static void inserirCadastro(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
         String sql = "INSERT INTO cadastros (nome, senha, foto, email, matricula, cpf, codigoCartao, statusCartao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conexao = getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, nome);
             stmt.setString(2, senha);
             stmt.setString(3, foto);
@@ -117,14 +107,13 @@ public class ConexaoBD {
 
     public static void atualizarPreCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf) {
         String sql = "UPDATE precadastros SET nome = ?, senha = ?, foto = ?, email = ?, matricula = ?, cpf = ? WHERE id = ?";
-        try (Connection conexao = getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, nome);
             stmt.setString(2, senha);
             stmt.setString(3, foto);
             stmt.setString(4, email);
             stmt.setLong(5, matricula);
-            stmt.setString(6, cpf); 
+            stmt.setString(6, cpf);
             stmt.setInt(7, id);
             stmt.executeUpdate();
             System.out.println("Pre Cadastro atualizado com sucesso");
@@ -132,15 +121,14 @@ public class ConexaoBD {
             System.out.println("Erro ao atualizar dados na tabela precadastros: " + e.getMessage());
         }
     }
-    
+
     public static void atualizarCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
         String sqlCheckEmail = "SELECT email, cpf FROM cadastros WHERE id = ?";
 
         String emailExistente = null;
         String cpfExistente = null;
 
-        try (Connection conexao = getConnection();
-             PreparedStatement stmtCheck = conexao.prepareStatement(sqlCheckEmail)) {
+        try (Connection conexao = getConnection(); PreparedStatement stmtCheck = conexao.prepareStatement(sqlCheckEmail)) {
             stmtCheck.setInt(1, id);
             try (ResultSet rs = stmtCheck.executeQuery()) {
                 if (rs.next()) {
@@ -158,8 +146,7 @@ public class ConexaoBD {
 
         if (emailAlterado) {
             String sqlCheckEmailExistente = "SELECT COUNT(*) FROM cadastros WHERE email = ? AND id != ?";
-            try (Connection conexao = getConnection();
-                 PreparedStatement stmtCheckEmail = conexao.prepareStatement(sqlCheckEmailExistente)) {
+            try (Connection conexao = getConnection(); PreparedStatement stmtCheckEmail = conexao.prepareStatement(sqlCheckEmailExistente)) {
                 stmtCheckEmail.setString(1, email);
                 stmtCheckEmail.setInt(2, id);
                 try (ResultSet rs = stmtCheckEmail.executeQuery()) {
@@ -176,8 +163,7 @@ public class ConexaoBD {
 
         if (cpfAlterado) {
             String sqlCheckCpfExistente = "SELECT COUNT(*) FROM cadastros WHERE cpf = ? AND id != ?";
-            try (Connection conexao = getConnection();
-                 PreparedStatement stmtCheckCpf = conexao.prepareStatement(sqlCheckCpfExistente)) {
+            try (Connection conexao = getConnection(); PreparedStatement stmtCheckCpf = conexao.prepareStatement(sqlCheckCpfExistente)) {
                 stmtCheckCpf.setString(1, cpf);
                 stmtCheckCpf.setInt(2, id);
                 try (ResultSet rs = stmtCheckCpf.executeQuery()) {
@@ -206,15 +192,18 @@ public class ConexaoBD {
 
         sqlUpdate.append("matricula = ?, codigoCartao = ?, statusCartao = ? WHERE id = ?");
 
-        try (Connection conexao = getConnection();
-             PreparedStatement stmtUpdate = conexao.prepareStatement(sqlUpdate.toString())) {
+        try (Connection conexao = getConnection(); PreparedStatement stmtUpdate = conexao.prepareStatement(sqlUpdate.toString())) {
 
             stmtUpdate.setString(1, nome);
             stmtUpdate.setString(2, senha);
             stmtUpdate.setString(3, foto);
 
-            if (emailAlterado) stmtUpdate.setString(4, email);
-            if (cpfAlterado) stmtUpdate.setString(paramIndex++, cpf);
+            if (emailAlterado) {
+                stmtUpdate.setString(4, email);
+            }
+            if (cpfAlterado) {
+                stmtUpdate.setString(paramIndex++, cpf);
+            }
 
             stmtUpdate.setLong(paramIndex++, matricula);
             stmtUpdate.setInt(paramIndex++, codigoCartao);
@@ -227,7 +216,7 @@ public class ConexaoBD {
             System.out.println("Erro ao atualizar dados na tabela cadastros: " + e.getMessage());
         }
     }
-    
+
     public static List<PreCadastro> consultarPreCadastro(
             Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf) {
 
@@ -267,8 +256,7 @@ public class ConexaoBD {
 
         try {
             OpenBD openBD = new OpenBD();
-            try (Connection conexao = openBD.getConnectionComDriver();
-                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            try (Connection conexao = openBD.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
                 for (int i = 0; i < parametros.size(); i++) {
                     stmt.setObject(i + 1, parametros.get(i));
@@ -297,7 +285,6 @@ public class ConexaoBD {
         return listaPreCadastros;
     }
 
-        
     public static List<Cadastro> consultarCadastro(
             Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf, Integer codigoCartao, Boolean statusCartao) {
 
@@ -323,7 +310,7 @@ public class ConexaoBD {
             parametros.add(foto);
         }
         if (email != null) {
-            sql+= (" AND email = ?");
+            sql += (" AND email = ?");
             parametros.add(email);
         }
         if (matricula != null) {
@@ -343,30 +330,29 @@ public class ConexaoBD {
             parametros.add(statusCartao);
         }
 
-         try {
+        try {
             OpenBD openBD = new OpenBD();
-            try (Connection conexao = openBD.getConnectionComDriver();
-                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            try (Connection conexao = openBD.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
                 for (int i = 0; i < parametros.size(); i++) {
                     stmt.setObject(i + 1, parametros.get(i));
                 }
 
-               try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Cadastro cadastro = new Cadastro();
-                    cadastro.setId(rs.getInt("id"));
-                    cadastro.setNome(rs.getString("nome"));
-                    cadastro.setSenha(rs.getString("senha"));
-                    cadastro.setFoto(rs.getString("foto"));
-                    cadastro.setEmail(rs.getString("email"));
-                    cadastro.setMatricula(rs.getLong("matricula"));
-                    cadastro.setCpf(rs.getString("cpf"));
-                    cadastro.setCodigoCartao(rs.getInt("codigoCartao"));
-                    cadastro.setStatusCartao(rs.getBoolean("statusCartao"));
-                    
-                    listaCadastros.add(cadastro);
-                }
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        Cadastro cadastro = new Cadastro();
+                        cadastro.setId(rs.getInt("id"));
+                        cadastro.setNome(rs.getString("nome"));
+                        cadastro.setSenha(rs.getString("senha"));
+                        cadastro.setFoto(rs.getString("foto"));
+                        cadastro.setEmail(rs.getString("email"));
+                        cadastro.setMatricula(rs.getLong("matricula"));
+                        cadastro.setCpf(rs.getString("cpf"));
+                        cadastro.setCodigoCartao(rs.getInt("codigoCartao"));
+                        cadastro.setStatusCartao(rs.getBoolean("statusCartao"));
+
+                        listaCadastros.add(cadastro);
+                    }
                 }
             }
         } catch (ClassNotFoundException e) {
@@ -378,70 +364,74 @@ public class ConexaoBD {
         return listaCadastros;
     }
 
+    public static void aprovarPreCadastro(int id) {
+        List<PreCadastro> preCadastros = consultarPreCadastro(id, null, null, null, null, null, null);
 
-    
+        if (preCadastros.isEmpty()) {
+            System.err.println("Erro: Pré-cadastro com ID " + id + " não encontrado.");
+            return;
+        }
+
+        PreCadastro preCadastro = preCadastros.get(0);
+
+        int codigoCartao = gerarCodigoCartao(id);
+
+        try {
+            inserirCadastro(
+                    preCadastro.getNome(),
+                    preCadastro.getSenha(),
+                    preCadastro.getFoto(),
+                    preCadastro.getEmail(),
+                    preCadastro.getMatricula(),
+                    preCadastro.getCpf(),
+                    codigoCartao,
+                    true
+            );
+
+            excluirPreCadastro(id);
+
+            System.out.println("Pré-cadastro com ID " + id + " aprovado e movido para cadastros.");
+        } catch (Exception e) {
+            System.err.println("Erro ao aprovar pré-cadastro com ID " + id + ": " + e.getMessage());
+        }
+    }
+
+    private static int gerarCodigoCartao(int id) {
+        return 100000 + (id % 900000);
+    }
+
+    private static void excluirPreCadastro(int id) {
+        String sql = "DELETE FROM precadastros WHERE id = ?";
+        OpenBD openBD = new OpenBD();
+        try (Connection conexao = openBD.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+            if (linhasAfetadas > 0) {
+                System.out.println("Pré-cadastro com ID " + id + " removido com sucesso.");
+            } else {
+                System.err.println("Erro: Nenhum pré-cadastro encontrado para o ID " + id);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao excluir pré-cadastro com ID " + id + ": " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.err.println("Erro ao carregar o driver do banco de dados: " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         /*
         excluirTabelas();
         
         criarTabelas();
         
-        //(String nome, String senha, String foto, String email, long matricula, String cpf) 
-        inserirPreCadastro("Ana Faria", "abc123def456!", "foto_1.jpg", "ana.faria2104@gmail.com", 20232030123L, "73291008030");
-        inserirPreCadastro("Beatriz Ferreira", "capricornio*", "foto_2.jpg", "biaaferreir@hotmail.com", 20231231253L, "92445426090");
-        inserirPreCadastro("Bernardo Almeida", "jkSAGsf986!@#", "foto_3.jpg", "braico@outlook.com", 20239785308L, "67966291081");
-        inserirPreCadastro("Carlos Oliveira", "qwerty12345!", "foto_4.jpg", "carlos.oliveira@yahoo.com", 20230517145L, "87342179022");
-        inserirPreCadastro("Daniela Costa", "danielaf123!", "foto_5.jpg", "daniela.costa@gmail.com", 20230812975L, "86901427021");
-        inserirPreCadastro("Eduardo Pinto Silva", "eduardo$321", "foto_6.jpg", "edu.pinto@outlook.com", 20231245100L, "76258023015");
-        inserirPreCadastro("Fernanda Silva", "fer1235!@#", "foto_7.jpg", "fernanda.silva@email.com", 20231567192L, "58301572049");
-        inserirPreCadastro("Gustavo Pereira", "gustav0_789", "foto_8.jpg", "gustavo.pereira@gmail.com", 20230813204L, "49567891065");
-        inserirPreCadastro("Heloisa Souza", "helo1234!", "foto_9.jpg", "helo.souza@live.com", 20231105720L, "31549023763");
-        inserirPreCadastro("Isabela Lima", "isabela12@56", "foto_10.jpg", "isa.lima@uol.com.br", 20230964783L, "58437291014");
-        inserirPreCadastro("Juliana Rocha", "julianar@123", "foto_11.jpg", "j.rocha@outlook.com", 20231284090L, "67958452039");
-        inserirPreCadastro("Kleber Santos", "kleber!@#789", "foto_12.jpg", "kleber.santos@hotmail.com", 20231093481L, "91302657071");
-        inserirPreCadastro("Luciana Martins", "luciana.123", "foto_13.jpg", "luciana.martins@gmail.com", 20231200411L, "21409785021");
-        inserirPreCadastro("Marcelo Silva", "marcel0!321", "foto_14.jpg", "marcelo.silva@live.com", 20231788599L, "12039854218");
-        inserirPreCadastro("Natália Freitas", "natalia!f09", "foto_15.jpg", "nat.frietas@outlook.com", 20230650978L, "33472801098");
-        inserirPreCadastro("Otávio Costa", "otavio@123", "foto_16.jpg", "otavio.costa@yahoo.com", 20231224854L, "94715078356");
-        inserirPreCadastro("Paula Rocha", "paula1234!", "foto_17.jpg", "paula.rocha@gmail.com", 20230975342L, "20984635072");
-        inserirPreCadastro("Quelly Almeida", "quelyssa@321", "foto_18.jpg", "quelyssa.a@live.com", 20231230111L, "68092405314");
-        inserirPreCadastro("Rafael Souza", "rafael01@#35", "foto_19.jpg", "rafael.souza@uol.com.br", 20230847210L, "47325018906");
-        inserirPreCadastro("Sofia Martins", "sofia12!@3", "foto_20.jpg", "sofia.martins@outlook.com", 20231023761L, "86049726322");
-
-        //(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) 
-        inserirCadastro("Caio Silva Lopes", "0910lopess123%#*", "foto_21.jpg", "caioSilvaaaLope@gmail.com", 20230263912L, "23483874097", 654321, true);
-        inserirCadastro("Larissa Oliveira", "1234567!@#", "foto_22.jpg", "larissa.oliveira@gmail.com", 20230587943L, "10928374615", 123456, true);
-        inserirCadastro("Joaquim Almeida", "j0aquiM1234!", "foto_23.jpg", "joaquim.almeida@outlook.com", 20231294856L, "40957286111", 789012, true);
-        inserirCadastro("Paula Ribeiro", "r1beiro@321", "foto_24.jpg", "paula.ribeiro@hotmail.com", 20230918377L, "57392018461", 112233, true);
-        inserirCadastro("Fábio Silva", "fabio12@ss!", "foto_25.jpg", "fabio.silva@live.com", 20231798421L, "98571234601", 221133, true);
-        inserirCadastro("Letícia Mendes", "letmendes123#", "foto_26.jpg", "leticia.mendes@outlook.com", 20231240589L, "82739162410", 987654, true);
-        inserirCadastro("Vitor Souza", "vitorSOZa@321", "foto_27.jpg", "vitor.souza@gmail.com", 20231122345L, "76250491837", 354879, true);
-        inserirCadastro("Renata Costa", "renatacosta!@#", "foto_28.jpg", "renata.costa@uol.com.br", 20231437650L, "35958274109", 543210, true);
-        inserirCadastro("Ricardo Martins", "ricardom!1t@345", "foto_29.jpg", "ricardo.martins@outlook.com", 20230945781L, "62483501724", 675849, true);
-        inserirCadastro("Tatiane Rocha", "tati@1234", "foto_30.jpg", "tatiane.rocha@live.com", 20231359862L, "57192083650", 987321, true);
-        inserirCadastro("Juliana Costa", "ju@123456", "foto_31.jpg", "juliana.costa@gmail.com", 20231648572L, "46739258090", 112489, true);
-        inserirCadastro("Lucas Almeida", "lucasA21@#", "foto_32.jpg", "lucas.almeida@outlook.com", 20231049560L, "39648020359", 314159, true);
-        inserirCadastro("Mariana Pinto", "maripinto!@#", "foto_33.jpg", "mariana.pinto@yahoo.com", 20231274214L, "71094685310", 625781, true);
-        inserirCadastro("Rogério Ferreira", "rogerioF@2021", "foto_34.jpg", "rogerio.ferreira@uol.com.br", 20230126480L, "86243150907", 758439, true);
-        inserirCadastro("Bruna Souza", "brunaSOZ@2023", "foto_35.jpg", "bruna.souza@live.com", 20231085261L, "92045718360", 926374, true);
-        inserirCadastro("Guilherme Oliveira", "guilherme2023#", "foto_36.jpg", "guilherme.oliveira@gmail.com", 20230572384L, "73498129561", 328641, true);
-        inserirCadastro("Karina Lima", "karinaL@567", "foto_37.jpg", "karina.lima@outlook.com", 20231493685L, "38927456120", 467532, true);
-        inserirCadastro("Rodrigo Alves", "rodrigoA@111", "foto_38.jpg", "rodrigo.alves@gmail.com", 20231215679L, "52603948123", 912389, true);
-        inserirCadastro("Camila Freitas", "camilaF@2024", "foto_39.jpg", "camila.freitas@uol.com.br", 20231134876L, "67492038476", 239847, true);
-        inserirCadastro("Sérgio Santos", "sergi0!321", "foto_40.jpg", "sergio.santos@live.com", 20230678459L, "81237509462", 148725, true);
-
-        
-        
-        atualizarPreCadastro(1, "Ana Silva Faria", "abc123def456!", "foto_1.jpg", "ana.faria2104@gmail.com", 20232030123L, "73291008030");
-         //      (int id, String nome, String senha, String foto, String email, long matricula, String cpf)
+        atualizarPreCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf)
          
-        atualizarCadastro(1, "Caio Lopes", "0910lopess123%#*", "foto_21.jpg", "caioSilvaaaLope@gmail.com", 20230263912L, "23483874097", 654321, true);
-        //      (int id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao)
-        */
-        //consultarPreCadastro(null, null, null, null, null, null, null);
-        //      (Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf)
+        atualizarCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao)
         
-       // consultarCadastro(null, null, null, null, null, null, "23483874097", null, null);*/
-        //      (Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf, Integer codigoCartao, Boolean statusCartao) {
+        consultarPreCadastro(Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf)
+
+        consultarCadastro(Integer id, String nome, String senha, String foto, String email, Long matricula, String cpf, Integer codigoCartao, Boolean statusCartao) 
+         */
     }
 }
