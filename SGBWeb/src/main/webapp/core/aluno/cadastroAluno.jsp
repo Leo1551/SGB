@@ -15,7 +15,7 @@
             <h2>PRÉ CADASTRO</h2>
         </section>
 
-        <form action="consultaAluno.jsp" method="get" enctype="multipart/form-data">
+        <form action="consultaAluno.jsp" method="post" enctype="multipart/form-data">
             <div class="container">
                 <div class="metade parte-esquerda">
                     <div class="campo">
@@ -25,7 +25,7 @@
 
                     <div class="campo">
                         <label>Número de matrícula:</label>
-                        <input placeholder="00000000000" type="number" name="numeroMatricula" required>
+                        <input placeholder="00000000000" type="number" name="matricula" required>
                     </div>
 
                     <div class="campo">
@@ -35,13 +35,17 @@
 
                     <div class="campo">
                         <label>Foto 3x4:</label>
+                        <!--
                         <div id="campo-foto">
                             <img id="previewImagem" src="3x4.jpeg" />
                             <label for="uploadArquivo" class="custom-file-upload">
                                 ANEXAR ARQUIVO
                             </label>
-                            <input id="uploadArquivo" type="file" onchange="carregarArquivo(event)"/>
+                            <input id="uploadArquivo" name="foto" type="file" accept=".png, .jpg, .jpeg" onchange="carregarArquivo(event)"/>
                         </div>
+                        -->
+                        <input type="file" name="foto" />
+            
                     </div>
                 </div>
 
@@ -82,4 +86,3 @@
         <script type="text/javascript"><%@include file="/js/cadastroAluno.js" %></script>
     </body>
 </html>
-

@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.ArrayList;
 import sgb.model.dto.PreCadastro;
 import sgb.model.dto.Cadastro;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 
 public class ConexaoBD {
 
@@ -417,6 +421,34 @@ public class ConexaoBD {
         } catch (ClassNotFoundException e) {
             System.err.println("Erro ao carregar o driver do banco de dados: " + e.getMessage());
         }
+    }
+
+    public int getProximoNumeroFoto() {
+        String sql = "SELECT MAX(numero_foto) AS maior_foto "
+                + "FROM ( "
+                + "    SELECT CAST(SUBSTRING_INDEX(foto, '_', -1) AS UNSIGNED) AS numero_foto "
+                + "    FROM cadastros "
+                + "    WHERE foto LIKE 'foto_%' "
+                + "    UNION ALL "
+                + "    SELECT CAST(SUBSTRING_INDEX(foto, '_', -1) AS UNSIGNED) AS numero_foto "
+                + "    FROM precadastros "
+                + "    WHERE foto LIKE 'foto_%' "
+                + ") AS todas_fotos";
+
+        OpenBD openBD = new OpenBD();
+        try (Connection conexao = openBD.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getInt("maior_foto") + 1;
+            }
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erro ao carregar o driver: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar maior número de foto: " + e.getMessage());
+        }
+
+        return 0;
     }
 
     public static void main(String[] args) {

@@ -130,7 +130,7 @@ button:hover {
 }
 
 input[type="file"] {
-    display: none;
+    border: 2px solid red;
 }
 
 .customFileUpload {

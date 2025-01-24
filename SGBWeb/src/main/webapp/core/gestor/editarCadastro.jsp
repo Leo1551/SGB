@@ -29,7 +29,7 @@
                     <th>Matrícula</th>
                     <th>CPF</th>
                     <th>EDITAR</th>
-                    <th>APROVAR</th>
+                    <th>BLOQUEAR</th>
                 </tr>
                 <%
                     List<Cadastro> cadastros = ConexaoBD.consultarCadastro(null, null, null, null, null, null, null, null, null);
