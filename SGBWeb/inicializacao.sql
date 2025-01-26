@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `cadastros` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoCartao`, `statusCartao`, `id`) VALUES
-('Bernardo B. Brando', 'Xyz@2024!', 'foto_url4', 'brando_bern78@email.com', 202478904, 654321, 1, 1),
+('Bernardo B. Brando', 'Xyz@2024!', 'foto_url4', 'macleonardo96@gmail.com', 202478904, 654321, 1, 1),
 ('Ana C. Silva', 'Pass#2023', 'foto_url5', 'ana.c_silva85@email.com', 202145678, 654323, 1, 2),
 ('Carlos R. Souza', 'Secure@45', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1, 3),
 ('Mariana T. Lima', 'Delta%789', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1, 4),

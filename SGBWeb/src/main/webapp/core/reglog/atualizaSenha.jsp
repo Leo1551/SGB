@@ -30,8 +30,20 @@
             ConectarDAO con = new ConectarDAO();
             Connection conexaoBD = con.conectar();
             
-            PreparedStatement caixa = conexaoBD.prepareStatement("SELECT `email`, `nome` from cadastros where cpf = ?");
-            ResultSet dadosUsuario = caixa.executeQuery();
+            PreparedStatement caixa = conexaoBD.prepareStatement("UPDATE cadastros SET senha= ? WHERE matricula = ?");
+            caixa.setString(1, request.getParameter("senha"));
+            caixa.setString(2, request.getParameter("matricula"));
+            caixa.executeUpdate();
+            
+            
+            
+            
+            
+            if (caixa.executeUpdate() > 0) 
+                response.sendRedirect("login.jsp");
+            else     
+                response.sendRedirect("../erro.jsp");
+            
             
         
         

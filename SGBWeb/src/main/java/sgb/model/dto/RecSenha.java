@@ -9,20 +9,20 @@ package sgb.model.dto;
  * @author aluno
  */
 public class RecSenha {
-    private String cpf, senha, novaSenha;
+    private String matricula, senha, novaSenha;
 
-    public String getCpf() {
-        return cpf;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public RecSenha(String cpf, String senha, String novaSenha) {
-        this.cpf = cpf;
+    public RecSenha(String matricula, String senha, String novaSenha) {
+        this.matricula = matricula;
         this.senha = senha;
         this.novaSenha = novaSenha;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public String getSenha() {
