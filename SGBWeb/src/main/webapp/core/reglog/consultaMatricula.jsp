@@ -4,6 +4,7 @@
     Author     : aluno
 --%>
 
+<%@page import="sgb.java.HashMD5"%>
 <%@ page import="sgb.model.dto.Login" %>
 <%@ page import="sgb.model.dao.LoginDAO" %>
 
@@ -20,6 +21,9 @@
         <%
         String matricula = request.getParameter("matricula");
         String senha = request.getParameter("senha");
+        senha = HashMD5.criptografar(senha);
+        
+        
         
             if(LoginDAO.verificacaoLogin(new Login(matricula, senha))){
                 

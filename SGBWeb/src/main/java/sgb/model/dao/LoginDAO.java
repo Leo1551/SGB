@@ -1,11 +1,6 @@
 package sgb.model.dao;
 
-import jakarta.xml.bind.DatatypeConverter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sgb.model.dto.Login;
 //Favor NÃO alterar esse maldito login :)
 public class LoginDAO {
@@ -21,14 +16,11 @@ public class LoginDAO {
                 throw new SQLException("Falha ao conectar ao banco de dados.");
             }
             
-            MessageDigest md5 = MessageDigest.getInstance("MD5");
-            md5.update(login.getSenha().getBytes());
-            
-            String criptoSenha = DatatypeConverter.printHexBinary(md5.digest()).toUpperCase();
+           
             
             caixa = conexao.prepareStatement("SELECT EXISTS(SELECT 1 FROM cadastros WHERE matricula = ? AND senha = ?)");
             caixa.setString(1, login.getMatricula());
-            caixa.setString(2, criptoSenha);
+            caixa.setString(2, login.getSenha());
             
             resultado = caixa.executeQuery();
             
@@ -40,9 +32,6 @@ public class LoginDAO {
             }
         } catch (SQLException e) {
             System.err.println("Erro ao consultar login no banco de dados \n\n\n" + e.getMessage());
-            return false;
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } finally {
             

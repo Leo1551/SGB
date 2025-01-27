@@ -15,6 +15,7 @@
     <body>
         <%@include file="../header.jsp" %>
         <section id="avisos">
+            <strong>Saldo Atual:</strong> &nbsp R$ ${ String.format("%.2f", saldo)}
         </section>
         <section id="pageContent">
             <aside id="months-container">
@@ -29,7 +30,6 @@
         <script>
         var transacoesBrutas =${transacoes};
         var mesParam =${mes};
-        var saldoParam =${saldo};
         </script>
         <script type="text/javascript" charset="ISO-8859-1"><%@include file="/js/historico.js"  %></script>
     </body>

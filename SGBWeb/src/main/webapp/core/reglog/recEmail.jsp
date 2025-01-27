@@ -55,15 +55,20 @@
         String matricula = request.getParameter("matricula");
         String novaSenha = request.getParameter("novaSenha");
         String confirmaSenha = request.getParameter("confirmaSenha");
-        caixa.setString(1, novaSenha);
+        caixa.setString(1, matricula);
         
         ResultSet dados = caixa.executeQuery();
-        dados.next();
         
-        if (novaSenha != null && novaSenha.equals(confirmaSenha) && novaSenha.equals(dados.getString(0))) 
-            out.println( "<h1><center>" + SenhaDAO.enviarEmail(new RecSenha(matricula, novaSenha, confirmaSenha))+ "</center></h1>" );
-        else 
-            out.println("<h1><center>As senhas não coincidem.</center></h1>");
+            
+        
+        
+            if ( dados.next() && novaSenha.equals(dados.getString(1)))
+                out.println("<h1><center>Essa era a sua senha anterior.</center></h1>");
+            else
+                if (novaSenha != null && novaSenha.equals(confirmaSenha))
+                    out.println( "<h1><center>" + SenhaDAO.enviarEmail(new RecSenha(matricula, novaSenha, confirmaSenha))+ "</center></h1>" );
+                else 
+                    out.println("<h1><center>As senhas não coincidem.</center></h1>");
         
     }
 %>
