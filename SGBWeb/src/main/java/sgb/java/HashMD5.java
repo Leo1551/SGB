@@ -29,9 +29,9 @@ public class HashMD5 {
             return hexString.toString();
 
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(HashMD5.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(HashMD5.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return null;
+        return "Erro de hashing!";
     }
 }
