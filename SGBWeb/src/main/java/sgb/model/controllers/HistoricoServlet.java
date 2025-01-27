@@ -12,6 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sgb.model.dao.TransacaoDAO;
@@ -59,32 +61,35 @@ public class HistoricoServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         long matricula;
         String atributoMatricula;
         int mes;
         HttpSession sessao = request.getSession(true);
-        atributoMatricula=(String) sessao.getAttribute("matricula");
-        if (atributoMatricula==null ||atributoMatricula.equals("")) {
-            request.setAttribute("mensagemErro","Nenhuma matricula salva");
+        atributoMatricula = (String) sessao.getAttribute("matricula");
+        if (atributoMatricula == null || atributoMatricula.equals("")) {
+            request.setAttribute("mensagemErro", "Nenhuma matricula salva");
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
             return;
         } else {
             matricula = Long.parseLong(atributoMatricula);
-            
+
         }
-        if (request.getParameter("mes")==null ||request.getParameter("mes").equals("")) {
+        if (request.getParameter("mes") == null || request.getParameter("mes").equals("")) {
             //pegar o mes
-            mes=0;
+            java.util.Date data = new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(data);
+            mes = cal.get(Calendar.MONTH)+1;
         } else {
-            mes = 0;
+            mes = Integer.parseInt(request.getParameter("mes"));
         }
         Transacao[] transacoes = null;
         StringBuilder transacoesJSON = new StringBuilder();
         try {
             transacoes = TransacaoDAO.getTransacoes(matricula);
         } catch (SQLException | ClassNotFoundException ex) {
-            request.setAttribute("mensagemErro",ex.getMessage());
+            request.setAttribute("mensagemErro", ex.getMessage());
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
         }
 
@@ -105,12 +110,12 @@ public class HistoricoServlet extends HttpServlet {
             try {
                 request.setAttribute("saldo", SaldoDAO.getSaldo(matricula));
             } catch (SQLException | ClassNotFoundException ex) {
-                request.setAttribute("mensagemErro","A matricula " + matricula + " não esta vinculada a nenhum saldo");
+                request.setAttribute("mensagemErro", "A matricula " + matricula + " não esta vinculada a nenhum saldo");
                 request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
             }
             request.getRequestDispatcher("/core/historico/historico.jsp").forward(request, response);
         } else {
-            request.setAttribute("mensagemErro","Nenhuma transação com a matricula " + matricula + " encontrada");
+            request.setAttribute("mensagemErro", "Nenhuma transação com a matricula " + matricula + " encontrada");
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
         }
     }
