@@ -5,8 +5,8 @@ window.onload = function () {
     const historicoContainer = document.getElementById("historico");
     const avisosContainer = document.getElementById("avisos");
     const transacoes = converteTransacoes(transacoesBrutas);
+    const divMesAtual=null;
 
-    let lastSelectedMonth = null;
 
     function converteTransacoes(trsBrutas) {
         let objDeRetorno = {
@@ -30,40 +30,15 @@ window.onload = function () {
          return objDeRetorno;
     }
 
-
-    function calcularSaldoAtual() {
-        const meses = months.reverse();
-        let saldoAtual = 0;
-
-        for (let i = 0; i < meses.length; i++) {
-            const mes = meses[i];
-            const transacoesMes = transacoes[mes];
-
-            if (transacoesMes && transacoesMes.length > 0) {
-                const transacaoMaisRecente = transacoesMes.reduce((maisRecente, transacao) => {
-                    const dataTransacao = new Date(transacao.data);
-                    const dataMaisRecente = new Date(maisRecente.data);
-
-                    return dataTransacao > dataMaisRecente ? transacao : maisRecente;
-                });
-
-                saldoAtual = transacaoMaisRecente.saldoAtual;
-                break;
-            }
-        }
-
-        return saldoAtual;
-    }
-
-    const saldo = saldoParam;
-    document.getElementById("avisos").innerHTML = "<strong>Saldo Atual:</strong> &nbsp R$ "+saldo.toFixed(2);
-
     months.reverse();
     for (let i = 0; i < 12; i++) {
         const monthIndex = (currentMonthIndex - i + 12) % 12;
         const div = document.createElement("div");
         div.classList.add("month");
-        div.textContent = months[monthIndex];
+        div.textContent = months[monthIndex]+"---"+(12-monthIndex);
+        if(12-monthIndex===mesParam){
+            selecionarMes(div,months[mesParam-1]);
+        }
         div.onclick = function () {
             selecionarMes(div, months[monthIndex]);
         };
@@ -71,12 +46,7 @@ window.onload = function () {
     }
 
     function selecionarMes(div, mes) {
-        if (lastSelectedMonth) {
-            lastSelectedMonth.classList.remove("selecionado");
-        }
-
         div.classList.add("selecionado");
-        lastSelectedMonth = div;
         exibirHistorico(mes);
     }
 
