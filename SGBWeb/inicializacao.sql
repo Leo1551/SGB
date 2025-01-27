@@ -12,16 +12,17 @@ CREATE TABLE IF NOT EXISTS `cadastros` (
   `matricula` bigint NOT NULL,
   `codigoCartao` int NOT NULL,
   `statusCartao` tinyint(1) NOT NULL,
+  `cargo` varchar(6) NOT NULL, 
   `id` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoCartao`, `statusCartao`, `id`) VALUES
-('Bernardo B. Brando', 'ad396a29cd7a95297d16e0acf8838130', 'foto_url4', 'macleonardo96@gmail.com', 202478904, 654321, 1, 1),
-('Ana C. Silva', '42fe18080bcf33f01ec34d7c8ed64568', 'foto_url5', 'ana.c_silva85@email.com', 202145678, 654323, 1, 2),
-('Carlos R. Souza', 'e23c081efbe4610dd72f78d6036ac4cf', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1, 3),
-('Mariana T. Lima', '3abc2be25b8a208e78b4a5c6b58b07f8', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1, 4),
-('Rafael A. Mendes', '84ceb47148d1888363c64ab33b8ce3f9', 'foto_url8', 'rafa.mendes45@email.com', 202378905, 654326, 1, 5),
-('Beatriz F. Costa', 'd3a5dc43e0bd0cb8797b1c7d3659d684', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1, 6);
+INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoCartao`, `statusCartao`, `cargo`, `id`) VALUES
+('Bernardo B. Brando', 'ad396a29cd7a95297d16e0acf8838130', 'foto_url4', 'macleonardo96@gmail.com', 202478904, 654321, 1, 'gestor', 1),
+('Ana C. Silva', '42fe18080bcf33f01ec34d7c8ed64568', 'foto_url5', 'ana.c_silva85@email.com', 202145678, 654323, 1,'aluno', 2),
+('Carlos R. Souza', 'e23c081efbe4610dd72f78d6036ac4cf', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1,'aluno', 3),
+('Mariana T. Lima', '3abc2be25b8a208e78b4a5c6b58b07f8', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1,'aluno', 4),
+('Rafael A. Mendes', '84ceb47148d1888363c64ab33b8ce3f9', 'foto_url8', 'rafa.mendes45@email.com', 202378905, 654326, 1,'aluno', 5),
+('Beatriz F. Costa', 'd3a5dc43e0bd0cb8797b1c7d3659d684', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1,'aluno', 6);
 
 DROP TABLE IF EXISTS `precadastros`;
 CREATE TABLE IF NOT EXISTS `precadastros` (

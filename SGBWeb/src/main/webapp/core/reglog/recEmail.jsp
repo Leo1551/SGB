@@ -39,7 +39,6 @@
     
             <input type="submit" value="Alterar">
         </form>
-        202478904
     </div>
     <%@include file="../footer.jsp" %>
 </body>

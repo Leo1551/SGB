@@ -42,7 +42,7 @@
 
             <input type="submit" value="Entrar">
         </form>
-
+ 
         <a href="recEmail.jsp">Esqueci minha senha</a>
         <!--implementar site para recuperação de senha-->
     </div> 
