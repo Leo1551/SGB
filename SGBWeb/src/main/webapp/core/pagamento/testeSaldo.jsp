@@ -9,12 +9,11 @@
 <body>
     <h1>User Saldo</h1>
     <% 
-        List<Saldo> saldos = (List<Saldo>) request.getAttribute("saldoInfos");
+        List<Saldo> saldos = (List<Saldo>) request.getAttribute("saldoSessao");
         if (saldos != null) {
             for (Saldo saldo : saldos) {
     %>
     <form action="SaldoServlet" method="post">
-        <input type="hidden" name="matriculaOrigem" value="<%= saldo.getMatricula() %>"> <!-- Matrícula atual -->
         <label>Saldo Atual: <%= saldo.getSaldo() %></label>
         <br>
         <label for="matriculaDestino">Transferir para Matrícula:</label>

@@ -13,16 +13,18 @@ CREATE TABLE IF NOT EXISTS `cadastros` (
   `codigoCartao` int NOT NULL,
   `statusCartao` tinyint(1) NOT NULL,
   `cargo` varchar(6) NOT NULL, 
-  `id` int NOT NULL
+  `id` int NOT NULL,
+  `saldo` double NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoCartao`, `statusCartao`, `cargo`, `id`) VALUES
-('Bernardo B. Brando', 'ad396a29cd7a95297d16e0acf8838130', 'foto_url4', 'macleonardo96@gmail.com', 202478904, 654321, 1, 'gestor', 1),
-('Ana C. Silva', '42fe18080bcf33f01ec34d7c8ed64568', 'foto_url5', 'ana.c_silva85@email.com', 202145678, 654323, 1,'aluno', 2),
-('Carlos R. Souza', 'e23c081efbe4610dd72f78d6036ac4cf', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1,'aluno', 3),
-('Mariana T. Lima', '3abc2be25b8a208e78b4a5c6b58b07f8', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1,'aluno', 4),
-('Rafael A. Mendes', '84ceb47148d1888363c64ab33b8ce3f9', 'foto_url8', 'rafa.mendes45@email.com', 202378905, 654326, 1,'aluno', 5),
-('Beatriz F. Costa', 'd3a5dc43e0bd0cb8797b1c7d3659d684', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1,'aluno', 6);
+INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoCartao`, `statusCartao`, `cargo`, `id`, `saldo`) VALUES
+('Bernardo B. Brando', 'ad396a29cd7a95297d16e0acf8838130', 'foto_url4', 'macleonardo96@gmail.com', 202478904, 654321, 1, 'gestor', 1, 20.0),
+('Ana C. Silva', '42fe18080bcf33f01ec34d7c8ed64568', 'foto_url5', 'ana.c_silva85@email.com', 202145678, 654323, 1,'aluno', 2, 20.0),
+('Carlos R. Souza', 'e23c081efbe4610dd72f78d6036ac4cf', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1,'aluno', 3, 20.0),
+('Mariana T. Lima', '3abc2be25b8a208e78b4a5c6b58b07f8', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1,'aluno', 4, 20.0),
+('Rafael A. Mendes', '84ceb47148d1888363c64ab33b8ce3f9', 'foto_url8', 'rafa.mendes45@email.com', 202378905, 654326, 1,'aluno', 5, 20.0),
+('Beatriz F. Costa', 'd3a5dc43e0bd0cb8797b1c7d3659d684', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1,'aluno', 6, 20.0),
+('teste', '1234', 'foto_urlteste', 'teste@gmail.com', 123456789, 654879, 1, 'aluno', 6, 20.0);
 
 DROP TABLE IF EXISTS `precadastros`;
 CREATE TABLE IF NOT EXISTS `precadastros` (
@@ -103,3 +105,22 @@ INSERT INTO `historico` (`matricula`, `valor`, `data`, `funcionario`, `saldo`) V
 (20230587943, -320, '2025-01-14 12:16:48', 'Marco Marcio Luis', 0),
 (20230587943, -320, '2024-09-15 14:34:22', 'Marco Marcio Luis', 0),
 (20230263912, -320, '2024-09-16 00:34:22', 'Marco luis Luis', 100);
+
+DROP TABLE IF EXISTS `cartoes`;
+CREATE TABLE IF NOT EXISTS `cartoes` (
+    `nome` varchar(60),
+    `numero` bigint NOT NULL,
+    `validade` timestamp NOT NULL,
+    `cvv` int NOT NULL,
+    `saldo` double NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `pixInstituicao`;
+CREATE TABLE IF NOT EXISTS `pixInstituicao` (
+    `id` int NOT NULL,
+    `chavePix` varchar(60),
+    `saldo` double NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `pixInstituicao`(`id`, `chavePix`, `saldo`) VALUES
+(1, 'abcde1234', 1000.00);

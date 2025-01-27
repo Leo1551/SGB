@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="sgb.model.dao.ConectarDAO"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -15,20 +16,59 @@
         <section id="nome-pagina">
             <h2>PAGAMENTOS</h2>
         </section>
+        <%
+            String chavePix = "";
+            try {
+                ConectarDAO con = new ConectarDAO();
+                Connection conexao = con.conectar();
+                Double saldoSessao;
 
+                // Buscar chavePix
+                String sql = "SELECT chavePix FROM pixInstituicao";
+                PreparedStatement stmt = conexao.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    chavePix = rs.getString("chavePix");
+                }
+
+                // Buscar saldo da matrícula armazenada na sessão
+                String matriculaSessao = (String) session.getAttribute("matricula");
+                if (matriculaSessao != null) {
+                    sql = "SELECT saldo FROM cadastros WHERE matricula = ?";
+                    stmt = conexao.prepareStatement(sql);
+                    stmt.setString(1, matriculaSessao); // Definindo o valor do parâmetro
+                    rs = stmt.executeQuery();
+
+                    if (rs.next()) {
+                        saldoSessao = rs.getDouble("saldo");
+                        request.setAttribute("saldoSessao", saldoSessao); // Atribuir o saldo ao atributo da requisição
+                    }
+                } else {
+                    request.setAttribute("saldoSessao", "Matrícula não encontrada na sessão.");
+                }
+
+                // Fechar recursos
+                rs.close();
+                stmt.close();
+                conexao.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                chavePix = "Erro ao buscar a chave PIX.";
+            }
+        %>
         <div class="container">
             <div class="metade parte-esquerda">
-                <form action="preCadastro" method="post" enctype="multipart/form-data">
-                    <div class="campo">
-                        <label>Cartão:</label>
-                        <input placeholder="000000" type="number" name="cartao" required>
-                    </div>
+                <!--<form action="preCadastro" method="post" enctype="multipart/form-data">-->
+                <form id="pagamentoForm" method="post">
 
                     <div class="campo">
                         <label>Valor da recarga:</label>
-                        <input type="text" id="dinheiro" name="dinheiro" oninput="formatarMoeda(this)" placeholder="R$ 0,00"
+                        <input type="text" id="recarga" name="recarga" oninput="formatarMoeda(this)" placeholder="R$ 0,00"
                                required>
                     </div>
+
                 </form>
 
                 <div class="info">
@@ -38,7 +78,9 @@
 
                 <div class="info">
                     <p>Saldo:</p>
-                    <div id="saldo">R$ 12,50</div>
+                    <div id="saldo">
+                        <%=request.getAttribute("saldoSessao")%>
+                    </div>
                 </div>
 
             </div>
@@ -52,8 +94,7 @@
                 <div>
                     <div id="pix" class="opcao">
                         <h2>Pagamento via PIX</h2>
-                        <p>Chave pix (CNPJ): xxxxxxxxxxx</p>
-                        <button>Gerar código PIX</button>
+                        <p>Chave pix (CNPJ): <%=chavePix%></p>
                     </div>
 
                     <div id="cartao" class="opcao">
@@ -83,7 +124,7 @@
 
                         <div class="campo">
                             <label>Cartão:</label>
-                            <input placeholder="000000" type="number">
+                            <input placeholder="000000" type="number" id="matriculaDesti" name="matriculaDesti">
                         </div>
 
                         <div class="info">
@@ -93,11 +134,13 @@
 
                         <div class="info">
                             <p>Saldo:</p>
-                            <div id="saldo">R$ 12,50</div>
+                            <div id="saldo">
+                                <%=request.getAttribute("saldoSessao")%>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <button>CONFIRMAR PAGAMENTO</button>
+                <button type="submit" onclick="selec()">CONFIRMAR PAGAMENTO</button>
             </div>
         </div>
 

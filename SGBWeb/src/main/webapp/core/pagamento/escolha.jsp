@@ -21,7 +21,7 @@
                     }
                 };
         </script>
-        <script src="${pageContext.request.contextPath}/js/modal.js"></script>
+        <script src="${pageContext.request.contextPath}/js/pagamento.js"></script>
     </head>
     <body>
         <%@include file="../header.jsp" %>

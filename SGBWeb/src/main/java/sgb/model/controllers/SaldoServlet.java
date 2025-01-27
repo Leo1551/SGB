@@ -1,7 +1,6 @@
 package sgb.model.controllers;
 
 import sgb.model.dao.ConectarDAO;
-import sgb.model.dto.Saldo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,47 +10,78 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(urlPatterns = {"/SaldoServlet", "/main"})
 public class SaldoServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConectarDAO con = new ConectarDAO();
         Connection conexao = null;
-        Statement stmt = null;
+        PreparedStatement pstmt = null;
         HttpSession session = request.getSession();
 
-        List<Saldo> saldos = new ArrayList<>();
+        String matriculaSessaoStr = (String) session.getAttribute("matricula");
+        String valorRecargaStr = request.getParameter("recarga");
+        Object teste = request.getAttribute("z");
+
+        if (matriculaSessaoStr == null || valorRecargaStr == null) {
+            response.getWriter().println("Erro: Matricula ou valor de recarga nao fornecidos.");
+            response.getWriter().println(teste);
+            response.getWriter().println(valorRecargaStr);
+            response.getWriter().println(matriculaSessaoStr);
+            return;
+        }
+
+        double valorRecarga;
+        try {
+            valorRecarga = Double.parseDouble(valorRecargaStr);
+        } catch (NumberFormatException e) {
+            response.getWriter().println("Erro: Valor de recarga inválido.");
+            return;
+        }
+
         try {
             conexao = con.conectar();
             if (conexao == null) {
-                throw new SQLException("Falha ao conectar ao banco de dados.");
+                throw new SQLException("Falha ao conectar ao banco de dados");
             }
-            stmt = conexao.createStatement();
-            String sql = "SELECT matricula, saldo FROM cadastros";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                long matricula = rs.getLong("matricula");
-                double saldo = rs.getDouble("saldo");
+
+            String sql = "SELECT saldo FROM cadastros WHERE matricula = ?";
+            pstmt = conexao.prepareStatement(sql);
+            pstmt.setString(1, matriculaSessaoStr);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                double saldoSessao = rs.getDouble("saldo");
+                request.setAttribute("saldoSessao", saldoSessao);
+
+                String updateSql = "UPDATE cadastros SET saldo = saldo + ? WHERE matricula = ?";
+                pstmt = conexao.prepareStatement(updateSql);
+                pstmt.setDouble(1, valorRecarga);
+                pstmt.setString(2, matriculaSessaoStr);
+                pstmt.executeUpdate();
+
+                response.getWriter().println("Recarga realizada com sucesso! Novo saldo: " + (saldoSessao + valorRecarga));
+                request.setAttribute("saldoSessao", saldoSessao + valorRecarga);
+            } else {
+                response.getWriter().println("Erro: Matrícula não encontrada.");
+            }
+        } /*try {
+            if ("pix".equals(selecao)) {
+                // Lógica para processamento do pagamento via PIX
                 
-                saldos.add(new Saldo(matricula, saldo));
+            } else if ("cartao".equals(selecao)) {
+                // Lógica para processamento do pagamento via Cartão
+            } else if ("transferencia".equals(selecao)) {
+                // Lógica para processamento do pagamento via Transferência
             }
-            request.setAttribute("saldoInfos", saldos);
-            request.getRequestDispatcher("core/pagamento/testeSaldo.jsp").forward(request, response);
-            
-        } catch (Exception e) {
+        }*/ catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Erro: " + e.getMessage());
-            request.setAttribute("mensagemErro", e.getMessage());
-            request.getRequestDispatcher("core/erro.jsp").forward(request, response);
+            response.getWriter().println("Erro: " + e.getMessage());
         } finally {
             try {
-                if (stmt != null) {
-                    stmt.close();
+                if (pstmt != null) {
+                    pstmt.close();
                 }
                 if (conexao != null) {
                     conexao.close();
@@ -62,53 +92,38 @@ public class SaldoServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConectarDAO con = new ConectarDAO();
         Connection conexao = null;
         PreparedStatement pstmt = null;
         HttpSession session = request.getSession();
-        String matriculaDestinoStr = request.getParameter("matriculaDestino");
-        String valorTransferenciaStr = request.getParameter("valorTransferencia");
-        long matriculaDestino;
-        double valorTransferencia;
+
+        String matriculaSessaoStr = (String) session.getAttribute("matricula");
+
+        if (matriculaSessaoStr == null) {
+            response.getWriter().println("Erro: Matrícula não fornecida.");
+            response.getWriter().println(matriculaSessaoStr);
+            return;
+        }
+
         try {
             conexao = con.conectar();
             if (conexao == null) {
-                throw new SQLException("Falha ao conectar ao banco de dados.");
+                throw new SQLException("Falha ao conectar ao banco de dados");
             }
-            
-            matriculaDestino = Long.parseLong(matriculaDestinoStr);
-            valorTransferencia = Double.parseDouble(valorTransferenciaStr);
-            String matriculaOrigem = (String) session.getAttribute("matricula");
-            String selectSQL = "SELECT saldo FROM cadastros WHERE matricula = ?";
-            pstmt = conexao.prepareStatement(selectSQL);
-            pstmt.setString(1, matriculaOrigem);
+
+            String sql = "SELECT saldo FROM cadastros WHERE matricula = ?";
+            pstmt = conexao.prepareStatement(sql);
+            pstmt.setString(1, matriculaSessaoStr);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                double saldoOrigem = rs.getDouble("saldo");
-
-                if (saldoOrigem >= valorTransferencia) {
-                    
-                    String updateOrigemSQL = "UPDATE cadastros SET saldo = saldo - ? WHERE matricula = ?";
-                    pstmt = conexao.prepareStatement(updateOrigemSQL);
-                    pstmt.setDouble(1, valorTransferencia);
-                    pstmt.setString(2, matriculaOrigem);
-                    pstmt.executeUpdate();
-
-                    
-                    String updateDestinoSQL = "UPDATE cadastros SET saldo = saldo + ? WHERE matricula = ?";
-                    pstmt = conexao.prepareStatement(updateDestinoSQL);
-                    pstmt.setDouble(1, valorTransferencia);
-                    pstmt.setLong(2, matriculaDestino);
-                    pstmt.executeUpdate();
-
-                    response.getWriter().println("Transferência realizada com sucesso!");
-                } else {
-                    response.getWriter().println("Saldo insuficiente para a transferência.");
-                }
+                double saldoSessao = rs.getDouble("saldo");
+                response.getWriter().println("Seu saldo atual é: " + saldoSessao);
+                request.setAttribute("saldoSessao", saldoSessao);
             } else {
-                response.getWriter().println("Matrícula de origem não encontrada.");
+                response.getWriter().println("Erro: Matrícula não encontrada.");
             }
         } catch (Exception e) {
             e.printStackTrace();

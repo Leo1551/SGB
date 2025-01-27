@@ -13,5 +13,8 @@
     </head>
     <body>
         <h1>Recarga efetuada com sucesso</h1>
+        <% 
+            request.getAttribute("recarga");
+        %>
     </body>
 </html>
