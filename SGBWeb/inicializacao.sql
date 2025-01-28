@@ -23,8 +23,7 @@ INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `codigoC
 ('Carlos R. Souza', 'e23c081efbe4610dd72f78d6036ac4cf', 'foto_url6', 'carlos.rs88@email.com', 201987654, 654324, 1,'aluno', 3, 20.0),
 ('Mariana T. Lima', '3abc2be25b8a208e78b4a5c6b58b07f8', 'foto_url7', 'mari.lima_01@email.com', 201856732, 654325, 1,'aluno', 4, 20.0),
 ('Rafael A. Mendes', '84ceb47148d1888363c64ab33b8ce3f9', 'foto_url8', 'rafa.mendes45@email.com', 202378905, 654326, 1,'aluno', 5, 20.0),
-('Beatriz F. Costa', 'd3a5dc43e0bd0cb8797b1c7d3659d684', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1,'aluno', 6, 20.0),
-('teste', '1234', 'foto_urlteste', 'teste@gmail.com', 123456789, 654879, 1, 'aluno', 6, 20.0);
+('Beatriz F. Costa', 'd3a5dc43e0bd0cb8797b1c7d3659d684', 'foto_url9', 'bia.costa99@email.com', 202467890, 654327, 1,'aluno', 6, 20.0);
 
 DROP TABLE IF EXISTS `precadastros`;
 CREATE TABLE IF NOT EXISTS `precadastros` (
