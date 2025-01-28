@@ -17,7 +17,7 @@
 
     double valorRecarga;
     try {
-        // Remover "R$ " e converter o valor para número
+    
         valorRecargaStr = valorRecargaStr.replace("R$", "").replace(",", ".").trim();
         valorRecarga = Double.parseDouble(valorRecargaStr);
     } catch (NumberFormatException e) {
@@ -31,7 +31,7 @@
             throw new SQLException("Falha ao conectar ao banco de dados");
         }
 
-        // Verificar saldo atual do usuário
+    
         String sql = "SELECT saldo FROM cadastros WHERE matricula = ?";
         pstmt = conexao.prepareStatement(sql);
         pstmt.setString(1, matriculaSessaoStr);
@@ -39,7 +39,7 @@
 
         if (rs.next()) {
 
-            // Atualizar saldo do usuário
+        
             String updateSql = "UPDATE cadastros SET saldo = saldo + ? WHERE matricula = ?";
             pstmt = conexao.prepareStatement(updateSql);
             pstmt.setDouble(1, valorRecarga);
@@ -49,13 +49,13 @@
             throw new SQLException("Usuário não encontrado.");
         }
 
-        // Verificar saldo atual da instituição
+    
         sql = "SELECT saldo FROM pixInstituicao WHERE id = 1";
         pstmt = conexao.prepareStatement(sql);
         rs = pstmt.executeQuery();
 
         if (rs.next()) {
-            // Atualizar saldo da instituição
+        
             String updateSql = "UPDATE pixInstituicao SET saldo = saldo + ? WHERE id = 1";
             pstmt = conexao.prepareStatement(updateSql);
             pstmt.setDouble(1, valorRecarga);
@@ -77,7 +77,4 @@
             e.printStackTrace();
         }
     }
-
-    // Redirecionar para a página de comprovante
-    response.sendRedirect("comprovante.jsp");
 %>

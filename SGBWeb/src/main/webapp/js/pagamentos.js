@@ -24,8 +24,10 @@ function selec() {
     else if (metodoPagamento === 'cartao') {
         console.log('cartao');
         pagamentoCartao();
-    } else
+    } else {
         console.log('transf');
+        transferencia();
+    }    
 }
 
 function pagamentoPix() {
@@ -34,6 +36,22 @@ function pagamentoPix() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var recarga = document.getElementById("recarga").value;
     var params = "recarga=" + encodeURIComponent(recarga);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert("Recarga efetuada com sucesso");
+        }
+    };
+    xhr.send(params);
+    window.location.href = "comprovante.jsp";
+}
+
+function transferencia() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "transferencia.jsp", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var recarga = document.getElementById("recarga").value;
+    var matriculaDestino = document.getElementById("matriculaDesti").value;
+    var params = "recarga=" + encodeURIComponent(recarga) + "&matriculaDestino=" + encodeURIComponent(matriculaDestino);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert("Recarga efetuada com sucesso");
