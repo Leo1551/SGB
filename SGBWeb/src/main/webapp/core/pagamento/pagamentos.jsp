@@ -3,6 +3,7 @@
 <%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="pt-br">
+    <%@include file="../sessao.jsp" %>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,22 +33,6 @@
                     chavePix = rs.getString("chavePix");
                 }
 
-                // Buscar saldo da matrícula armazenada na sessão
-                String matriculaSessao = (String) session.getAttribute("matricula");
-                if (matriculaSessao != null) {
-                    sql = "SELECT saldo FROM cadastros WHERE matricula = ?";
-                    stmt = conexao.prepareStatement(sql);
-                    stmt.setString(1, matriculaSessao); // Definindo o valor do parâmetro
-                    rs = stmt.executeQuery();
-
-                    if (rs.next()) {
-                        saldoSessao = rs.getDouble("saldo");
-                        request.setAttribute("saldoSessao", saldoSessao); // Atribuir o saldo ao atributo da requisição
-                    }
-                } else {
-                    request.setAttribute("saldoSessao", "Matrícula não encontrada na sessão.");
-                }
-
                 // Fechar recursos
                 rs.close();
                 stmt.close();
@@ -58,6 +43,8 @@
                 chavePix = "Erro ao buscar a chave PIX.";
             }
         %>
+        
+        
         <div class="container">
             <div class="metade parte-esquerda">
                 <!--<form action="preCadastro" method="post" enctype="multipart/form-data">-->
@@ -77,9 +64,9 @@
                 </div>
 
                 <div class="info">
-                    <p>Saldo:</p>
+                    <p>Saldo: R$ </p>
                     <div id="saldo">
-                        <%=request.getAttribute("saldoSessao")%>
+                        <%=session.getAttribute("saldo")%>
                     </div>
                 </div>
 
@@ -135,7 +122,7 @@
                         <div class="info">
                             <p>Saldo:</p>
                             <div id="saldo">
-                                <%=request.getAttribute("saldoSessao")%>
+                                <%= "R$" + saldo%>
                             </div>
                         </div>
                     </div>

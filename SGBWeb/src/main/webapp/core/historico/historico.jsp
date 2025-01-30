@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="ISO-8859-1" buffer="16kb"%>
 <!doctype htm/l/>
 <html lang="en" class="no-js">
+    <%@include file="../sessao.jsp" %>
     <head>
         <meta charset="ISO-8859-1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -15,7 +16,7 @@
     <body>
         <%@include file="../header.jsp" %>
         <section id="avisos">
-            <strong>Saldo Atual:</strong> &nbsp R$ ${ String.format("%.2f", saldo)}
+            <strong>Saldo Atual:</strong>  <%= "R$ " + saldo%>
         </section>
         <section id="pageContent">
             <aside id="months-container">

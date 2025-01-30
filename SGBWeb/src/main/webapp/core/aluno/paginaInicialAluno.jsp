@@ -1,23 +1,10 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
-
-<%
-            if (session.getAttribute("matricula") == null) response.sendRedirect("../reglog/login.jsp");
-        // OK meus putos, o negócio é o seguinte, a variável :session: foi settada em reglog/consultaMatricula.jsp
-        // O ponto para vocês é: qualquer coisa que deve ser alterada na sessão está na variável :session:
-        
-        //Implicitamente, as páginas usam a variável :session: para se referirem ao objeto HTTPSession implicitamente
-        
-        String matricula = (String) session.getAttribute("matricula");
-        String senha = (String) session.getAttribute("senha");
-        
-        //antes de tudo, passem pela tela de login
-%>
 <!DOCTYPE html>
 <html lang="pt-br">
+    
+    <%@include file="../sessao.jsp" %>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

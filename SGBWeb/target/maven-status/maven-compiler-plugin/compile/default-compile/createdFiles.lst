@@ -7,6 +7,7 @@ sgb\model\dao\ConectarDAO.class
 sgb\model\dao\SenhaDAO$1.class
 sgb\model\controllers\HistoricoServlet.class
 sgb\java\ConexaoBD.class
+sgb\model\controllers\CarregarDados.class
 sgb\model\dao\OpenBD.class
 sgb\model\dto\Transacao.class
 sgb\model\dto\Cartao.class

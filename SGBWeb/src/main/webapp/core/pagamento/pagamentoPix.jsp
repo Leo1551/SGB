@@ -36,10 +36,13 @@
         pstmt = conexao.prepareStatement(sql);
         pstmt.setString(1, matriculaSessaoStr);
         rs = pstmt.executeQuery();
+        
+        
 
         if (rs.next()) {
-
-        
+            //atualização do saldo na sessão
+            session.setAttribute("saldo", rs.getString(1));
+                    
             String updateSql = "UPDATE cadastros SET saldo = saldo + ? WHERE matricula = ?";
             pstmt = conexao.prepareStatement(updateSql);
             pstmt.setDouble(1, valorRecarga);
