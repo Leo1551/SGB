@@ -29,9 +29,9 @@
         <%@include file="../footer.jsp"%>
 
         <script>
+            console.log("dsdas"+${mesP});
         var transacoesBrutas =${transacoes};
-        var mesParam =${mes};
-        var saldoParam =${saldo};
+        var mesParam =${request.getAttribute("mes")};
         </script>
         <script type="text/javascript" charset="ISO-8859-1"><%@include file="/js/historico.js"  %></script>
     </body>

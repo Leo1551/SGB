@@ -56,7 +56,8 @@ window.onload = function () {
         const transacoesMes = transacoes[mes];
         if (transacoesMes && transacoesMes.length > 0) {
             transacoesMes.forEach(transacao => {
-                const divTransacao = document.createElement("div");
+                const divTransacao = document.createElement("a");
+                divTransacao.href=window.location.href.split('?')[0]+"?mes="+months.indexOf(mes)+1;
                 divTransacao.classList.add("transacaodiaria");
 
                 const tipoDiv = document.createElement("div");

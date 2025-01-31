@@ -23,6 +23,7 @@ sgb\model\dto\Login.class
 sgb\model\dto\RecSenha.class
 leona\structure\mavenproject3\resources\JakartaEE10Resource.class
 sgb\java\HashMD5.class
+sgb\java\UploadAlunoServlet.class
 sgb\model\controllers\InfoServlet.class
 sgb\java\SGBJava.class
 sgb\model\dto\Cadastro.class
