@@ -4,6 +4,7 @@
     Author     : aluno
 --%>
 
+<%@page import="sgb.java.HashMD5"%>
 <%@page import="sgb.model.dao.ConectarDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.ResultSet"%>
@@ -31,7 +32,7 @@
             Connection conexaoBD = con.conectar();
             
             PreparedStatement caixa = conexaoBD.prepareStatement("UPDATE cadastros SET senha= ? WHERE matricula = ?");
-            caixa.setString(1, request.getParameter("senha"));
+            caixa.setString(1, HashMD5.criptografar(request.getParameter("senha")));
             caixa.setString(2, request.getParameter("matricula"));
             caixa.executeUpdate();
             
