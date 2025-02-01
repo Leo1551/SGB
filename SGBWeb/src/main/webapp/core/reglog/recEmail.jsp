@@ -23,7 +23,7 @@
 <body>
     <%@include file="../header.jsp"%>
     
-     <h1>Enviaremos um email para a sua conta onde será registrado a sua nova senha</h1>
+     
         
     <div id="caixa-login">
         
