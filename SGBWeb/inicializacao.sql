@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `gestores` (
 INSERT INTO `gestores` (`id`, `nome`, `senha`, `email`, `cpf`) VALUES
 (1, 'Marcos Fernando', 'c5292975de7059d632489fa881f9f920', 'marcosfernando972@gmail.com', '14612161688'),
 (2, 'Juliana Torres', '00f62144a0290b7afb29e34001b6643c', 'julianaptorres@gmail.com', '72192356072'),
-(3, 'Joao Antonio Silva', 'ec490362ac0c5010dee7aafb58c4dfd1', 'joaoantoniosi12@gmail.com', '41120355001'),
+(3, 'Joao Antonio Silva', 'ec490362ac0c5010dee7aafb58c4dfd1', 'joaoantoniosi12@gmail.com', '41120355001');
 -- Marcos Fernando: Asd123!@
 
 DROP TABLE IF EXISTS `funcionarios`;
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
 INSERT INTO `funcionarios` (`id`, `nome`, `senha`, `email`, `cpf`) VALUES
 (1, 'Patricio Pereira', '07f759326c06d32afb6189b3e41f2206', 'patriciopereira@gmail.com', '47874207041'),
 (2, 'Clarice Chagas', '3a7ed29b16f3e2578b6cb70c51e731a2', 'claricechagas@gmail.com', '57585997000'),
-(3, 'Amanda Lopes', '8b3a0bcd49cc3f6e66a25ea4ce304ed4', 'amandaLopes@gmail.com', '83719548082'),
+(3, 'Amanda Lopes', '8b3a0bcd49cc3f6e66a25ea4ce304ed4', 'amandaLopes@gmail.com', '83719548082');
 -- Patricio Pereira: Patr1cio$
 
 DROP TABLE IF EXISTS `historico`;
