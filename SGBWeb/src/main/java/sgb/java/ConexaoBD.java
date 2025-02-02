@@ -43,13 +43,13 @@ public class ConexaoBD {
         }
     }
 
-    public static void inserirCadastro(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
+    public static void inserirCadastro(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao, double saldo) {
 
         //Leonardo: Hashing da senha
         senha = HashMD5.criptografar(senha);
         //só isso
 
-        String sql = "INSERT INTO cadastros (nome, senha, foto, email, matricula, cpf, codigoCartao, statusCartao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cadastros (nome, senha, foto, email, matricula, cpf, codigoCartao, statusCartao, saldo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, nome);
             stmt.setString(2, senha);
@@ -59,6 +59,7 @@ public class ConexaoBD {
             stmt.setString(6, cpf);
             stmt.setInt(7, codigoCartao);
             stmt.setBoolean(8, statusCartao);
+            stmt.setDouble(9, saldo);
             stmt.executeUpdate();
             System.out.println("Dados inseridos na tabela cadastros!");
         } catch (SQLException e) {
@@ -356,7 +357,8 @@ public class ConexaoBD {
                     preCadastro.getMatricula(),
                     preCadastro.getCpf(),
                     codigoCartao,
-                    true
+                    true,
+                    0
             );
 
             excluirPreCadastro(id);
@@ -371,7 +373,7 @@ public class ConexaoBD {
         return 100000 + (id % 900000);
     }
 
-    private static void excluirPreCadastro(int id) {
+    public static void excluirPreCadastro(int id) {
         String sql = "DELETE FROM precadastros WHERE id = ?";
         OpenBD openBD = new OpenBD();
         try (Connection conexao = openBD.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -473,10 +475,14 @@ public class ConexaoBD {
     }
 
     public static void main(String[] args) {
+        
         /*
+        
+        pipipi
         excluirTabelas();
         
         criarTabelas();
+        
         
         atualizarPreCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf)
          

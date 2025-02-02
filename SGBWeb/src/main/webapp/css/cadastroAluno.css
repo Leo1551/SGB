@@ -80,7 +80,7 @@
     color: rgb(0, 0, 0);
 }
 
-button {
+.container button {
     margin-top: 20px;
     width: 20vh;
     background-color: #323C64;
@@ -94,7 +94,7 @@ button {
     padding: 8px 10px;
 }
 
-button:hover {
+.container button:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;
@@ -137,5 +137,5 @@ input[type="file"] {
     cursor: pointer;
     text-decoration: underline;
     padding: 10px;
-    height: 35px; /* Define uma altura para centralizar melhor */
+    height: 35px; 
 }

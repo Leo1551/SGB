@@ -36,7 +36,7 @@
     text-decoration: none;
 }
 
-button:hover, .ir a:hover, .login a:hover {
+.container button:hover, .ir a:hover, .login a:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;

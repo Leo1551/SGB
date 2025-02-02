@@ -97,13 +97,13 @@
     margin-top: 20px;
 }
 
-button:hover, a:hover {
+.container button:hover, a:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;
 }
 
-a {
+.container a {
     width: 20vh;
     background-color: #323C64;
     border: 1px solid rgba(27, 31, 35, 0.15);
@@ -117,7 +117,7 @@ a {
     text-decoration: none;
 }
 
-button {
+.container button {
     margin-top: 20px;
     width: 20vh;
     background-color: #323C64;
@@ -131,7 +131,7 @@ button {
     padding: 8px 10px;
 }
 
-button:hover {
+.container button:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;

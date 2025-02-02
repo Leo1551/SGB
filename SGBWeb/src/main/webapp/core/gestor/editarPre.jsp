@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="sgb.java.ConexaoBD" %>
 <%@ page import="sgb.model.dto.Cadastro" %>
@@ -82,8 +82,9 @@
             %>
 
             <div class="divisao">
-                <img id="foto" src="<%= foto%>" alt="Foto do usuário">
-                <p><%= mensagem%></p>
+                <img id="foto" src="../../images/fotos/<%= foto%>" alt="Foto do usuário">
+                <br><br>
+                <p><%= foto%></p>
             </div>
             <div class="divisao">
                 <div class="subdivisoes">
@@ -111,8 +112,8 @@
                     </div>
                 </div>
                 <div class="subdivisoes">
-                    <div class="botao" id="hidden">
-                        <button type="submit">Salvar</button>
+                    <div class="botao">
+                        <button type="submit" id="hidden">Excluir</button>
                     </div>
                 </div>
             </div>
