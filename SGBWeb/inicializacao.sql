@@ -39,7 +39,7 @@ INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `cpf`, `
 ('Karina Lima', '8adb69f36e6aac35036c73da858a97f5', 'foto_37.jpg', 'karina.lima@outlook.com', 20231493685, '38927456120', 467532, 1, 20.0),
 ('Rodrigo Alves', '8bb62823622f2257f3ae67e9859ac0a9', 'foto_38.jpg', 'rodrigo.alves@gmail.com', 20231215679, '52603948123', 912389, 1, 20.0),
 ('Camila Freitas', '17fde2a4e385d752573e75fda08138fe', 'foto_39.jpg', 'camila.freitas@uol.com.br', 20231134876, '67492038476', 239847, 1, 20.0),
-('Sérgio Santos', 'ea102e4136048dbd47bf0779e6fedf9e', 'foto_40.jpg', 'sergio.santos@live.com', 20230678459, '81237509462', 148725, 0, 20.0),
+('Sérgio Santos', 'ea102e4136048dbd47bf0779e6fedf9e', 'foto_40.jpg', 'sergio.santos@live.com', 20230678459, '81237509462', 148725, 0, 20.0);
 
 DROP TABLE IF EXISTS `precadastros`;
 CREATE TABLE IF NOT EXISTS `precadastros` (
@@ -173,7 +173,7 @@ DROP TABLE IF EXISTS `cartoes`;
 CREATE TABLE IF NOT EXISTS `cartoes` (
     `nome` varchar(60),
     `numero` bigint NOT NULL,
-    `validade` timestamp NOT NULL,
+    `validade` varchar(7),
     `cvv` int NOT NULL,
     `saldo` double NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

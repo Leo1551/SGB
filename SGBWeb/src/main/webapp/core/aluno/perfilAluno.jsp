@@ -25,12 +25,12 @@
             <%
                 String idParam = request.getParameter("id");
                 String mensagem = "";
-
+                String matriculaSessao = (String) session.getAttribute("matricula");
                 if (idParam != null && !idParam.isEmpty()) {
                     try {
                         Integer id = Integer.parseInt(idParam);
 
-                        List<Cadastro> cadastros = ConexaoBD.consultarCadastro(id, null, null, null, null, null, null, null, null);
+                        List<Cadastro> cadastros = ConexaoBD.consultarCadastro(null, null, null, null, null, Long.parseLong(matriculaSessao), null, null, null);
 
                         if (cadastros != null && !cadastros.isEmpty()) {
                             Cadastro cadastro = cadastros.get(0);

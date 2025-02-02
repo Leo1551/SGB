@@ -63,23 +63,36 @@ function transferencia() {
 
 function pagamentoCartao() {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "cadastraCartao.jsp", true);
+    xhr.open("POST", "pagamentoCartao.jsp", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    //console.log(matriculaDestinatario);
     var nomeTitular = document.getElementById("nome-titular").value;
     var validadeCartao = document.getElementById("validade-cartao").value;
     var recarga = document.getElementById("recarga").value;
     var numCartao = document.getElementById("num-cartao").value;
     var cvv = document.getElementById("seguranca-cartao").value;
-    console.log(recarga);
-    var params = "recarga=" + encodeURIComponent(recarga) + "&nomeTitular=" + encodeURIComponent(nomeTitular) + "&valCartao=" + encodeURIComponent(validadeCartao) + "&cvv=" + encodeURIComponent(cvv) + "&numCartao=" + encodeURIComponent(numCartao); //+ "&metodoPagamento=" + encodeURIComponent(metodoPagamento) + "&matriculaDesti=" + encodeURIComponent(matriculaDestinatario);
-    console.log(params);
+
+    var params = 
+        "recarga=" + encodeURIComponent(recarga) + 
+        "&nomeTitular=" + encodeURIComponent(nomeTitular) + 
+        "&valCartao=" + encodeURIComponent(validadeCartao) + 
+        "&cvv=" + encodeURIComponent(cvv) + 
+        "&numCartao=" + encodeURIComponent(numCartao);
+
+    console.log("Enviando dados: " + params);
+
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            alert("Recarga efetuada com sucesso");
+        if (xhr.readyState === 4) {
+            console.log("Resposta do servidor: " + xhr.responseText);
+            if (xhr.status === 200) {
+                alert("Recarga efetuada com sucesso");
+                window.location.href = "comprovanteCartao.jsp?recarga=" + encodeURIComponent(recarga);
+            } else {
+                alert("Erro ao processar pagamento. Tente novamente.");
+            }
         }
     };
+    
     xhr.send(params);
-    window.location.href = "comprovanteCartao.jsp?recarga=" + encodeURIComponent(recarga);
 }
+
