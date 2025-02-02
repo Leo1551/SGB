@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(80vh);
+    overflow-y: hidden;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+}
+
+.opcao {
+    margin: 3%;
+    background-color:#B3CDE7;
+    padding: 20px;
+    width: 500px;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px solid #45474f;
+}
+
+.ir a, .login a {
+    width: 20vh;
+    background-color: #323C64;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 20px;
+    font-weight: 500;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+button:hover, .ir a:hover, .login a:hover {
+    background-color: #060916;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+
+.opcao .titulo {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.opcao .descricao{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.opcao .descricao p {
+    font-size: x-large;
+    margin: 15px 5px;
+    text-align: center;
+} 
+
+.opcao .ir {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.opcao .ir a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

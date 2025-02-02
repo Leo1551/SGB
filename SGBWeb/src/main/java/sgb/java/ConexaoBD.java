@@ -35,7 +35,7 @@ public class ConexaoBD {
             stmt.setLong(5, matricula);
             stmt.setString(6, cpf);
             stmt.executeUpdate();
-            return ("Dados inseridos na tabela precadastros!");
+            return ("Seu cadastro foi realizado com sucesso!");
         } catch (SQLException | ClassNotFoundException e) {
             {
                 return ("Erro ao inserir dados na tabela precadastros: " + e.getMessage());

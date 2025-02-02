@@ -40,14 +40,14 @@ public class UploadAlunoServlet extends HttpServlet {
         Part fotoPart = request.getPart("foto");
         if (fotoPart != null && fotoPart.getSize() > 0) {
             String nomeArquivo = fotoPart.getSubmittedFileName();
-            String extensao = ".png"; // por padrao
+            String extensao = ".png";
             if (nomeArquivo.endsWith(".jpg") || nomeArquivo.endsWith(".jpeg")) {
                 extensao = ".jpeg";
             }
 
             fotoNome = "foto_" + c.getProximoNumeroFoto() + extensao;
 
-            String uploadDir = getServletContext().getRealPath("/core/images/uploads");
+            String uploadDir = request.getServletContext().getRealPath("/images/fotos");
             File dir = new File(uploadDir);
             if (!dir.exists()) {
                 dir.mkdirs();
