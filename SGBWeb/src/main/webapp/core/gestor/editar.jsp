@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="../../css/editarBloquear.css">
     </head>
     <body>
-        <%@include file="../header.jsp" %>
+        <%@include file="headerGestor.jsp" %>
 
         <section id="nome-pagina">
             <h2>EDITAR CADASTRO</h2>

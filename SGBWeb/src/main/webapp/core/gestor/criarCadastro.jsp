@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="../../css/styleBase.css">
     </head>
     <body>
-        <%@include file="../header.jsp"%>
+        <%@include file="headerGestor.jsp" %>
         <section id="nome-pagina">
             <h2>APROVAR PRÉ CADASTROs</h2>
         </section>

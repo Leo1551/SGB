@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="../../css/paginaInicial.css">
     </head>
     <body>
-        <%@include file="../header.jsp"%>
+        <%@include file="header.jsp"%>
         <section id="nome-pagina">
             <h2>PÁGINA INICIAL - ALUNO</h2>
         </section>
