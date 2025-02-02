@@ -30,7 +30,7 @@ td {
     border: 2px solid white;
 }
 
-a {
+.container a {
     background-color: #323C64;
     border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: 6px;
@@ -43,7 +43,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+.container a:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;

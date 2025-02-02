@@ -24,7 +24,7 @@
 }
 
 .metade label,
-.metade input {
+.metade input{
     display: block;
     margin-bottom: 10px;
 }
@@ -38,7 +38,7 @@
     justify-content: center;
 }
 
-.metade input, #campo-foto label {
+.metade input, #label-foto {
     border-radius: 5px;
     background: rgb(249, 250, 250);
     border: 1px solid rgb(181, 189, 196);
@@ -50,7 +50,7 @@
     box-shadow: none;
 }
 
-.metade input:focus {
+.metade input:focus, #label-foto:focus {
     outline: none;
     background-color: #fff;
     border-color: #323C64;
@@ -80,7 +80,7 @@
     color: rgb(0, 0, 0);
 }
 
-button {
+.container button {
     margin-top: 20px;
     width: 20vh;
     background-color: #323C64;
@@ -94,7 +94,7 @@ button {
     padding: 8px 10px;
 }
 
-button:hover {
+.container button:hover {
     background-color: #060916;
     text-decoration: none;
     transition-duration: 0.1s;
@@ -112,15 +112,8 @@ button:hover {
 
 #campo-foto {
     display: flex;
+    flex-direction: row;
     align-items: center;
-}
-
-#campo-foto label {
-    display: flex;
-    margin-left: 10px;
-    width: 100%;
-    height: 27px;
-    text-decoration: underline;
 }
 
 #previewImagem {
@@ -130,13 +123,19 @@ button:hover {
 }
 
 input[type="file"] {
-    border: 2px solid red;
+    display: none;
 }
 
-.customFileUpload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding-left: 6px;
+#label-foto {
+    margin-left: 20px;
+    width: calc(100% - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: center;
     cursor: pointer;
+    text-decoration: underline;
+    padding: 10px;
+    height: 35px; 
 }
-

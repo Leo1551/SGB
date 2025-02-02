@@ -28,8 +28,7 @@
         caixa.setString(1, matricula);
         ResultSet cargoBD = caixa.executeQuery();
 
-        cargoBD.next();
-        // if (cargoBD.next())
+        if (cargoBD.next())
             session.setAttribute("saldo", cargoBD.getString(1));
         
         

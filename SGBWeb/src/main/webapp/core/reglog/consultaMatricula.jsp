@@ -26,6 +26,7 @@
 
         <%
             String matricula = request.getParameter("matricula");
+            matricula = matricula.replaceAll("\\.", "");
             String senha = request.getParameter("senha");
             String metodo = request.getParameter("met");
 

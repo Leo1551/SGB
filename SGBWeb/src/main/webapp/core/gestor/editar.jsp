@@ -82,8 +82,9 @@
             %>
 
             <div class="divisao">
-                <img id="foto" src="<%= foto%>" alt="Foto do usuário">
-                <p><%= mensagem%></p>
+                <img id="foto" src="../../images/fotos/<%= foto%>" alt="Foto do usuário">
+                <br><br>
+                <p><%= foto%></p>
             </div>
             <div class="divisao">
                 <div class="subdivisoes">

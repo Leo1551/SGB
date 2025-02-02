@@ -16,9 +16,15 @@
     <body>
 
         <%
+            if (request.getParameter("login") == null) {
+                response.sendRedirect("../../index.jsp");
+                return;
+            }
+
             String metodoLogin = request.getParameter("login");
             int index = Integer.parseInt(metodoLogin) - 1;
             String[] cargo = {"Aluno", "Gestor", "Caixa"};
+
         %>
 
 
@@ -57,13 +63,19 @@
             <a href="recEmail.jsp">Esqueci minha senha</a>
             <!--implementar site para recuperação de senha-->
         </div> 
-                
-                
-                
-        <% int erro = Integer.parseInt(request.getParameter("erro"));
-                if (erro == 1) {%>
-        <%=  "<center><div id='erro'> Sua carteirinha foi bloqueada!<br><br>Procure um gestor para resolver esse problema.</div> </center>"%>
-        <% }%>
+
+
+
+        <%
+
+            if (request.getParameter("erro") != null) {
+                if (Integer.parseInt( (String) request.getParameter("erro")) == 1) {
+                    out.println("<center><div id='erro'> Sua carteirinha foi bloqueada!<br><br>Procure um gestor para resolver esse problema.</div> </center>");
+                }
+            }
+
+        %>
+
 
         <style>
             #erro {
