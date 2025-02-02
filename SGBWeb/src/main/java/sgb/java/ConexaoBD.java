@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.ArrayList;
 import sgb.model.dto.PreCadastro;
 import sgb.model.dto.Cadastro;
-
+import sgb.model.dto.Gestor;
+import sgb.model.dto.Funcionario;
 
 public class ConexaoBD {
 
@@ -18,59 +19,12 @@ public class ConexaoBD {
         return DriverManager.getConnection(url, usuario, senha);
     }
 
-    public static void criarTabelas() {
-        String sqlPrecadastros = "CREATE TABLE IF NOT EXISTS precadastros ("
-                + "id INT AUTO_INCREMENT PRIMARY KEY,"
-                + "nome VARCHAR(100) NOT NULL,"
-                + "senha VARCHAR(100) NOT NULL,"
-                + "foto VARCHAR(255),"
-                + "email VARCHAR(100) UNIQUE NOT NULL,"
-                + "matricula BIGINT NOT NULL,"
-                + "cpf VARCHAR(11) NOT NULL, "
-                + "UNIQUE (cpf)"
-                + ");";
-
-        String sqlCadastros = "CREATE TABLE IF NOT EXISTS cadastros ("
-                + "id INT AUTO_INCREMENT PRIMARY KEY,"
-                + "nome VARCHAR(100) NOT NULL,"
-                + "senha VARCHAR(100) NOT NULL,"
-                + "foto VARCHAR(255),"
-                + "email VARCHAR(100) UNIQUE NOT NULL,"
-                + "matricula BIGINT NOT NULL,"
-                + "cpf VARCHAR(11) NOT NULL, "
-                + "codigoCartao INT NOT NULL,"
-                + "statusCartao BOOLEAN NOT NULL,"
-                + "UNIQUE (cpf)"
-                + ");";
-
-        try (Connection conexao = getConnection(); Statement stmt = conexao.createStatement()) {
-            stmt.execute(sqlPrecadastros);
-            stmt.execute(sqlCadastros);
-            System.out.println("Tabelas criadas ou já existem.");
-        } catch (SQLException e) {
-            System.out.println("Erro ao criar tabelas: " + e.getMessage());
-        }
-    }
-
-    public static void excluirTabelas() {
-        String sqlDropPrecadastros = "DROP TABLE IF EXISTS precadastros;";
-        String sqlDropCadastros = "DROP TABLE IF EXISTS cadastros;";
-
-        try (Connection conexao = getConnection(); Statement stmt = conexao.createStatement()) {
-            stmt.execute(sqlDropPrecadastros);
-            stmt.execute(sqlDropCadastros);
-            System.out.println("Tabelas excluídas com sucesso.");
-        } catch (SQLException e) {
-            System.out.println("Erro ao excluir tabelas: " + e.getMessage());
-        }
-    }
-
     public String inserirPreCadastro(String nome, String senha, String foto, String email, long matricula, String cpf) {
-        
+
         //Leonardo: Hashing da senha
         senha = HashMD5.criptografar(senha);
         //só isso
-        
+
         String sql = "INSERT INTO precadastros (nome, senha, foto, email, matricula, cpf) VALUES (?, ?, ?, ?, ?, ?)";
         OpenBD op = new OpenBD();
         try (Connection conexao = op.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql);) {
@@ -90,11 +44,11 @@ public class ConexaoBD {
     }
 
     public static void inserirCadastro(String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
-        
+
         //Leonardo: Hashing da senha
         senha = HashMD5.criptografar(senha);
         //só isso
-        
+
         String sql = "INSERT INTO cadastros (nome, senha, foto, email, matricula, cpf, codigoCartao, statusCartao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, nome);
@@ -117,7 +71,7 @@ public class ConexaoBD {
     }
 
     public static void atualizarPreCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf) {
-        
+
         String sql = "UPDATE precadastros SET nome = ?, senha = ?, foto = ?, email = ?, matricula = ?, cpf = ? WHERE id = ?";
         try (Connection conexao = getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, nome);
@@ -135,11 +89,11 @@ public class ConexaoBD {
     }
 
     public static void atualizarCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
-        
+
         //Leonardo: Hashing da senha
         senha = HashMD5.criptografar(senha);
         //só isso
-        
+
         String sqlCheckEmail = "SELECT email, cpf FROM cadastros WHERE id = ?";
 
         String emailExistente = null;
@@ -462,6 +416,60 @@ public class ConexaoBD {
         }
 
         return 0;
+    }
+
+    public static Gestor buscarGestor(int id) {
+        String sql = "SELECT nome, senha, email, cpf FROM gestores WHERE id = ?";
+
+        OpenBD openBD = new OpenBD();
+        try (Connection conexao = openBD.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Gestor gestor = new Gestor();
+                gestor.setNome(rs.getString("nome"));
+                gestor.setSenha(rs.getString("senha"));
+                gestor.setEmail(rs.getString("email"));
+                gestor.setCpf(rs.getString("cpf"));
+                return gestor;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar gestor: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.err.println("Erro: Driver do banco não encontrado - " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static Funcionario buscarFuncionario(int id) {
+        String sql = "SELECT nome, senha, email, cpf FROM funcionarios WHERE id = ?";
+
+        OpenBD openBD = new OpenBD();
+        try (Connection conexao = openBD.getConnectionComDriver(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Funcionario funcionario = new Funcionario();
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setSenha(rs.getString("senha"));
+                funcionario.setEmail(rs.getString("email"));
+                funcionario.setCpf(rs.getString("cpf"));
+                return funcionario;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar funcionario: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.err.println("Erro: Driver do banco não encontrado - " + e.getMessage());
+        }
+
+        return null;
     }
 
     public static void main(String[] args) {
