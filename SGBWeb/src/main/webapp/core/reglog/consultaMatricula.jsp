@@ -27,13 +27,9 @@
         <%
             String matricula = request.getParameter("matricula");
             String senha = request.getParameter("senha");
-
             String metodo = request.getParameter("met");
 
             senha = HashMD5.criptografar(senha);
-
-            ConectarDAO con = new ConectarDAO();
-            Connection conexaoBD = con.conectar();
 
             //cria sessão
             HttpSession sessao = request.getSession(true); // se não houver sessão, cria
@@ -51,20 +47,27 @@
                         try {
                             ResultSet dadosAluno = SessaoDAO.querySQL("SELECT `nome`, `email`, `foto`, `statusCartao`, `cpf` from cadastros where matricula = ?", dados);
 
+                            int statusCartao = Integer.parseInt(dadosAluno.getString(4));
+
+                            if (statusCartao == 0) {
+                                response.sendRedirect("login.jsp?login=1&erro=1");
+                                return;
+                            }
+
                             sessao.setAttribute("nome", dadosAluno.getString(1));
                             sessao.setAttribute("email", dadosAluno.getString(2));
                             sessao.setAttribute("foto", dadosAluno.getString(3));
-                            sessao.setAttribute("statusCartao", dadosAluno.getString(4));
+                            sessao.setAttribute("statusCartao", statusCartao);
                             sessao.setAttribute("cpf", dadosAluno.getString(5));
-                    
+
                             response.sendRedirect("../aluno/paginaInicialAluno.jsp");
                         } catch (SQLException e) {
                             out.print("erro ao pegar dados do banco de dados: " + e.getMessage());
                         }
 
-                    } else 
+                    } else {
                         response.sendRedirect("login.jsp?login=1");
-                    
+                    }
 
                     break;
 
@@ -83,9 +86,9 @@
                         } catch (SQLException e) {
                             out.print("erro ao pegar dados do banco de dados: " + e.getMessage());
                         }
-                    } else 
+                    } else {
                         response.sendRedirect("login.jsp?login=2");
-                    
+                    }
 
                     break;
 
@@ -104,8 +107,9 @@
                         } catch (SQLException e) {
                             out.print("erro ao pegar dados do banco de dados: " + e.getMessage());
                         }
-                    } else 
+                    } else {
                         response.sendRedirect("login.jsp?login=3");
+                    }
 
                     break;
 

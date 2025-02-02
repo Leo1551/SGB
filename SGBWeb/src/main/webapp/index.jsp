@@ -11,24 +11,18 @@
         <link rel="stylesheet" href="css/paginaInicial.css">
     </head>
     <body>
-        
-        <% 
-         if (session != null) {
+
+        <%
+            if (session != null) {
                 session.invalidate();
                 session = null;
             } // sempre que redirecionado à tela inícial, finaliza a sessão
-        %>
+%>
         <header>
-            <div id="logo">
-                <img src="images/logo.png">
-                SGRU - Sistema de Gerenciamento dos Restaurantes Universitários
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="../reglog/login.jsp">Voltar</a>
-                    <li><a href="">Seu perfil <img id="imgperfil" src="images/user.png"></a>
-                </ul>
-            </nav>
+                <div id="logo">
+                    <img src="images/logo.png">
+                    SGRU - Sistema de Gerenciamento dos Restaurantes Universitários
+                </div>
         </header>
 
         <section id="nome-pagina">
@@ -43,7 +37,7 @@
                     </h2>
                 </div>
                 <div class="login">
-                    <a href="core/reglog/login.jsp?login=1">Fazer login</a>
+                    <a href="core/reglog/login.jsp?login=1&erro=-1">Fazer login</a>
                 </div>
             </div>
             <div class="opcao">
@@ -53,7 +47,7 @@
                     </h2>
                 </div>
                 <div class="login">
-                    <a href="core/reglog/login.jsp?login=2">Fazer login</a>
+                    <a href="core/reglog/login.jsp?login=2&erro=-1">Fazer login</a>
                 </div>
             </div>
             <div class="opcao">
@@ -63,7 +57,7 @@
                     </h2>
                 </div>
                 <div class="login">
-                    <a href="core/reglog/login.jsp?login=3">Fazer login</a>
+                    <a href="core/reglog/login.jsp?login=3&erro=-1">Fazer login</a>
                 </div>
             </div>
         </div>
