@@ -42,7 +42,7 @@ function pagamentoPix() {
         }
     };
     xhr.send(params);
-    window.location.href = "comprovante.jsp";
+    window.location.href = "comprovantePix.jsp?recarga=" + encodeURIComponent(recarga) + "&metodoPagamento=" + encodeURIComponent("pix");
 }
 
 function transferencia() {
@@ -58,7 +58,7 @@ function transferencia() {
         }
     };
     xhr.send(params);
-    window.location.href = "comprovante.jsp";
+    window.location.href = "comprovanteTransf.jsp?recarga=" + encodeURIComponent(recarga) + "&matriculaDestino=" + encodeURIComponent(matriculaDestino) + "&metodoPagamento=" + encodeURIComponent("transf");
 }
 
 function pagamentoCartao() {
@@ -81,5 +81,5 @@ function pagamentoCartao() {
         }
     };
     xhr.send(params);
-    window.location.href = "comprovante.jsp";
+    window.location.href = "comprovanteCartao.jsp?recarga=" + encodeURIComponent(recarga);
 }

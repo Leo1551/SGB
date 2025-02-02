@@ -37,7 +37,6 @@
             //passagem de parametros gerais para a página inícial
             sessao.setAttribute("matricula", matricula);
             sessao.setAttribute("senha", senha);
-
             switch (metodo) {
 
                 case "1":

@@ -9,7 +9,7 @@
 
     String matriculaSessaoStr = (String) session.getAttribute("matricula");
     String valorRecargaStr = request.getParameter("recarga");
-
+    session.setAttribute("recarga", valorRecargaStr);
     if (matriculaSessaoStr == null || valorRecargaStr == null) {
         response.getWriter().println("Erro: Matrícula ou valor de recarga não fornecidos.");
         return;
