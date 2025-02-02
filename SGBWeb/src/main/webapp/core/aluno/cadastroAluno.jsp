@@ -35,9 +35,11 @@
 
                     <div class="campo">
                         <label>Foto 3x4:</label>
-
-                        <input type="file" name="foto" />
-            
+                        <div id="campo-foto">
+                            <img id="previewImagem">
+                            <label for="foto" id="label-foto">Enviar foto</label>
+                            <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/jpg"/>
+                        </div>
                     </div>
                 </div>
 
