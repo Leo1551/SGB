@@ -31,6 +31,10 @@
         document.add(new Paragraph("Destinatário: " + destinatario));
         document.add(new Paragraph("Valor: " + valor));
         document.add(new Paragraph("Data: " + data));
+        if("cartao".equals(metodoPagamento)) {
+            
+        }
+        
 
         document.close();
     } catch (Exception e) {
