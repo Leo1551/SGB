@@ -16,7 +16,7 @@
     <body>
         <%@include file="../header.jsp" %>
         <section id="avisos">
-            <strong>Saldo Atual:</strong>  <%= "R$ " + saldo%>
+            <strong>Saldo Atual:</strong>  "R$ " + saldoParam
         </section>
         <section id="pageContent">
             <aside id="months-container">
@@ -25,13 +25,13 @@
                 <div id="historico"></div>
             </main>
         </section>
-        
+
         <%@include file="../footer.jsp"%>
 
         <script>
-            console.log("dsdas"+${mesP});
-        var transacoesBrutas =${transacoes};
-        var mesParam =${request.getAttribute("mes")};
+            var transacoesBrutas =${transacoesP};
+            var mesParam =${mesP};
+            var saldoParam =${saldoP};
         </script>
         <script type="text/javascript" charset="ISO-8859-1"><%@include file="/js/historico.js"  %></script>
     </body>

@@ -35,7 +35,7 @@
                     </p>
                 </div>
                 <div class="ir">
-                    <a href="../historico/historico.jsp">Ver saldo</a>
+                    <a href="../../historico">Ver saldo</a>
                 </div>
             </div>
             <div class="opcao">

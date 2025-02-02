@@ -12,7 +12,6 @@ public class SaldoDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 rs.next();
                     saldo = rs.getInt("saldo");
-                    System.out.println("addasdsa  "+saldo);
 
                 
             } catch (SQLException e) {

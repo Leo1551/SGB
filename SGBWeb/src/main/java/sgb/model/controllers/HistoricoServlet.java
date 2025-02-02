@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sgb.model.dao.TransacaoDAO;
@@ -80,20 +81,40 @@ public class HistoricoServlet extends HttpServlet {
             java.util.Date data = new Date();
             Calendar cal = Calendar.getInstance();
             cal.setTime(data);
-            mes = cal.get(Calendar.MONTH)+1;
+            mes = cal.get(Calendar.MONTH) + 1;
         } else {
             mes = Integer.parseInt(request.getParameter("mes"));
         }
         Transacao[] transacoes = null;
         StringBuilder transacoesJSON = new StringBuilder();
         try {
-            transacoes = TransacaoDAO.getTransacoes(matricula);
+            java.util.Date data = new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(data);
+            int anoAtual = cal.get(Calendar.YEAR);
+            int mesAtual = cal.get(Calendar.MONTH) + 1;
+            Date dataInicial;
+            Date dataFinal;
+            if (mes > mesAtual) {
+                //os meses aqui contam janeiro=0,fevereiro=1...dezembro=11
+                //enquanto a variavel mes considera janeiro=1,fevereiro=2...dezembro=12
+                //por isso o -1
+                dataInicial = new GregorianCalendar(anoAtual - 1, mes - 1, 1).getTime();
+                dataFinal = new GregorianCalendar(anoAtual - 1, mes, 1).getTime();
+            } else {
+                //os meses aqui contam janeiro=0,fevereiro=1...dezembro=11
+                //enquanto a variavel mes considera janeiro=1,fevereiro=2...dezembro=12
+                //por isso o -1
+                dataInicial = new GregorianCalendar(anoAtual, mes - 1, 1).getTime();
+                dataFinal = new GregorianCalendar(anoAtual, mes, 1).getTime();
+            }
+            transacoes = TransacaoDAO.getTransacoes(matricula, dataInicial, dataFinal);
         } catch (SQLException | ClassNotFoundException ex) {
             request.setAttribute("mensagemErro", ex.getMessage());
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
         }
 
-        if (transacoes[0] != null) {
+        if (transacoes != null && transacoes[0] != null) {
             transacoesJSON.append("[");
             for (Transacao tr : transacoes) {
                 if (tr == null) {
@@ -105,19 +126,19 @@ public class HistoricoServlet extends HttpServlet {
             //tira a ultima virgula
             transacoesJSON.delete(transacoesJSON.length() - 1, transacoesJSON.length());
             transacoesJSON.append("]");
-            request.setAttribute("transacoes", transacoesJSON.toString());
-            request.setAttribute("mes", mes);
-            try {
-                request.setAttribute("saldo", SaldoDAO.getSaldo(matricula));
-            } catch (SQLException | ClassNotFoundException ex) {
-                request.setAttribute("mensagemErro", "A matricula " + matricula + " não esta vinculada a nenhum saldo");
-                request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
-            }
-            request.getRequestDispatcher("/core/historico/historico.jsp").forward(request, response);
         } else {
-            request.setAttribute("mensagemErro", "Nenhuma transação com a matricula " + matricula + " encontrada");
+            transacoesJSON.append("{}");
+        }
+        request.setAttribute("transacoesP", transacoesJSON.toString());
+        request.setAttribute("mesP", mes);
+        try {
+            request.setAttribute("saldoP", SaldoDAO.getSaldo(matricula));
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.setAttribute("mensagemErro", "A matricula " + matricula + " não esta vinculada a nenhum saldo");
             request.getRequestDispatcher("/core/erro.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("/core/historico/historico.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

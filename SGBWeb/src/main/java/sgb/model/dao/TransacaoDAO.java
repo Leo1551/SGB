@@ -10,6 +10,7 @@ import sgb.model.dto.Transacao;
 import sgb.model.dao.OpenBD;
 
 public class TransacaoDAO {
+
     public static boolean setTransacao(Transacao trnsc) {
         String sql = "INSERT INTO historico (matricula, valor, data, funcionario, saldo) VALUES (?, ?, ?, ?, ?)";
         try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -48,7 +49,7 @@ public class TransacaoDAO {
                 System.out.println("Erro ao consultar a tabela de histórico: " + e.getMessage());
                 return null;
             }
-        } catch (SQLException  |ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Erro ao conectar na tabela de histórico para consultar transações: " + e.getMessage());
             return null;
 
@@ -56,10 +57,10 @@ public class TransacaoDAO {
         return res;
     }
 
-    public static Transacao[] getTransacoes(long matricula, Date dataInicial, Date dataFinal) {
+    public static Transacao[] getTransacoes(long matricula, Date dataInicial, Date dataFinal) throws SQLException, ClassNotFoundException {
         java.sql.Timestamp sqlDataInicial = new java.sql.Timestamp(dataInicial.getTime());
         java.sql.Timestamp sqlDataFinal = new java.sql.Timestamp(dataFinal.getTime());
-        String sql = "SELECT * FROM historico WHERE matricula=" + matricula + " AND data BETWEEN '" + sqlDataInicial + "' AND '" + sqlDataFinal + "'";
+        String sql = "SELECT * FROM historico WHERE matricula='" + matricula + "' AND data BETWEEN '" + sqlDataInicial + "' AND '" + sqlDataFinal + "'";
         Transacao[] res = new Transacao[500];
         try (Connection conexao = OpenBD.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
@@ -69,7 +70,7 @@ public class TransacaoDAO {
                     int resultadoValor = rs.getInt("valor");
                     java.sql.Timestamp resultData = rs.getTimestamp("data");
                     String resultadoFuncionario = rs.getString("funcionario");
-                    int resultadoSaldo = rs.getInt("");
+                    int resultadoSaldo = rs.getInt("saldo");
                     res[i] = new Transacao(resultadoMatricula, resultadoValor, resultData, resultadoFuncionario, resultadoSaldo);
                     i++;
 
