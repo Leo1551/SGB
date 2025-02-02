@@ -15,7 +15,7 @@
         
     </head>
     <body>
-        <%@include file="../header.jsp"%>
+        <%@include file="header.jsp"%>
         <section id="nome-pagina">
             <h2>ENTRADA DO RU</h2>
         </section>

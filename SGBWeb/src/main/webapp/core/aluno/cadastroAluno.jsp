@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="../../css/cadastroAluno.css">
     </head>
     <body>
-        <%@include file="../header.jsp"%>
+        <%@include file="header.jsp"%>
         <section id="nome-pagina">
             <h2>PRÉ CADASTRO</h2>
         </section>

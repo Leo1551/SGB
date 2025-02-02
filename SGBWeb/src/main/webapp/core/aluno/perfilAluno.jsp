@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../../css/editarBloquear.css">
     </head>
     <body>
-        <%@include file="../header.jsp" %>
+        <%@include file="header.jsp" %>
 
         <section id="nome-pagina">
             <h2>EDITAR CADASTRO</h2>
@@ -25,38 +25,6 @@
             <%
                 String idParam = request.getParameter("id");
                 String mensagem = "";
-
-                // qdo aperta o botao
-                if (request.getParameter("acao") != null && (request.getParameter("acao").equals("bloquear") || request.getParameter("acao").equals("desbloquear"))) {
-                    try {
-                        Integer id = Integer.parseInt(request.getParameter("id"));
-
-                        List<Cadastro> cadastros = ConexaoBD.consultarCadastro(id, null, null, null, null, null, null, null, null);
-                        if (cadastros != null && !cadastros.isEmpty()) {
-                            Cadastro cadastro = cadastros.get(0);
-
-                            Boolean novoStatus = !(request.getParameter("acao").equals("bloquear"));
-
-                            ConexaoBD.atualizarCadastro(
-                                    id,
-                                    cadastro.getNome(),
-                                    cadastro.getSenha(),
-                                    cadastro.getFoto(),
-                                    cadastro.getEmail(),
-                                    cadastro.getMatricula(),
-                                    cadastro.getCpf(),
-                                    cadastro.getCodigoCartao(),
-                                    novoStatus
-                            );
-
-                            mensagem = "Cartão bloqueado com sucesso!";
-                        } else {
-                            mensagem = "Cadastro não encontrado.";
-                        }
-                    } catch (Exception e) {
-                        mensagem = "Erro ao processar o bloqueio: " + e.getMessage();
-                    }
-                }
 
                 if (idParam != null && !idParam.isEmpty()) {
                     try {

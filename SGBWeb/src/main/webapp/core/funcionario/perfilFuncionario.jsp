@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="../../css/editarBloquear.css">
     </head>
     <body>
-        <%@include file="../header.jsp" %>
+        <%@include file="header.jsp" %>
 
         <section id="nome-pagina">
             <h2>PERFIL - GESTOR</h2>
