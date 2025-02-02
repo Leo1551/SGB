@@ -40,8 +40,6 @@ INSERT INTO `cadastros` (`nome`, `senha`, `foto`, `email`, `matricula`, `cpf`, `
 ('Rodrigo Alves', '8bb62823622f2257f3ae67e9859ac0a9', 'foto_38.jpg', 'rodrigo.alves@gmail.com', 20231215679, '52603948123', 912389, 1, 20.0),
 ('Camila Freitas', '17fde2a4e385d752573e75fda08138fe', 'foto_39.jpg', 'camila.freitas@uol.com.br', 20231134876, '67492038476', 239847, 1, 20.0),
 ('Sérgio Santos', 'ea102e4136048dbd47bf0779e6fedf9e', 'foto_40.jpg', 'sergio.santos@live.com', 20230678459, '81237509462', 148725, 0, 20.0),
-('Sofia Martins', 'e6b5696296bffb1fd13adb2d4990450b', 'foto_20.jpg', 'sofia.martins@outlook.com', 20231023761, '86049726322', 100020, 1, 20.0),
-('Rafael Souza', 'f38b1b98bf89fe9ac0fc16bf0147856a', 'foto_19.jpg', 'rafael.souza@uol.com.br', 20230847210, '47325018906', 100019, 1, 20.0);
 
 DROP TABLE IF EXISTS `precadastros`;
 CREATE TABLE IF NOT EXISTS `precadastros` (

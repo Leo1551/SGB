@@ -46,7 +46,8 @@
                                     cadastro.getMatricula(),
                                     cadastro.getCpf(),
                                     cadastro.getCodigoCartao(),
-                                    novoStatus
+                                    novoStatus,
+                                    cadastro.getSaldo()
                             );
 
                             mensagem = "Cartão bloqueado com sucesso!";
