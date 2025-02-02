@@ -22,25 +22,33 @@
 
         <div class="container">            
             <%
-                Integer codigo = Integer.parseInt(request.getParameter("codigo"));
-                List<Cadastro> cadastros = ConexaoBD.consultarCadastro(null, null, null, null, null, null, null, codigo, null);
-                Cadastro cadastro = cadastros.get(0);
-                int id = cadastro.getId();
-                String nome = cadastro.getNome();
-                long matricula = cadastro.getMatricula();
-                String foto = cadastro.getFoto();
-
-                double saldo = cadastro.getSaldo();
-                boolean statusCartao = cadastro.getStatusCartao();
+                String nome = "Nome";
+                long matricula = 00000000000;
+                String foto = "foto_0.jpg";
+                double saldo = 0.0;
+                boolean statusCartao = false;
                 double saldoNovo = saldo;
                 double precoBandeco = 3.2;
-                
-                // esse aqui nao quer funcionar de jeito nenhum, MUDAR DEPOIS
-                if (statusCartao) {
-                    saldoNovo = saldo - precoBandeco;
-                }
-                
-                ConexaoBD.atualizarCadastro(
+
+                if (request.getParameter("codigo") != null) {
+                    Integer codigo = Integer.parseInt(request.getParameter("codigo"));
+                    List<Cadastro> cadastros = ConexaoBD.consultarCadastro(null, null, null, null, null, null, null, codigo, null);
+                    Cadastro cadastro = cadastros.get(0);
+                    int id = cadastro.getId();
+                    nome = cadastro.getNome();
+                    matricula = cadastro.getMatricula();
+                    foto = cadastro.getFoto();
+
+                    saldo = cadastro.getSaldo();
+                    statusCartao = cadastro.getStatusCartao();
+                    saldoNovo = saldo;
+
+                    // esse aqui nao quer funcionar de jeito nenhum, MUDAR DEPOIS
+                    if (statusCartao) {
+                        saldoNovo = saldo - precoBandeco;
+                    }
+
+                    ConexaoBD.atualizarCadastro(
                             id,
                             nome,
                             cadastro.getSenha(),
@@ -52,18 +60,21 @@
                             statusCartao,
                             saldoNovo
                     );
-
+                }
             %>
             <div class="metade cima">
-                <div class="info">
-                    <p>Operador(a):</p>
-                    <div id="operador">Nome da pessoa</div>
-                </div>
-                <form action="preCadastro" method="post" enctype="multipart/form-data">
+                <form action="passarCartao.jsp" method="get" enctype="multipart/form-data">
+                    <div class="info">
+                        <p>Operador(a):</p>
+                        <div id="operador">Nome da pessoa</div>
+                    </div>
+
                     <div class="campo">
                         <label>Cartão:</label>
-                        <input placeholder="000000" type="number" name="cartao" required>
+                        <input placeholder="000000" type="number" name="codigo" id="codigo" required>
                     </div>
+
+                    <button type="submit">Confirmar</button>
                 </form>
             </div>
 
@@ -82,10 +93,10 @@
                 </div>
                 <div class="info">
                     <p>Status do cartão:</p>
-                    <div id="statusCartao" class="ativo"><%= statusCartao %></div>
+                    <div id="statusCartao" class="ativo"><%= statusCartao%></div>
                     <br><br>
                     <p>Saldo atual:</p>
-                    <div id="saldo"><%= saldoNovo %></div>
+                    <div id="saldo"><%= saldoNovo%></div>
                 </div>
             </div>
 

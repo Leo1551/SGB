@@ -51,7 +51,8 @@
                                     matriculaFinal,
                                     cpfFinal,
                                     cadastro.getCodigoCartao(),
-                                    cadastro.getStatusCartao()
+                                    cadastro.getStatusCartao(),
+                                    cadastro.getSaldo()
                             );
 
                             mensagem = "Cadastro atualizado com sucesso!";
