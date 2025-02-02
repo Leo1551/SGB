@@ -15,12 +15,10 @@
     </head>
     <body>
 
-        <%
-            if (session != null) {
-                session.invalidate();
-                session = null;
-            } // sempre que redirecionado à tela inícial, finaliza a sessão
-
+        <% 
+            String metodoLogin = request.getParameter("login");
+            int index = Integer.parseInt(metodoLogin) - 1;
+            String[] cargo = {"Aluno", "Gestor", "Caixa"};
         %>
 
 
@@ -31,7 +29,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="../aluno/cadastroAluno.jsp">Cadastro</a>
+                    <li><a href="../aluno/cadastroAluno.jsp">Cadastrar-me</a>
                     
                         <!-- quando criar o link, coloque essas linhas de código-->
                         <!-- if (session.getAttribute("matricula") == null) response.sendRedirect("../reglog/login.jsp"); -->
@@ -41,14 +39,14 @@
 
 
         <section id="nome-pagina">
-            <h2>LOGIN - ALUNO</h2>
+            <h2>LOGIN - <%= cargo[index].toUpperCase()  %>:</h2>
         </section>
-
+        
         <div id="caixa-login">
-            <h1>Sistema de Gestão do Bandejão - Aluno</h1>
+            <h1>Sistema de Gestão do Bandejão - <%= cargo[index]  %></h1>
 
-            <form action="consultaMatricula.jsp" method="post">
-                <input type="text" name="matricula" placeholder="Número de matricula">
+            <form action="consultaMatricula.jsp?met=<%= metodoLogin %>" method="post">
+                <input type="text" name="matricula" placeholder="Identificação">
                 <!-- número de matricula-->
                 <input type="password" name="senha" placeholder="Senha">
                 <!--Senha-->

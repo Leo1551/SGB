@@ -1,4 +1,5 @@
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Cadastro.java
+C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Funcionario.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\PreCadastro.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\leona\structure\mavenproject3\resources\JakartaEE10Resource.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\java\UploadAlunoServlet.java
@@ -7,17 +8,19 @@ C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\controllers\CartaoServlet.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dao\SaldoDAO.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Login.java
+C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\conexaoBD.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Transacao.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\java\SaldoBD.java
+C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dao\SessaoDAO.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\java\SGBJava.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\RecSenha.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Cartao.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\java\ConexaoBD.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\java\PreCadastroServlet.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dao\SenhaDAO.java
+C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Gestor.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Registro.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dao\OpenBD.java
-C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\controllers\loginServlet.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\leona\structure\mavenproject3\JakartaRestConfiguration.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\dto\Saldo.java
 C:\Users\Leonardo\Documents\NetBeansProjects\SGB\SGBWeb\src\main\java\sgb\model\controllers\HistoricoServlet.java

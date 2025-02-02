@@ -5,7 +5,7 @@ import sgb.model.dto.Login;
 //Favor NÃO alterar esse maldito login :)
 public class LoginDAO {
     
-    public static boolean verificacaoLogin(Login login) {
+    public static boolean verificacaoLogin(Login login, String tabela, String identificador) {
         ConectarDAO con = new ConectarDAO();
         Connection conexao = null;
         PreparedStatement caixa = null;
@@ -18,7 +18,7 @@ public class LoginDAO {
             
            
             
-            caixa = conexao.prepareStatement("SELECT EXISTS(SELECT 1 FROM cadastros WHERE matricula = ? AND senha = ?)");
+            caixa = conexao.prepareStatement("SELECT EXISTS(SELECT 1 FROM " +  tabela +  " WHERE " + identificador + " = ? AND senha = ?)");
             caixa.setString(1, login.getMatricula());
             caixa.setString(2, login.getSenha());
             

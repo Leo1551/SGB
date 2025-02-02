@@ -14,6 +14,7 @@
        //variáveis que vocês podem usar e que são imutáveis
         String matricula = (String) session.getAttribute("matricula");
         String senha = (String) session.getAttribute("senha");
+        
         //variáveis que vocês podem usar e que precisam ser constantemente atualizados
         String saldo;
         
