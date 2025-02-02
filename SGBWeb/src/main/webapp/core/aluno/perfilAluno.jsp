@@ -80,29 +80,41 @@
                 <img id="foto" src="../../images/fotos/<%= foto %>" alt="Foto do Aluno" />
                 <br><p><%= foto %></p>
             </div>
+            
             <div class="divisao">
-                <div class="subsub">
                     <div class="subdivisoes">
                         <div class="info">
                             <p>Nome:</p>
                             <div id="saldo"><%= nome%></div>
                         </div>
-                    </div>
+                    </div><br><br>
                     <div class="subdivisoes">
                         <div class="info">
                             <p>Email:</p>
                             <div id="saldo"><%= email%></div>
                         </div>
+                    </div><br><br>
+                    <div class="subdivisoes">
+                        <div class="info">
+                            <p>Matrícula:</p>
+                            <div id="saldo"><%= matricula%></div>
+                        </div>
                     </div>
-                </div>
+            </div>
 
-                <div class="subsub">
+            <div class="divisao">
+                    <div class="subdivisoes">
+                        <div class="info">
+                            <p>CPF:</p>
+                            <div id="saldo"><%= cpf%></div>
+                        </div>
+                    </div><br><br>
                     <div class="subdivisoes">
                         <div class="info">
                             <p>Código do cartão:</p>
                             <div id="saldo"><%= codigoCartao%></div>
                         </div>
-                    </div>
+                    </div><br><br>
                     <div class="subdivisoes">
                         <div class="info">
                             <p>Status do cartão:</p>
@@ -116,48 +128,6 @@
                             %>
                         </div>
                     </div>
-                </div>
-
-            </div>
-
-            <div class="divisao">
-                <div class="subsub">
-                    <div class="subdivisoes">
-                        <div class="info">
-                            <p>Matrícula:</p>
-                            <div id="saldo"><%= matricula%></div>
-                        </div>
-                    </div>
-                    <div class="subdivisoes">
-                        <div class="info">
-                            <p>CPF:</p>
-                            <div id="saldo"><%= cpf%></div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="subsub">
-                    <div class="subdivisoes">
-                        <form method="POST" action="bloquear.jsp?id=<%= id%>">
-                            <input type="hidden" name="id" value="<%= id%>">
-                            <input type="hidden" name="acao" value="bloquear">
-                            <div class="botao">
-                                <button type="submit" id="bloquear">Bloquear</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="subdivisoes">
-                        <form method="POST" action="bloquear.jsp?id=<%= id%>">
-                            <input type="hidden" name="id" value="<%= id%>">
-                            <input type="hidden" name="acao" value="desbloquear">
-                            <div class="botao">
-                                <button type="submit" id="desbloquear">Desbloquear</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
 
             <%
