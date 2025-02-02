@@ -19,7 +19,7 @@
         <%@include file="header.jsp" %>
 
         <section id="nome-pagina">
-            <h2>PERFIL - GESTOR</h2>
+            <h2>MEU PERFIL - FUNCIONÁRIO</h2>
         </section>
 
         <div class="container">

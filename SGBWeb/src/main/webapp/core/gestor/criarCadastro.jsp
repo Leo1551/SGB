@@ -16,7 +16,7 @@
     <body>
         <%@include file="headerGestor.jsp" %>
         <section id="nome-pagina">
-            <h2>APROVAR PRÉ CADASTROs</h2>
+            <h2>EDITAR/APROVAR PRÉ CADASTROs</h2>
         </section>
 
         <div class="container">

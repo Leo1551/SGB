@@ -18,7 +18,7 @@
         <%@include file="header.jsp" %>
 
         <section id="nome-pagina">
-            <h2>EDITAR CADASTRO</h2>
+            <h2>MEU PERFIL - ALUNO</h2>
         </section>
 
         <div class="container">

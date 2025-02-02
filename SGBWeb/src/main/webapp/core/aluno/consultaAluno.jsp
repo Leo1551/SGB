@@ -26,7 +26,7 @@
         </header>
 
         <section id="nome-pagina">
-            <h2>PÁGINA PRINCIPAL</h2>
+            <h2>CADASTRO CONCLUIDO</h2>
         </section>
 
         <div class="container">

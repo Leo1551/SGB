@@ -17,7 +17,7 @@
     <body>
         <%@include file="headerGestor.jsp" %>
         <section id="nome-pagina">
-            <h2>EDITAR CADASTRO</h2>
+            <h2>EDITAR/BLOQUEAR CADASTROS</h2>
         </section>
 
         <div class="container">

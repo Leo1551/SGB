@@ -22,7 +22,7 @@
         <%@include file="headerGestor.jsp" %>
 
         <section id="nome-pagina">
-            <h2>EDITAR CADASTRO</h2>
+            <h2>APROVAR PRE-CADASTRO</h2>
         </section>
 
         <div class="container">
@@ -36,7 +36,7 @@
             <div class="opcao">
                 <div class="sou">
                     <h2>
-                        CADASTRO REALIZADO COM SUCESSO
+                        CADASTRO APROVADO COM SUCESSO
                     </h2>
                 </div>
                 <div class="login">
