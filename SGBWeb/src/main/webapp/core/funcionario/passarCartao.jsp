@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="sgb.java.ConexaoBD" %>
+<%@ page import="sgb.model.dto.Cadastro" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,8 +20,40 @@
             <h2>ENTRADA DO RU</h2>
         </section>
 
-        <div class="container">
+        <div class="container">            
+            <%
+                Integer codigo = Integer.parseInt(request.getParameter("codigo"));
+                List<Cadastro> cadastros = ConexaoBD.consultarCadastro(null, null, null, null, null, null, null, codigo, null);
+                Cadastro cadastro = cadastros.get(0);
+                int id = cadastro.getId();
+                String nome = cadastro.getNome();
+                long matricula = cadastro.getMatricula();
+                String foto = cadastro.getFoto();
 
+                double saldo = cadastro.getSaldo();
+                boolean statusCartao = cadastro.getStatusCartao();
+                double saldoNovo = saldo;
+                double precoBandeco = 3.2;
+                
+                // esse aqui nao quer funcionar de jeito nenhum, MUDAR DEPOIS
+                if (statusCartao) {
+                    saldoNovo = saldo - precoBandeco;
+                }
+                
+                ConexaoBD.atualizarCadastro(
+                            id,
+                            nome,
+                            cadastro.getSenha(),
+                            foto,
+                            cadastro.getEmail(),
+                            matricula,
+                            cadastro.getCpf(),
+                            codigo,
+                            statusCartao,
+                            saldoNovo
+                    );
+
+            %>
             <div class="metade cima">
                 <div class="info">
                     <p>Operador(a):</p>
@@ -36,21 +71,21 @@
                 <div class="info">
                     <p>Foto:</p>
                     <br>
-                    <img src="../../images/fotos/foto_0.jpg">
+                    <img src="../../images/fotos/<%= foto%>">
                 </div>
                 <div class="info">
                     <p>Nome:</p>
-                    <div id="nome">Nome</div>
+                    <div id="nome"><%= nome%></div>
                     <br><br>
                     <p>Matrícula:</p>
-                    <div id="numMatricula">00000000000</div>
+                    <div id="numMatricula"><%= matricula%></div>
                 </div>
                 <div class="info">
                     <p>Status do cartão:</p>
-                    <div id="statusCartao" class="ativo">ATIVO/INATIVO</div>
+                    <div id="statusCartao" class="ativo"><%= statusCartao %></div>
                     <br><br>
-                    <p>Saldo:</p>
-                    <div id="saldo">R$ 000,00</div>
+                    <p>Saldo atual:</p>
+                    <div id="saldo"><%= saldoNovo %></div>
                 </div>
             </div>
 

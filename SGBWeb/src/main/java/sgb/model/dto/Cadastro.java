@@ -10,10 +10,11 @@ public class Cadastro {
     private String cpf;
     private int codigoCartao;
     private boolean statusCartao;
+    private double saldo;
     
     public Cadastro() {}
     
-    public Cadastro(Integer id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
+    public Cadastro(Integer id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao, double saldo) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
@@ -23,6 +24,7 @@ public class Cadastro {
         this.cpf = cpf;
         this.codigoCartao = codigoCartao;
         this.statusCartao = statusCartao;
+        this.saldo = saldo;
     }
     
     public Integer getId() {
@@ -94,6 +96,14 @@ public class Cadastro {
     
     public void setStatusCartao(boolean statusCartao ) {
         this.statusCartao = statusCartao;
+    }
+    
+    public double getSaldo() {
+        return saldo;
+    }
+    
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
     
 }

@@ -89,7 +89,7 @@ public class ConexaoBD {
         }
     }
 
-    public static void atualizarCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao) {
+    public static void atualizarCadastro(int id, String nome, String senha, String foto, String email, long matricula, String cpf, int codigoCartao, boolean statusCartao, double saldo) {
 
         //Leonardo: Hashing da senha
         senha = HashMD5.criptografar(senha);
@@ -162,7 +162,7 @@ public class ConexaoBD {
             paramIndex++;
         }
 
-        sqlUpdate.append("matricula = ?, codigoCartao = ?, statusCartao = ? WHERE id = ?");
+        sqlUpdate.append("matricula = ?, codigoCartao = ?, statusCartao = ?, saldo = ? WHERE id = ?");
 
         try (Connection conexao = getConnection(); PreparedStatement stmtUpdate = conexao.prepareStatement(sqlUpdate.toString())) {
 
@@ -180,6 +180,7 @@ public class ConexaoBD {
             stmtUpdate.setLong(paramIndex++, matricula);
             stmtUpdate.setInt(paramIndex++, codigoCartao);
             stmtUpdate.setBoolean(paramIndex++, statusCartao);
+            stmtUpdate.setDouble(paramIndex++, saldo);
             stmtUpdate.setInt(paramIndex, id);
 
             stmtUpdate.executeUpdate();
